@@ -1,5 +1,6 @@
 {
       "name": "Buat Website Portofolio Pribadi",
+      "homepage": "https://firhmgh.github.io/portofolio-maghfirah",
       "version": "0.1.0",
       "private": true,
       "dependencies": {
@@ -52,11 +53,15 @@
             "@types/react": "^19.2.14",
             "@types/react-dom": "^19.2.3",
             "@vitejs/plugin-react-swc": "^3.10.2",
+            "gh-pages": "^6.3.0",
             "typescript": "^5.9.3",
             "vite": "6.3.5"
       },
       "scripts": {
             "dev": "vite",
-            "build": "vite build"
+            "build": "vite build",
+            "preview": "vite preview",
+            "predeploy": "npm run build",
+            "deploy": "gh-pages -d dist"
       }
 }
