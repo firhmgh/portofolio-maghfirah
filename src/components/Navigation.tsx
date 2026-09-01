@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Menu, X, Code2, ArrowUpRight } from 'lucide-react';
+import { Sun, Moon, Menu, X, Code2, ArrowUpRight, FileText } from 'lucide-react';
 
 export const Navigation: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hasResume, setHasResume] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +14,17 @@ export const Navigation: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Check if resume PDF exists in public folder
+  useEffect(() => {
+    fetch('/Maghfirah_CV.pdf', { method: 'HEAD' })
+      .then((res) => {
+        if (res.ok && res.status !== 404) {
+          setHasResume(true);
+        }
+      })
+      .catch(() => setHasResume(false));
   }, []);
 
   const navLinks = [
@@ -73,6 +85,18 @@ export const Navigation: React.FC = () => {
             {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
           </button>
 
+          {hasResume && (
+            <a
+              href="/Maghfirah_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-colors"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              Resume
+            </a>
+          )}
+
           <a
             href="https://github.com/firhmgh"
             target="_blank"
@@ -117,22 +141,34 @@ export const Navigation: React.FC = () => {
               {link.label}
             </a>
           ))}
-          <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex gap-2">
-            <a
-              href="https://github.com/firhmgh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 text-center py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
-            >
-              GitHub Profile
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex-1 text-center py-2 text-xs font-semibold rounded-lg bg-emerald-600 text-white"
-            >
-              Get in Touch
-            </a>
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex flex-col gap-2">
+            {hasResume && (
+              <a
+                href="/Maghfirah_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-center py-2 text-xs font-semibold rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300"
+              >
+                Download Resume (PDF)
+              </a>
+            )}
+            <div className="flex gap-2">
+              <a
+                href="https://github.com/firhmgh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+              >
+                GitHub Profile
+              </a>
+              <a
+                href="#contact"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex-1 text-center py-2 text-xs font-semibold rounded-lg bg-emerald-600 text-white"
+              >
+                Get in Touch
+              </a>
+            </div>
           </div>
         </div>
       )}

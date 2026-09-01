@@ -73,7 +73,8 @@ export const PROJECTS_DATA: ProjectItem[] = [
     ],
     techStack: ['Laravel 11', 'PHP 8.2', 'Google Gemini AI', 'Groq Llama 3', 'Tailwind CSS', 'Chart.js', 'MySQL'],
     githubUrl: 'https://github.com/firhmgh/esg-palm-oil',
-    previewType: 'ai-dashboard',
+    previewType: 'image',
+    imagePath: '/projects/esg-palm-oil/dashboard.webp',
     accentColor: 'from-green-500 to-emerald-700'
   },
   {
@@ -101,7 +102,8 @@ export const PROJECTS_DATA: ProjectItem[] = [
     ],
     techStack: ['Python 3.11', 'Gymnasium', 'Stable-Baselines3', 'PyTorch', 'SB3-Contrib', 'NumPy', 'Pandas'],
     githubUrl: 'https://github.com/firhmgh/palm-oil-reinforcement-learning-simulation',
-    previewType: 'code',
+    previewType: 'image',
+    imagePath: '/projects/palm-oil-rl/rl-performance-benchmark.png',
     accentColor: 'from-cyan-500 to-blue-700'
   },
   {
@@ -130,7 +132,8 @@ export const PROJECTS_DATA: ProjectItem[] = [
     ],
     techStack: ['Python 3.11', 'Tkinter (Desktop GUI)', 'Multi-Threading', 'Send2Trash', 'SHA-256 Engine', 'Typer CLI', 'Unittest'],
     githubUrl: 'https://github.com/firhmgh/local-file-organizer-auditor',
-    previewType: 'cli-terminal',
+    previewType: 'image',
+    imagePath: '/projects/local-file-organizer-auditor/gui.webp',
     accentColor: 'from-blue-500 to-indigo-700'
   },
   {
@@ -166,10 +169,10 @@ export const PROJECTS_DATA: ProjectItem[] = [
     id: 'google-drive-duplicate-cleaner',
     title: 'Google Drive Photo & Video Duplicate Cleaner',
     category: 'Cloud Storage Automation & Security',
-    badge: 'Cloud Automation / CLI',
+    badge: 'Cloud Automation / GUI & CLI',
     featured: true,
-    shortDescription: 'Multi-account CLI utility for Google Drive to detect and safely clean 100% bit-level duplicate media files using OAuth 2.0 and checksum verification.',
-    fullDescription: 'A secure cloud automation command-line utility designed to scan, identify, and safely clean redundant photo and video duplicates across multiple Google Drive accounts using OAuth 2.0 Client credentials and MD5/SHA checksum matching.',
+    shortDescription: 'Multi-account desktop utility & CLI for Google Drive to detect and safely clean 100% bit-level duplicate media files using OAuth 2.0 and checksum verification.',
+    fullDescription: 'A secure cloud automation desktop and command-line utility designed to scan, identify, and safely clean redundant photo and video duplicates across multiple Google Drive accounts using OAuth 2.0 Client credentials and MD5/SHA checksum matching.',
     challenge: 'Cloud storage quotas fill quickly with identical smartphone backups, and standard Google Drive web interfaces lack bulk duplicate detection mechanisms.',
     solution: 'Developed an automated Python tool using Google Drive API v3 that performs recursive file indexing, checksum-based grouping, dry-run reporting, and non-destructive trash routing.',
     architecture: [
@@ -179,15 +182,16 @@ export const PROJECTS_DATA: ProjectItem[] = [
       'Reporting: Structured Markdown summary tables with byte savings breakdown.'
     ],
     keyFeatures: [
-      'Multi-account Google Drive OAuth 2.0 authentication support',
+      'Desktop GUI & CLI: Multi-account Google Drive OAuth 2.0 authentication support',
       'Deterministic MD5 and SHA checksum matching for 100% duplicate verification',
       'Detailed dry-run audit reporting with space reclamation calculations',
       'Safe trash routing with zero permanent data loss risk',
-      'Lightweight and dependency-minimal Python CLI design'
+      'Lightweight and dependency-minimal Python architecture'
     ],
-    techStack: ['Python', 'Google Drive API v3', 'Google OAuth 2.0', 'CLI Architecture', 'Hash Validation'],
+    techStack: ['Python', 'Tkinter GUI', 'Google Drive API v3', 'Google OAuth 2.0', 'Hash Validation', 'Dry-Run Engine'],
     githubUrl: 'https://github.com/firhmgh/google-drive-duplicate-cleaner',
-    previewType: 'cli-terminal',
+    previewType: 'image',
+    imagePath: '/projects/google-drive-duplicate-cleaner/gui.webp',
     accentColor: 'from-amber-500 to-orange-700'
   },
   {

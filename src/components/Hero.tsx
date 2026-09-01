@@ -1,7 +1,9 @@
-import React from 'react';
-import { ArrowRight, Code2, MapPin, Sparkles, Terminal, Layers } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, Code2, MapPin, Sparkles, Terminal, Layers, FileText } from 'lucide-react';
 
 export const Hero: React.FC = () => {
+  const [profileImgExists, setProfileImgExists] = useState(true);
+
   return (
     <section className="relative pt-32 pb-20 md:pt-40 md:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background Decorative Grid */}
@@ -66,7 +68,7 @@ export const Hero: React.FC = () => {
             </div>
           </div>
 
-          {/* Right Column - Editorial Portrait Frame & Stat Capsule */}
+          {/* Right Column - Editorial Portrait Frame with Automatic Profile Image Support */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div className="relative w-full max-w-sm">
               {/* Decorative Frame Glow */}
@@ -88,26 +90,37 @@ export const Hero: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Elegant Fallback Avatar Frame (Ready for Real Photo) */}
-                <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800/80 border border-slate-200 dark:border-slate-700/60 flex flex-col items-center justify-center p-6 text-center group">
-                  <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-700 flex items-center justify-center text-white text-2xl font-black shadow-md mb-3 group-hover:scale-105 transition-transform duration-300">
-                    FM
-                  </div>
-                  <h3 className="font-bold text-slate-900 dark:text-white text-base">
-                    Maghfirah
-                  </h3>
-                  <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-                    Information Systems Specialist
-                  </p>
+                {/* Portrait Frame (Auto-loads /images/profile.jpg or falls back gracefully to Monogram) */}
+                <div className="aspect-[4/3] rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-slate-900 dark:to-slate-800/80 border border-slate-200 dark:border-slate-700/60 overflow-hidden flex flex-col items-center justify-center p-6 text-center relative group">
+                  {profileImgExists ? (
+                    <img
+                      src="/images/profile.jpg"
+                      alt="Maghfirah"
+                      className="w-full h-full object-cover object-top absolute inset-0"
+                      onError={() => setProfileImgExists(false)}
+                    />
+                  ) : (
+                    <div className="flex flex-col items-center justify-center">
+                      <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-700 flex items-center justify-center text-white text-2xl font-black shadow-md mb-3 group-hover:scale-105 transition-transform duration-300">
+                        FM
+                      </div>
+                      <h3 className="font-bold text-slate-900 dark:text-white text-base">
+                        Maghfirah
+                      </h3>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+                        Information Systems Specialist
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Quick Tech Snapshot */}
                 <div className="grid grid-cols-2 gap-3 pt-1">
-                  <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
+                  <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800 text-left">
                     <span className="block text-[11px] text-slate-400 font-mono">Specialization</span>
                     <span className="text-xs font-bold text-slate-800 dark:text-slate-200">WebGIS & Full-Stack</span>
                   </div>
-                  <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800">
+                  <div className="p-3 rounded-lg bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-800 text-left">
                     <span className="block text-[11px] text-slate-400 font-mono">Core Stack</span>
                     <span className="text-xs font-bold text-slate-800 dark:text-slate-200">Laravel, React, Python</span>
                   </div>
