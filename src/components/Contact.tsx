@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Github, ArrowUpRight, MapPin, Send, MessageSquare } from 'lucide-react';
+import { Mail, Github, Linkedin, ArrowUpRight, MapPin, Send, FileText } from 'lucide-react';
 
 export const Contact: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ export const Contact: React.FC = () => {
             Let's Connect & Collaborate
           </h2>
           <p className="text-base text-slate-600 dark:text-slate-300 leading-relaxed">
-            Interested in discussing full-stack development, geospatial/WebGIS projects, machine learning research, or software engineering opportunities? Feel free to reach out.
+            Membuka kesempatan magang, posisi entry-level, riset kolaboratif, maupun diskusi teknis di bidang Software Development, Web/Mobile Development, dan GIS/Geospatial.
           </p>
         </div>
 
@@ -30,30 +30,60 @@ export const Contact: React.FC = () => {
                 Send an Email
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-                The fastest way to reach me for professional inquiries, project collaborations, and hiring discussions.
+                Kanal komunikasi langsung untuk penawaran kerja, magang, kolaborasi riset sistem informasi, atau konsultasi teknis.
               </p>
               <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-900/80 border border-slate-200 dark:border-slate-800 font-mono text-xs sm:text-sm text-slate-800 dark:text-slate-200 select-all">
                 firahmagh485@gmail.com
               </div>
             </div>
 
-            <a
-              href="mailto:firahmagh485@gmail.com?subject=Project%20Inquiry%20/%20Collaboration"
-              className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm"
-            >
-              <Send className="w-4 h-4" />
-              <span>Compose Email Directly</span>
-            </a>
+            <div className="flex flex-col sm:flex-row gap-3 pt-2">
+              <a
+                href="mailto:firahmagh485@gmail.com?subject=Inquiry%20from%20Portfolio%20-%20Maghfirah"
+                className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm transition-colors shadow-sm"
+              >
+                <Send className="w-4 h-4" />
+                <span>Compose Email</span>
+              </a>
+              <a
+                href="/Maghfirah_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 font-bold text-xs sm:text-sm hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
+              >
+                <FileText className="w-4 h-4" />
+                <span>Download CV (PDF)</span>
+              </a>
+            </div>
           </div>
 
-          {/* Social & Location Cards (Right 5 Cols) */}
+          {/* Social & Verification Cards (Right 5 Cols) */}
           <div className="md:col-span-5 flex flex-col justify-between gap-4">
+            {/* LinkedIn Card */}
+            <a
+              href="https://linkedin.com/in/firhmgh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-5 rounded-2xl bg-white dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 shadow-sm hover:border-blue-500/80 transition-all group flex items-center justify-between"
+            >
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950/50 text-blue-600 dark:text-blue-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+                  <Linkedin className="w-5 h-5" />
+                </div>
+                <div>
+                  <h4 className="font-bold text-slate-900 dark:text-white text-sm">LinkedIn Profile</h4>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">linkedin.com/in/firhmgh</p>
+                </div>
+              </div>
+              <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors" />
+            </a>
+
             {/* GitHub Card */}
             <a
               href="https://github.com/firhmgh"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-6 rounded-2xl bg-white dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/80 transition-all group flex items-center justify-between"
+              className="p-5 rounded-2xl bg-white dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 shadow-sm hover:border-emerald-500/80 transition-all group flex items-center justify-between"
             >
               <div className="flex items-center gap-3.5">
                 <div className="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-900 dark:text-white group-hover:scale-105 transition-transform">
@@ -67,14 +97,14 @@ export const Contact: React.FC = () => {
               <ArrowUpRight className="w-4 h-4 text-slate-400 group-hover:text-emerald-500 transition-colors" />
             </a>
 
-            {/* Location & Availability Note */}
-            <div className="p-6 rounded-2xl bg-slate-100/70 dark:bg-[#12151c]/60 border border-slate-200 dark:border-slate-800/80 space-y-3">
+            {/* Location Card */}
+            <div className="p-5 rounded-2xl bg-slate-100/70 dark:bg-[#12151c]/60 border border-slate-200 dark:border-slate-800/80 space-y-2">
               <div className="flex items-center gap-2 text-xs font-mono font-semibold text-slate-700 dark:text-slate-300">
                 <MapPin className="w-4 h-4 text-emerald-500" />
-                <span>Indonesia (WIB / UTC+7)</span>
+                <span>Medan, Sumatera Utara, Indonesia</span>
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 leading-relaxed">
-                Open for remote roles, on-site discussions in Indonesia, and technical collaborations worldwide.
+                Tersedia untuk peluang kerja remote maupun on-site di Indonesia.
               </p>
             </div>
           </div>

@@ -4,34 +4,34 @@ import { Server, Layout, Map, Cpu, Database, Wrench } from 'lucide-react';
 export const Skills: React.FC = () => {
   const skillCategories = [
     {
-      category: 'Backend & Enterprise Development',
+      category: 'Bahasa Pemrograman',
       icon: <Server className="w-5 h-5 text-emerald-500" />,
-      skills: ['PHP 8.2', 'Laravel 10 / 11', 'Python 3.11', 'Node.js', 'RESTful APIs', 'Role-Based Access Control (RBAC)', 'Validation Pipelines']
+      skills: ['PHP', 'Dart', 'JavaScript (ES6+)', 'Python 3.11', 'HTML5', 'CSS3']
     },
     {
-      category: 'Frontend & Modern Web',
+      category: 'Framework & Mobile',
       icon: <Layout className="w-5 h-5 text-teal-500" />,
-      skills: ['TypeScript', 'JavaScript (ES6+)', 'React 18', 'Next.js (App Router)', 'Tailwind CSS', 'Bootstrap 5', 'Responsive Design', 'HTML5 / Semantic Web']
+      skills: ['Flutter (Android SDK)', 'Laravel 10 / 11', 'React 18', 'Next.js', 'RESTful API Integration', 'Tailwind CSS', 'Bootstrap 5']
     },
     {
-      category: 'Geospatial & Spatial Intelligence',
+      category: 'GIS & Data Spasial',
       icon: <Map className="w-5 h-5 text-cyan-500" />,
-      skills: ['Leaflet GIS', 'PostGIS', 'GeoJSON Data Structures', 'Raster Tile Slicing (XYZ)', 'LiDAR DTM Processing', 'QGIS Desktop', 'Spatial Coordinate Systems']
+      skills: ['ArcGIS Pro (Esri Certified)', 'QGIS Desktop', 'WebGIS (Leaflet)', 'GPS Geodetik E300 Pro (RTK & Statik)', 'Leica Spider', 'GeoSolution', 'Analisis & Digitasi Spasial']
     },
     {
-      category: 'Artificial Intelligence & Machine Learning',
+      category: 'AI, Machine Learning & Analytics',
       icon: <Cpu className="w-5 h-5 text-blue-500" />,
-      skills: ['Gymnasium Environments', 'Stable-Baselines3 (PPO & Recurrent PPO)', 'PyTorch', 'Scikit-Learn', 'Large Language Models (Google Gemini & Groq APIs)', 'NumPy / Pandas']
+      skills: ['Gymnasium Environments', 'Stable-Baselines3 (PPO & LSTM)', 'PyTorch', 'Google Gemini AI', 'Groq Llama 3', 'Chart.js', 'Pandas / NumPy']
     },
     {
-      category: 'Databases & Cloud Storage',
+      category: 'Database & Cloud Storage',
       icon: <Database className="w-5 h-5 text-indigo-500" />,
-      skills: ['MySQL', 'PostgreSQL', 'Supabase Cloud', 'Google Drive API v3 (OAuth 2.0)', 'Database Indexing & Query Optimization']
+      skills: ['MySQL Relational Database', 'PostgreSQL / PostGIS', 'Supabase Cloud', 'Google Drive API v3 (OAuth 2.0)']
     },
     {
-      category: 'System Tooling & Engineering Best Practices',
+      category: 'Tools & Soft Skills',
       icon: <Wrench className="w-5 h-5 text-amber-500" />,
-      skills: ['Tkinter Desktop GUI', 'Windows FileSystem API (send2trash)', 'SHA-256 Hashing Algorithms', 'Git & GitHub Workflows', 'Vite', 'Automated Unittest Suite']
+      skills: ['Git (GitHub/GitLab)', 'Tkinter Desktop GUI', 'Vite & Composer', 'Kerja Sama Tim', 'Komunikasi Efektif', 'Ketelitian', 'Adaptasi Cepat']
     }
   ];
 
@@ -39,7 +39,7 @@ export const Skills: React.FC = () => {
     <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0a0b0e] border-t border-slate-200/80 dark:border-slate-800/80">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
-        <div className="space-y-3 max-w-2xl text-left">
+        <div className="space-y-3 max-w-3xl text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
             <span>Verified Technical Capabilities</span>
           </div>
@@ -47,7 +47,7 @@ export const Skills: React.FC = () => {
             Skills & Technology Matrix
           </h2>
           <p className="text-base text-slate-600 dark:text-slate-300">
-            A comprehensive overview of frameworks, languages, algorithms, and engineering tools proven across my active software projects.
+            Daftar bahasa pemrograman, framework, software GIS, platform AI, dan tools yang terverifikasi dari CV resmi serta repositori proyek aktif.
           </p>
         </div>
 

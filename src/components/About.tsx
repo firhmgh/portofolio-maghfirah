@@ -1,22 +1,22 @@
 import React from 'react';
-import { Compass, ShieldCheck, Cpu, Code2 } from 'lucide-react';
+import { Compass, ShieldCheck, Cpu } from 'lucide-react';
 
 export const About: React.FC = () => {
   const highlights = [
     {
       icon: <Compass className="w-5 h-5 text-emerald-500" />,
-      title: 'Geospatial & Spatial Intelligence',
-      desc: 'Deep interest in GIS applications, PostGIS coordinate pipelines, and web map architectures for monitoring complex physical territories.'
+      title: 'Analisis Spasial & WebGIS Terapan',
+      desc: 'Berpengalaman dalam pengolahan data geospasial kelapa sawit menggunakan ArcGIS Pro, QGIS, GPS Geodetik E300 Pro (RTK/Statik), serta pengembangan WebGIS open-source.'
     },
     {
       icon: <ShieldCheck className="w-5 h-5 text-cyan-500" />,
-      title: 'Safe-by-Default Architecture',
-      desc: 'Committed to non-destructive system engineering, transactional integrity, multi-tiered hash validation, and automated safety protocols.'
+      title: 'Full-Stack Web & Mobile Engineering',
+      desc: 'Pemegang Sertifikat Kompetensi BNSP Pemrogram Web Muda. Terbiasa membangun sistem enterprise berbasis Laravel, Flutter mobile apps, RESTful API, dan optimasi basis data MySQL.'
     },
     {
       icon: <Cpu className="w-5 h-5 text-teal-500" />,
-      title: 'Applied AI & Decision Support',
-      desc: 'Practical implementation of reinforcement learning simulations, neural policies, and LLM integrations (Gemini, Groq) to augment human decisions.'
+      title: 'Kecerdasan Buatan & Sistem Keputusan',
+      desc: 'Implementasi machine learning terapan seperti simulasi Reinforcement Learning (Gymnasium/PPO) dan integrasi Dual AI (Gemini & Groq) untuk analitik keberlanjutan industri.'
     }
   ];
 
@@ -27,22 +27,22 @@ export const About: React.FC = () => {
           {/* Left Column - Narrative */}
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
-              <span>Background & Engineering Philosophy</span>
+              <span>Profil & Latar Belakang</span>
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
-              Bridging Information Systems with Geospatial & AI Innovation.
+              Menghubungkan Sistem Informasi, Analisis Spasial, dan Rekayasa Perangkat Lunak.
             </h2>
 
             <div className="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
               <p>
-                I am an <strong className="font-semibold text-slate-900 dark:text-white">Information Systems Specialist and Full-Stack Software Developer</strong> based in Indonesia. My work spans the complete lifecycle of software development—from database modeling and backend API design to responsive spatial frontends and AI simulations.
+                Saya adalah <strong className="font-semibold text-slate-900 dark:text-white">Mahasiswi S1 Sistem dan Teknologi Informasi</strong> di Institut Teknologi Sawit Indonesia (IPK 3.86/4.00) dengan rekam jejak magang di Sekretariat Jenderal DPR RI (Mobile Programmer) dan PT Perkebunan Nusantara III Kantor Regional I (Staf Magang Sistem Informasi & GIS, Nilai 95.9/100).
               </p>
               <p>
-                Much of my recent focus centers on the palm oil and agro-industrial sector, where I have engineered enterprise spatial monitoring tools (SIMTAN), AI-driven sustainability analytics dashboards (ESG Palm Oil), and custom Gymnasium reinforcement learning environments to optimize yield and resource distribution.
+                Fokus keahlian saya mencakup pengembangan aplikasi Web & Mobile (Laravel, Flutter, PHP), pemrosesan data geospasial presisi tinggi (ArcGIS Pro, QGIS, GPS Geodetik), serta perancangan sistem berbasis kecerdasan komputasional.
               </p>
               <p>
-                I value clean architecture, testable code, thorough documentation, and creating software that users can trust in mission-critical environments.
+                Saya memiliki komitmen tinggi terhadap kualitas kode, integritas data, ketelitian operasional, dan siap berkontribusi pada posisi magang atau entry-level di bidang Software Development, Web/Mobile Development, maupun GIS/Geospatial.
               </p>
             </div>
           </div>

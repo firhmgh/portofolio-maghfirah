@@ -1,56 +1,97 @@
 # Maghfirah — Personal Portfolio (2026 Edition)
 
-Modern, high-performance, and responsive software developer portfolio built with **React 18**, **TypeScript**, **Vite**, **Tailwind CSS**, and **Framer Motion**.
+Portofolio developer profesional berstandar modern berbasis **React 18**, **TypeScript**, **Vite**, **Tailwind CSS**, dan **Framer Motion**, menampilkan profil terverifikasi, riwayat magang BUMN/Pemerintah, serta 7 karya sistem nyata (Web, Mobile, Spatial WebGIS, AI/ML, dan Windows Tooling).
 
 ---
 
-## 🌟 Featured Engineering Projects
+## 👤 Profil Singkat
+
+- **Nama:** Maghfirah
+- **Pendidikan:** S1 Sistem dan Teknologi Informasi, Institut Teknologi Sawit Indonesia (IPK 3.86 / 4.00)
+- **Sertifikasi:** Pemrogram Web Muda (BNSP) & ArcGIS Pro Profesional (Esri)
+- **Pengalaman Utama:**
+  - *Mobile Programmer* — Parliamentary Internship Program, Sekretariat Jenderal DPR RI (Nilai: 84.25)
+  - *Staf Magang Sistem Informasi & GIS* — PTPN III Kantor Regional I, Program Magenta BUMN (Nilai: 95.9 / 100 - A)
+- **Email:** [firahmagh485@gmail.com](mailto:firahmagh485@gmail.com)
+- **LinkedIn:** [linkedin.com/in/firhmgh](https://linkedin.com/in/firhmgh)
+- **GitHub:** [github.com/firhmgh](https://github.com/firhmgh)
+- **Live Portfolio:** [firhmgh.github.io/portofolio-maghfirah](https://firhmgh.github.io/portofolio-maghfirah)
+
+---
+
+## 🌟 7 Featured Engineering Projects
 
 1. **[SIMTAN — Integrated Immature Oil Palm (TBM) Monitoring Platform](https://github.com/firhmgh/simtan-monitoring-palm-oil)**
-   - *Enterprise Agro-GIS platform with automated agronomic audit validation (Laravel 10, Leaflet GIS, PostGIS, MySQL).*
+   - *Platform Enterprise Agro-GIS dengan validasi agronomi otomatis (Laravel 10, Leaflet GIS, PostGIS, MySQL).*
 2. **[ESG Palm Oil — AI-Powered Sustainability Analytics Dashboard](https://github.com/firhmgh/esg-palm-oil)**
-   - *Dual AI evaluation engine (Google Gemini & Groq Llama 3) with Ganoderma disease impact weighting.*
+   - *Dashboard analitik keberlanjutan sawit dengan Dual AI Engine (Google Gemini & Groq Llama 3) serta pemodelan penalti Ganoderma.*
 3. **[Palm Oil Reinforcement Learning Simulation](https://github.com/firhmgh/palm-oil-reinforcement-learning-simulation)**
-   - *Custom Gymnasium research environment training PPO and Recurrent PPO (LSTM) deep RL agents.*
+   - *Environment simulasi riset Gymnasium untuk optimasi panen dan pemupukan berbasis PPO & Recurrent PPO (LSTM).*
 4. **[Local File Organizer & Auditor (Desktop GUI + CLI)](https://github.com/firhmgh/local-file-organizer-auditor)**
-   - *Safe, non-destructive Windows system utility featuring tiered SHA-256 duplicate hashing and GIS bundle immunity.*
+   - *Utilitas sistem Windows dengan Tiered SHA-256 Hashing, proteksi bundel GIS (.shp/.prj), dan pembersihan aman ke Recycle Bin.*
 5. **[WebGIS TBM Regional 1 PalmCo](https://github.com/firhmgh/webgis-tbm-palmco-regional-1)**
-   - *Enterprise spatial intelligence frontend with tree census point rendering and LiDAR DTM overlays.*
+   - *Dashboard visualisasi spasial interaktif sebaran titik pohon dan layer DTM LiDAR (React, Vite, Leaflet, Supabase PostGIS).*
 6. **[Google Drive Photo & Video Duplicate Cleaner](https://github.com/firhmgh/google-drive-duplicate-cleaner)**
-   - *Multi-account cloud automation tool using Google Drive API v3, OAuth 2.0, and checksum validation.*
+   - *Utilitas automasi cloud multi-akun berbasis Google Drive API v3, OAuth 2.0, dan verifikasi checksum.*
 7. **[Digital Library & Modern Blog Platform](https://github.com/firhmgh/Digital-Library-Blog)**
-   - *Full-stack reading platform built with Next.js App Router, TypeScript, and Tailwind CSS.*
+   - *Platform katalog dan pembaca artikel berbasis Next.js App Router, TypeScript, dan Tailwind CSS.*
 
 ---
 
 ## 🛠️ Tech Stack & Architecture
 
-- **Core Framework:** React 18, TypeScript, Vite
-- **Styling & Design System:** Tailwind CSS, PostCSS, Lucide React
-- **Theming:** Full Dark/Light mode with local persistence
-- **Safety & Performance:** Pure verified assets, lazy loading, zero placeholder data
+- **Frontend Core:** React 18.3, TypeScript, Vite 6.0, HTML5 Semantic
+- **Styling & UI:** Tailwind CSS 3.4, PostCSS, Lucide React, Glassmorphism Modern
+- **Theming:** Dynamic Dark/Light Mode dengan LocalStorage persistence
+- **Performance & SEO:** Lazy loading, responsive images, valid OpenGraph, dan core web vitals optimal
 
 ---
 
-## 🚀 Getting Started Locally
+## 🚀 Cara Menjalankan Secara Lokal
 
 ```bash
-# 1. Clone repository
+# 1. Clone repositori
 git clone https://github.com/firhmgh/portofolio-maghfirah.git
 cd portofolio-maghfirah
 
-# 2. Install dependencies
+# 2. Pasang dependensi
 npm install
 
-# 3. Start development server
+# 3. Jalankan server development
 npm run dev
 
-# 4. Build for production
+# 4. Build untuk production
 npm run build
 ```
 
 ---
 
-## 📄 License & Ownership
+## 📁 Struktur Portofolio
+
+```text
+portofolio-maghfirah/
+├── public/
+│   ├── images/profile.jpg (Foto profesional resmi)
+│   ├── Maghfirah_CV.pdf (Berkas resmi resume PDF)
+│   └── projects/ (Aset visual terstruktur 7 proyek)
+├── src/
+│   ├── context/ThemeContext.tsx (Dark/Light theme provider)
+│   ├── data/projectsData.ts (Data terpusat 7 proyek nyata)
+│   ├── components/
+│   │   ├── Navigation.tsx (Floating navbar + theme switcher + resume button)
+│   │   ├── Hero.tsx (Editorial portrait frame + CTAs)
+│   │   ├── SelectedWork.tsx (Showcase karya nyata + Case study drawer)
+│   │   ├── Skills.tsx (Matriks keahlian terverifikasi)
+│   │   ├── Experience.tsx (Pengalaman kerja, magang BUMN, organisasi, pelatihan)
+│   │   ├── About.tsx (Profil dan visi rekayasa sistem)
+│   │   ├── Contact.tsx (Direct email, LinkedIn, GitHub)
+│   │   └── Footer.tsx (Copyright & build info)
+│   └── App.tsx (Main application container)
+└── index.html (SEO, Open Graph & metadata)
+```
+
+---
+
+## 📄 Lisensi & Hak Cipta
 
 © 2026 Maghfirah. Open-source under the MIT License.
