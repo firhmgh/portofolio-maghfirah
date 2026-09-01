@@ -1,6 +1,6 @@
 # Maghfirah — Personal Portfolio (2026 Edition)
 
-Portofolio developer profesional berstandar modern berbasis **React 18**, **TypeScript**, **Vite**, **Tailwind CSS**, dan **Framer Motion**, menampilkan profil terverifikasi, riwayat magang BUMN/Pemerintah, serta 7 karya sistem nyata (Web, Mobile, Spatial WebGIS, AI/ML, dan Windows Tooling).
+Portofolio developer profesional berstandar modern berbasis **React 18**, **TypeScript**, **Vite**, **Tailwind CSS**, dan **Framer Motion**, menampilkan profil terverifikasi, riwayat magang BUMN/Pemerintah, serta karya sistem nyata (Web, Mobile, Spatial WebGIS, AI/ML, dan Windows Tooling).
 
 ---
 
@@ -11,18 +11,18 @@ Portofolio developer profesional berstandar modern berbasis **React 18**, **Type
 - **Sertifikasi:** Pemrogram Web Muda (BNSP) & ArcGIS Pro Profesional (Esri)
 - **Pengalaman Utama:**
   - *Mobile Programmer* — Parliamentary Internship Program, Sekretariat Jenderal DPR RI (Nilai: 84.25)
-  - *Staf Magang Sistem Informasi & GIS* — PTPN III Kantor Regional I, Program Magenta BUMN (Nilai: 95.9 / 100 - A)
+  - *Staf Magang Sistem Informasi & GIS* — PT Perkebunan Nusantara IV Regional 1, Program Magenta BUMN (Nilai: 95.9 / 100 - A)
 - **Email:** [firahmagh485@gmail.com](mailto:firahmagh485@gmail.com)
 - **LinkedIn:** [linkedin.com/in/firhmgh](https://linkedin.com/in/firhmgh)
 - **GitHub:** [github.com/firhmgh](https://github.com/firhmgh)
-- **Live Portfolio:** [firhmgh.github.io/portofolio-maghfirah](https://firhmgh.github.io/portofolio-maghfirah)
+- **Live Portfolio:** [firhmgh.github.io/portofolio-maghfirah](https://firhmgh.github.io/portofolio-maghfirah/)
 
 ---
 
-## 🌟 7 Featured Engineering Projects
+## 🌟 Featured Engineering Projects
 
-1. **[SIMTAN — Integrated Immature Oil Palm (TBM) Monitoring Platform](https://github.com/firhmgh/simtan-monitoring-palm-oil)**
-   - *Platform Enterprise Agro-GIS dengan validasi agronomi otomatis (Laravel 10, Leaflet GIS, PostGIS, MySQL).*
+1. **[SIMTAN — Immature Oil Palm (TBM) Monitoring Platform](https://github.com/firhmgh/simtan-monitoring-palm-oil)** *(Tugas Akhir / Skripsi S1)*
+   - *Platform Enterprise Agro-GIS dengan validasi agronomi otomatis, Static Raster XYZ Tiles, dan integrasi LLM (Laravel, Leaflet, MySQL, LLM API). Telah dipublikasikan pada jurnal ilmiah terindeks: [Journal of Deep Learning, Computer Vision and Digital Image Processing](https://journal.diginus.id/DECODING/article/view/1449).*
 2. **[ESG Palm Oil — AI-Powered Sustainability Analytics Dashboard](https://github.com/firhmgh/esg-palm-oil)**
    - *Dashboard analitik keberlanjutan sawit dengan Dual AI Engine (Google Gemini & Groq Llama 3) serta pemodelan penalti Ganoderma.*
 3. **[Palm Oil Reinforcement Learning Simulation](https://github.com/firhmgh/palm-oil-reinforcement-learning-simulation)**
@@ -41,7 +41,7 @@ Portofolio developer profesional berstandar modern berbasis **React 18**, **Type
 ## 🛠️ Tech Stack & Architecture
 
 - **Frontend Core:** React 18.3, TypeScript, Vite 6.0, HTML5 Semantic
-- **Styling & UI:** Tailwind CSS 3.4, PostCSS, Lucide React, Glassmorphism Modern
+- **Styling & UI:** Tailwind CSS 4, PostCSS, Lucide React, Glassmorphism Modern
 - **Theming:** Dynamic Dark/Light Mode dengan LocalStorage persistence
 - **Performance & SEO:** Lazy loading, responsive images, valid OpenGraph, dan core web vitals optimal
 
@@ -71,18 +71,19 @@ npm run build
 ```text
 portofolio-maghfirah/
 ├── public/
+│   ├── favicon.svg & favicon.png (Monogram FM resmi)
 │   ├── images/profile.jpg (Foto profesional resmi)
 │   ├── Maghfirah_CV.pdf (Berkas resmi resume PDF)
-│   └── projects/ (Aset visual terstruktur 7 proyek)
+│   └── projects/ (Aset visual terstruktur proyek)
 ├── src/
 │   ├── context/ThemeContext.tsx (Dark/Light theme provider)
-│   ├── data/projectsData.ts (Data terpusat 7 proyek nyata)
+│   ├── data/projectsData.ts (Data terpusat proyek nyata & publikasi)
 │   ├── components/
 │   │   ├── Navigation.tsx (Floating navbar + theme switcher + resume button)
 │   │   ├── Hero.tsx (Editorial portrait frame + CTAs)
-│   │   ├── SelectedWork.tsx (Showcase karya nyata + Case study drawer)
+│   │   ├── SelectedWork.tsx (Showcase karya nyata + Journal link + Case study drawer)
 │   │   ├── Skills.tsx (Matriks keahlian terverifikasi)
-│   │   ├── Experience.tsx (Pengalaman kerja, magang BUMN, organisasi, pelatihan)
+│   │   ├── Experience.tsx (Pengalaman kerja DPR RI & PTPN IV Regional 1)
 │   │   ├── About.tsx (Profil dan visi rekayasa sistem)
 │   │   ├── Contact.tsx (Direct email, LinkedIn, GitHub)
 │   │   └── Footer.tsx (Copyright & build info)

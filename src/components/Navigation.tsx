@@ -6,7 +6,6 @@ export const Navigation: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [hasResume, setHasResume] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,17 +13,6 @@ export const Navigation: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Check if resume PDF exists in public folder
-  useEffect(() => {
-    fetch('/Maghfirah_CV.pdf', { method: 'HEAD' })
-      .then((res) => {
-        if (res.ok && res.status !== 404) {
-          setHasResume(true);
-        }
-      })
-      .catch(() => setHasResume(false));
   }, []);
 
   const navLinks = [
@@ -39,63 +27,61 @@ export const Navigation: React.FC = () => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'py-3 bg-white/80 dark:bg-[#0a0b0e]/80 backdrop-blur-xl border-b border-slate-200/80 dark:border-slate-800/80 shadow-sm'
+          ? 'py-3 bg-white/85 dark:bg-[#0a0b0e]/85 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm'
           : 'py-5 bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Monogram / Brand */}
+        {/* Monogram Brand */}
         <a
           href="#"
           className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg p-1"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white font-bold text-base shadow-sm group-hover:scale-105 transition-transform duration-200">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white font-bold text-sm shadow-sm group-hover:scale-105 transition-transform duration-200">
             FM
           </div>
-          <div className="flex flex-col">
+          <div className="flex flex-col text-left">
             <span className="font-bold text-slate-900 dark:text-white tracking-tight text-sm sm:text-base leading-none group-hover:text-emerald-500 transition-colors">
               Maghfirah
             </span>
             <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-              dev.portfolio
+              Portfolio
             </span>
           </div>
         </a>
 
-        {/* Desktop Nav Links */}
-        <nav className="hidden md:flex items-center gap-1 bg-slate-100/70 dark:bg-slate-900/70 border border-slate-200/60 dark:border-slate-800/60 rounded-full px-4 py-1.5 backdrop-blur-md">
+        {/* Desktop Navigation Links (Clean Spacing) */}
+        <nav className="hidden md:flex items-center gap-2 bg-slate-100/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800/80 rounded-full px-4 py-1.5 backdrop-blur-md">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="px-3.5 py-1.5 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+              className="px-3.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Right CTA & Controls */}
+        {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleTheme}
             aria-label="Toggle dark/light theme"
-            className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800/80 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
+            className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
           >
             {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
           </button>
 
-          {hasResume && (
-            <a
-              href="/Maghfirah_CV.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-colors"
-            >
-              <FileText className="w-3.5 h-3.5" />
-              Resume
-            </a>
-          )}
+          <a
+            href="Maghfirah_CV.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-colors"
+          >
+            <FileText className="w-3.5 h-3.5" />
+            Resume (PDF)
+          </a>
 
           <a
             href="https://github.com/firhmgh"
@@ -109,11 +95,11 @@ export const Navigation: React.FC = () => {
           </a>
         </div>
 
-        {/* Mobile Hamburger & Theme Switch */}
+        {/* Mobile Hamburger & Controls */}
         <div className="flex md:hidden items-center gap-2">
           <button
             onClick={toggleTheme}
-            aria-label="Toggle dark/light theme"
+            aria-label="Toggle theme"
             className="w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300"
           >
             {theme === 'dark' ? <Sun className="w-3.5 h-3.5 text-amber-400" /> : <Moon className="w-3.5 h-3.5" />}
@@ -136,22 +122,20 @@ export const Navigation: React.FC = () => {
               key={link.label}
               href={link.href}
               onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-lg transition-colors"
+              className="block px-4 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors text-left"
             >
               {link.label}
             </a>
           ))}
-          <div className="pt-2 border-t border-slate-100 dark:border-slate-800/80 flex flex-col gap-2">
-            {hasResume && (
-              <a
-                href="/Maghfirah_CV.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full text-center py-2 text-xs font-semibold rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300"
-              >
-                Download Resume (PDF)
-              </a>
-            )}
+          <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+            <a
+              href="Maghfirah_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-center py-2 text-xs font-semibold rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300"
+            >
+              Download Resume (PDF)
+            </a>
             <div className="flex gap-2">
               <a
                 href="https://github.com/firhmgh"
@@ -159,14 +143,14 @@ export const Navigation: React.FC = () => {
                 rel="noopener noreferrer"
                 className="flex-1 text-center py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
               >
-                GitHub Profile
+                GitHub
               </a>
               <a
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex-1 text-center py-2 text-xs font-semibold rounded-lg bg-emerald-600 text-white"
               >
-                Get in Touch
+                Contact
               </a>
             </div>
           </div>

@@ -21,9 +21,9 @@ export const About: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0a0b0e] border-t border-slate-200/80 dark:border-slate-800/80">
-      <div className="max-w-7xl mx-auto space-y-16">
-        <div className="grid lg:grid-cols-12 gap-12 items-center text-left">
+    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0a0b0e] border-t border-slate-200 dark:border-slate-800">
+      <div className="max-w-7xl mx-auto space-y-12">
+        <div className="grid lg:grid-cols-12 gap-10 items-center text-left">
           {/* Left Column - Narrative */}
           <div className="lg:col-span-6 space-y-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
@@ -36,7 +36,7 @@ export const About: React.FC = () => {
 
             <div className="space-y-4 text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed">
               <p>
-                Saya adalah <strong className="font-semibold text-slate-900 dark:text-white">Mahasiswi S1 Sistem dan Teknologi Informasi</strong> di Institut Teknologi Sawit Indonesia (IPK 3.86/4.00) dengan rekam jejak magang di Sekretariat Jenderal DPR RI (Mobile Programmer) dan PT Perkebunan Nusantara III Kantor Regional I (Staf Magang Sistem Informasi & GIS, Nilai 95.9/100).
+                Saya adalah <strong className="font-semibold text-slate-900 dark:text-white">Mahasiswi S1 Sistem dan Teknologi Informasi</strong> di Institut Teknologi Sawit Indonesia (IPK 3.86/4.00) dengan rekam jejak magang di Sekretariat Jenderal DPR RI (Mobile Programmer) dan PT Perkebunan Nusantara IV Regional 1 (Staf Magang Sistem Informasi & GIS, Nilai 95.9/100).
               </p>
               <p>
                 Fokus keahlian saya mencakup pengembangan aplikasi Web & Mobile (Laravel, Flutter, PHP), pemrosesan data geospasial presisi tinggi (ArcGIS Pro, QGIS, GPS Geodetik), serta perancangan sistem berbasis kecerdasan komputasional.
@@ -52,7 +52,7 @@ export const About: React.FC = () => {
             {highlights.map((h, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-slate-50/80 dark:bg-[#12151c] border border-slate-200/80 dark:border-slate-800/80 space-y-2.5 hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
+                className="p-5 rounded-2xl bg-slate-50 dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 space-y-2 hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
               >
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">

@@ -4,6 +4,7 @@ export interface ProjectItem {
   category: string;
   badge: string;
   featured: boolean;
+  isUndergraduateThesis?: boolean;
   shortDescription: string;
   fullDescription: string;
   challenge: string;
@@ -12,213 +13,210 @@ export interface ProjectItem {
   keyFeatures: string[];
   techStack: string[];
   githubUrl: string;
+  journalUrl?: string;
+  journalTitle?: string;
   liveUrl?: string;
-  previewType: 'image' | 'code' | 'interactive-map' | 'ai-dashboard' | 'cli-terminal';
-  imagePath?: string;
+  imagePath: string;
   accentColor: string;
 }
 
 export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: 'simtan-monitoring-palm-oil',
-    title: 'SIMTAN — Integrated Immature Oil Palm (TBM) Monitoring Platform',
-    category: 'Enterprise Agro-GIS & Expert Validation',
-    badge: 'Enterprise Core / Research',
+    title: 'SIMTAN — Immature Oil Palm (TBM) Monitoring Platform',
+    category: 'Enterprise Agro-GIS & Expert Validation (Tugas Akhir / Skripsi S1)',
+    badge: 'Final Project / Skripsi',
     featured: true,
-    shortDescription: 'Enterprise geospatial monitoring platform for immature oil palm (TBM) with automated agronomic validation, spatial block maps, and role impersonation.',
-    fullDescription: 'SIMTAN is an enterprise-grade agricultural management and geospatial monitoring platform designed to oversee immature oil palm (Tanaman Belum Menghasilkan / TBM) plantation operations across regional estates. It integrates Leaflet GIS with an automated agronomic audit validation engine that detects spatial and operational discrepancies.',
-    challenge: 'Manual estate auditing across thousands of hectares caused delayed reporting, high human-error rates in condition validation, and fragmented spatial record keeping.',
-    solution: 'Engineered a unified Laravel 10 and Leaflet GIS platform that automatically validates field data against expert agronomic rules, visualizes block condition polygons, and provides role-based impersonation for field inspectors and executives.',
+    isUndergraduateThesis: true,
+    shortDescription: 'Platform enterprise monitoring spasial TBM kelapa sawit dengan validasi agronomi otomatis, visualisasi static raster XYZ tiles, dan model LLM. Proyek Tugas Akhir S1 dengan publikasi jurnal ilmiah terindeks.',
+    fullDescription: 'SIMTAN merupakan sistem informasi dan dashboard monitoring berbasis web (Laravel) terintegrasi untuk pemantauan tanaman belum menghasilkan (TBM) kelapa sawit di PT Perkebunan Nusantara IV Regional 1. Proyek ini dikembangkan sebagai Tugas Akhir / Skripsi S1 Sistem dan Teknologi Informasi di ITSI dan telah dipublikasikan pada jurnal ilmiah.',
+    challenge: 'Pencatatan manual kebun seluas ribuan hektar memicu keterlambatan pelaporan, resiko inkonsistensi data lapangan, dan rendering orthophoto beresolusi tinggi yang lambat (>12.000 ms).',
+    solution: 'Membangun platform Laravel dengan integrasi Static Raster Tiling (XYZ Tiles) yang mempercepat rendering peta menjadi rata-rata 180 ms, validasi kesesuaian agronomi otomatis (Fleiss Kappa 0.8105), dan integrasi LLM (Gemini 1.5 Flash & Llama 3) untuk rekomendasi pemeliharaan.',
     architecture: [
-      'Backend: Laravel 10 RESTful architecture with custom validation pipelines and role-based access control (RBAC).',
-      'Geospatial: Leaflet GIS client with custom tile overlays, GeoJSON block polygons, and centroid calculators.',
-      'Validation Engine: Algorithmic expert system assessing plant health indicators, spacing integrity, and weeding compliance.',
-      'Database: Relational schema optimized with composite indexes for rapid spatial and time-series reporting.'
+      'Backend & Architecture: Laravel MVC RESTful architecture dengan custom agronomic validation pipeline.',
+      'Spatial Rendering: Static Raster Tiling (XYZ Tiles) memotong latensi rendering dari >12s menjadi ~180ms.',
+      'AI Recommendation Engine: Integrasi Dual LLM API (Gemini 1.5 & Llama 3) untuk prescriptive analytics biometrik tanaman.',
+      'Database: MySQL teroptimasi dengan index relasional untuk query poligon blok kebun.'
     ],
     keyFeatures: [
-      'Interactive geospatial block map with dynamic condition styling',
-      'Automated agronomic audit validation scoring engine',
-      'Administrative account impersonation for supervisory auditing',
-      'Comprehensive estate block reporting with export capabilities',
-      'Clean modular architecture with refactored lightweight frontend assets'
+      'Peta spasial interaktif blok kebun TBM dengan static raster XYZ tiling rendering cepat',
+      'Mesin validasi agronomi otomatis dengan tingkat kesepakatan pakar 0.8105 (Fleiss Kappa)',
+      'Prescriptive analytics rekomendasi pemeliharaan via integrasi LLM API',
+      'Modul visualisasi data sensus Excel ke chart dan tabel dinamis',
+      'Tugas Akhir / Skripsi resmi dengan publikasi di Journal of Deep Learning, Computer Vision and Digital Image Processing'
     ],
-    techStack: ['Laravel 10', 'PHP 8.2', 'MySQL', 'Leaflet GIS', 'JavaScript', 'Bootstrap 5', 'PostGIS Concepts'],
+    techStack: ['Laravel', 'PHP', 'XYZ Tiles', 'Leaflet GIS', 'LLM API', 'MySQL', 'Bootstrap'],
     githubUrl: 'https://github.com/firhmgh/simtan-monitoring-palm-oil',
-    previewType: 'image',
-    imagePath: '/projects/simtan/validation-accuracy.png',
+    journalUrl: 'https://journal.diginus.id/DECODING/article/view/1449',
+    journalTitle: 'Laravel Dashboard for Immature Oil Palm (TBM III) Monitoring Using XYZ Tiles and Large Language Models',
+    imagePath: 'projects/simtan/validation-accuracy.png',
     accentColor: 'from-emerald-500 to-teal-700'
   },
   {
     id: 'esg-palm-oil',
-    title: 'ESG Palm Oil — AI-Powered Sustainability Analytics Dashboard',
+    title: 'ESG Palm Oil — AI Sustainability Analytics Dashboard',
     category: 'AI Decision Support & Sustainability Analytics',
-    badge: 'Dual AI Engine / Sustainability',
+    badge: 'Dual AI Engine',
     featured: true,
-    shortDescription: 'Comprehensive ESG analytics dashboard evaluating palm oil sustainability with dual AI scoring engines (Google Gemini & Groq Llama 3) and Ganoderma disease penalty modeling.',
-    fullDescription: 'An enterprise-scale Environmental, Social, and Governance (ESG) analytics dashboard tailored for the sustainable palm oil industry. The platform leverages dual Large Language Model (LLM) providers to generate real-time sustainability scores, prescriptive remediation insights, and biological disease impact modeling.',
-    challenge: 'ESG scoring in agro-industry often relies on slow manual audits without standardized risk modeling for biological threats like Ganoderma fungus attacks.',
-    solution: 'Built an intelligent Laravel 11 dashboard integrating both Google Gemini 1.5 and Groq Llama 3 APIs with strict Ganoderma penalty formulas that bound ESG scores when disease prevalence exceeds critical thresholds.',
+    shortDescription: 'Dashboard analitik kepatuhan ESG rantai pasok kelapa sawit dengan evaluasi Dual AI (Gemini & Groq Llama 3) serta pemodelan penalti biologis Ganoderma.',
+    fullDescription: 'Platform analitik keberlanjutan Environmental, Social, and Governance (ESG) terintegrasi untuk industri agro-sawit yang memanfaatkan dua provider Large Language Model (LLM) untuk scoring otomatis dan rekomendasi mitigasi risiko.',
+    challenge: 'Audit kepatuhan ESG konvensional berjalan lambat dan belum memperhitungkan ancaman biologis seperti serangan jamur Ganoderma terhadap stabilitas skor keberlanjutan.',
+    solution: 'Merancang arsitektur dashboard cerdas dengan Laravel 11 yang menghubungkan Google Gemini 1.5 dan Groq Llama 3 API dengan rumus pembatas penalti Ganoderma otomatis jika insidensi melebihi ambang batas.',
     architecture: [
-      'AI Layer: Dual-service GroqService and GeminiService with dynamic fallback and response JSON schema normalization.',
-      'Business Logic: Strict weighting calculator bounding ESG scores (max 50) when Ganoderma incidence exceeds 20%.',
-      'Analytics UI: Responsive Chart.js radar and bar visualizations for E, S, and G metric breakdowns.',
-      'Security: Complete environment variable isolation for AI API keys and enterprise data protection.'
+      'AI Engine: Dual service GroqService dan GeminiService dengan skema fallback otomatis.',
+      'Business Logic: Algoritma pembobot penalti ketat untuk metrik lingkungan dan penyakit.',
+      'Visualisasi: Radar chart interaktif Chart.js untuk dimensi Environmental, Social, dan Governance.',
+      'Security: Isolasi penuh environment variable API key dan data perkebunan.'
     ],
     keyFeatures: [
-      'Dual AI provider integration (Google Gemini & Groq Llama 3) for automated sustainability auditing',
-      'Strict Ganoderma biological disease impact penalty weighting logic',
-      'Interactive radar & trend analytics for Environmental, Social, and Governance compliance',
-      'Automated mitigation strategy generator based on live estate telemetry',
-      'Role-based dashboard views for sustainability officers and auditors'
+      'Integrasi Dual AI (Google Gemini 1.5 & Groq Llama 3) untuk audit keberlanjutan otomatis',
+      'Pemodelan penalti ketat berbasis insidensi penyakit Ganoderma',
+      'Visualisasi radar multi-dimensi kepatuhan ESG',
+      'Generator rekomendasi tindakan mitigasi berbasis telemetri kebun',
+      'Tampilan adaptif untuk petugas sustainability dan auditor'
     ],
     techStack: ['Laravel 11', 'PHP 8.2', 'Google Gemini AI', 'Groq Llama 3', 'Tailwind CSS', 'Chart.js', 'MySQL'],
     githubUrl: 'https://github.com/firhmgh/esg-palm-oil',
-    previewType: 'image',
-    imagePath: '/projects/esg-palm-oil/dashboard.webp',
+    imagePath: 'projects/esg-palm-oil/dashboard.webp',
     accentColor: 'from-green-500 to-emerald-700'
   },
   {
     id: 'palm-oil-reinforcement-learning-simulation',
     title: 'Palm Oil Reinforcement Learning Simulation',
     category: 'Applied AI / Reinforcement Learning Research',
-    badge: 'Machine Learning / Gymnasium',
+    badge: 'Machine Learning',
     featured: true,
-    shortDescription: 'Computational simulation environment for optimizing oil palm harvest and fertilization policies using Gymnasium, PPO, and Recurrent PPO with LSTM memory.',
-    fullDescription: 'A computational research platform and simulation environment modeling oil palm plantation agronomic dynamics. The system frames plantation management as a Markov Decision Process (MDP), training deep reinforcement learning agents to maximize long-term harvest yield and economic profit.',
-    challenge: 'Determining optimal cyclical harvesting rounds and nutrient dosage across multi-year variable weather patterns is complex and costly to test in vivo.',
-    solution: 'Constructed a custom Gymnasium environment (`env_sawit.py`) modeling vegetative growth, weather fluctuations, and FFB ripeness, training PPO and Recurrent PPO (LSTM) agents that outperform conventional heuristic baselines.',
+    shortDescription: 'Simulasi komputasional optimasi kebijakan panen dan pemupukan kelapa sawit berbasis Gymnasium, PPO, dan Recurrent PPO dengan memori temporal LSTM.',
+    fullDescription: 'Platform riset komputasional yang memodelkan dinamika perkebunan kelapa sawit sebagai Markov Decision Process (MDP) dan melatih agen deep reinforcement learning untuk memaksimalkan yield panen jangka panjang.',
+    challenge: 'Menentukan siklus rotasi panen dan dosis nutrisi optimal di tengah fluktuasi cuaca multi-tahun sangat berbiaya tinggi bila diuji secara langsung di lapangan.',
+    solution: 'Membangun custom Gymnasium environment yang memodelkan pertumbuhan vegetatif, kematangan TBS, dan cuaca, lalu melatih agen PPO dan Recurrent PPO yang mengungguli metode baseline FIFO.',
     architecture: [
-      'Environment: Custom Gymnasium class with continuous state spaces (soil moisture, vegetative status, days since harvest).',
-      'Action Space: Discrete/continuous action vectors governing fertilizer dosage and harvest round triggers.',
-      'Algorithms: Stable-Baselines3 PPO & SB3-Contrib Recurrent PPO with temporal memory cells.',
-      'Evaluation: Comparative benchmark scripts evaluating cumulative reward and yield stability across multi-episode rollouts.'
+      'Environment: Custom Gymnasium class dengan state space status vegetatif dan kelembapan tanah.',
+      'Action Space: Vektor aksi penentuan rotasi panen dan dosis pemupukan presisi.',
+      'Algorithms: Stable-Baselines3 PPO & SB3-Contrib Recurrent PPO (LSTM).',
+      'Benchmark: Evaluator komparatif reward dan stabilitas produksi multi-episode.'
     ],
     keyFeatures: [
-      'Custom Gymnasium simulation environment tailored to palm agronomy dynamics',
-      'Dual RL agent architectures (PPO standard & Recurrent PPO with LSTM memory)',
-      'Baseline heuristic policy benchmark suite for empirical comparison',
-      'Interactive step-by-step decision visualizer (`simulator.py`)',
-      'Pre-trained model checkpoints ready for multi-episode evaluation'
+      'Custom Gymnasium simulation environment untuk agronomi sawit',
+      'Dua arsitektur agen RL (PPO Standard & Recurrent PPO LSTM)',
+      'Benchmark komparatif terhadap kebijakan operasional konvensional',
+      'Visualizer langkah simulasi interaktif (simulator.py)',
+      'Model checkpoints terlatih siap evaluasi multi-episode'
     ],
     techStack: ['Python 3.11', 'Gymnasium', 'Stable-Baselines3', 'PyTorch', 'SB3-Contrib', 'NumPy', 'Pandas'],
     githubUrl: 'https://github.com/firhmgh/palm-oil-reinforcement-learning-simulation',
-    previewType: 'image',
-    imagePath: '/projects/palm-oil-rl/rl-performance-benchmark.png',
+    imagePath: 'projects/palm-oil-rl/rl-performance-benchmark.png',
     accentColor: 'from-cyan-500 to-blue-700'
   },
   {
     id: 'local-file-organizer-auditor',
     title: 'Local File Organizer & Auditor (Desktop GUI + CLI)',
     category: 'Windows System Utility & High-Safety Tooling',
-    badge: 'Desktop App & CLI / V3',
+    badge: 'Desktop App & CLI',
     featured: true,
-    shortDescription: 'Safe, non-destructive Windows Desktop GUI & CLI utility to audit file systems, detect bit-level duplicates via tiered SHA-256, protect GIS/project bundles, and clean to Recycle Bin.',
-    fullDescription: 'A professional Windows system utility built with a strict Safe-by-Default philosophy. It features multi-tiered chunk hashing (SHA-256) for rapid and 100% accurate duplicate detection, intelligent keeper selection, GIS sidecar bundle protection, and conservative cleanup routed exclusively to Windows Recycle Bin.',
-    challenge: 'Existing cleanup tools frequently delete critical dependency files, GIS sidecar companions (.shp, .dbf), or permanently destroy files without audit trails.',
-    solution: 'Engineered a dual-interface application (multi-threaded Tkinter Desktop GUI and automated CLI runner) with tiered hashing (size -> 4KB partial hash -> full SHA-256), a 100% immune system for protected file types, and send2trash safety.',
+    shortDescription: 'Utilitas Windows Desktop GUI & CLI untuk audit sistem file, deteksi duplikat identik tingkat bit via Tiered SHA-256, proteksi bundel GIS, dan cleanup ke Recycle Bin.',
+    fullDescription: 'Perangkat lunak utilitas Windows berstandar keamanan tinggi dengan filosofi Safe-by-Default. Dilengkapi algoritma multi-tiered chunk hashing (SHA-256) untuk deteksi duplikat 100% akurat, seleksi keeper pintar, dan proteksi berkas proyek.',
+    challenge: 'Tool pembersih umum sering kali menghapus file dependensi penting, merusak bundel sidecar GIS (.shp, .dbf), atau menghapus file secara permanen tanpa opsi recovery.',
+    solution: 'Membangun aplikasi dual-interface (Tkinter Desktop GUI multi-threaded dan CLI) dengan Tiered Hashing (ukuran -> partial hash -> full SHA-256), proteksi bundel GIS, dan routing khusus ke Windows Recycle Bin.',
     architecture: [
-      'Hashing Engine: Tiered pipeline eliminating dissimilar files early via byte size, partial header hash, and full SHA-256.',
-      'Immunity & Context Engine: Heuristic detection of GIS bundles (.shp, .prj, .dbf), project assets, and system files.',
-      'Keeper Selection: Context-aware scoring prioritizing organized folders over messy Download directories and duplicate suffixes.',
-      'Threading & UI: Multi-threaded background workers in Tkinter with real-time progress queuing and Markdown/JSON export.'
+      'Hashing Engine: Pipeline bertingkat menyeleksi file via ukuran byte, header hash, dan SHA-256.',
+      'Immunity Engine: Deteksi otomatis sidecar GIS (.shp, .prj, .dbf) dan aset proyek.',
+      'Keeper Scoring: Algoritma memilih file asli pada folder terstruktur dibanding folder Downloads.',
+      'Threading UI: Background workers Tkinter dengan progress bar real-time dan ekspor laporan Markdown/JSON.'
     ],
     keyFeatures: [
-      'Dual Interface: Modern multi-threaded Windows Desktop GUI and automated CLI script runner',
-      'Tiered SHA-256 Hashing: Instant byte-level duplicate detection across tens of thousands of files',
-      'Context-Aware GIS & Project Bundle Immunity: Zero accidental deletion of companion files',
-      'Intelligent Keeper Selection favoring structured directory paths',
-      'Comprehensive non-destructive dry-run audit reporting in Markdown and JSON',
-      'Strict send2trash integration (NEVER permanent delete)'
+      'Dual Interface: Windows Desktop GUI multi-threaded dan CLI automated runner',
+      'Tiered SHA-256 Hashing: Deteksi duplikat bit-level instan tanpa false positive',
+      'Proteksi Berkas GIS & Project: Bebas resiko terhapusnya companion files',
+      'Seleksi Keeper Pintar mempertahankan lokasi file yang rapi',
+      'Laporan audit dry-run lengkap dalam format Markdown dan JSON',
+      'Integrasi aman Send2Trash (tidak pernah hard-delete)'
     ],
-    techStack: ['Python 3.11', 'Tkinter (Desktop GUI)', 'Multi-Threading', 'Send2Trash', 'SHA-256 Engine', 'Typer CLI', 'Unittest'],
+    techStack: ['Python 3.11', 'Tkinter GUI', 'Multi-Threading', 'Send2Trash', 'SHA-256 Engine', 'Typer CLI', 'Unittest'],
     githubUrl: 'https://github.com/firhmgh/local-file-organizer-auditor',
-    previewType: 'image',
-    imagePath: '/projects/local-file-organizer-auditor/gui.webp',
+    imagePath: 'projects/local-file-organizer-auditor/gui.webp',
     accentColor: 'from-blue-500 to-indigo-700'
   },
   {
     id: 'webgis-tbm-palmco-regional-1',
     title: 'WebGIS TBM Regional 1 PalmCo',
     category: 'Enterprise Geospatial Intelligence Frontend',
-    badge: 'Enterprise GIS / PostGIS',
+    badge: 'Enterprise GIS',
     featured: true,
-    shortDescription: 'Interactive spatial visualization dashboard for immature oil palm (TBM) across Regional 1 PTPN IV featuring individual tree points and LiDAR DTM layers.',
-    fullDescription: 'An enterprise geospatial web application providing interactive spatial visualization of oil palm estate blocks, individual tree census points, and Digital Terrain Model (DTM) LiDAR layers across Regional 1 (PTPN IV PalmCo).',
-    challenge: 'Visualizing massive spatial datasets containing hundreds of thousands of individual tree coordinates and raster terrain layers smoothly in web browsers.',
-    solution: 'Designed a modern React and Leaflet architecture coupled with Supabase PostGIS RPC functions and distributed tile layer services to render high-resolution plantation data with zero lag.',
+    shortDescription: 'Dashboard visualisasi spasial interaktif blok kebun TBM, sebaran titik pohon, dan layer kontur DTM LiDAR perkebunan kelapa sawit se-Regional 1 PTPN IV.',
+    fullDescription: 'Aplikasi web geospasial enterprise yang menyajikan visualisasi spasial interaktif blok kebun kelapa sawit, titik sensus pohon presisi, dan Digital Terrain Model (DTM) LiDAR di wilayah Regional 1 PTPN IV.',
+    challenge: 'Memuat dan menampilkan puluhan ribu koordinat sensus pohon dan raster terrain resolusi tinggi secara cepat dan halus pada browser web.',
+    solution: 'Merancang arsitektur React dan Leaflet yang diintegrasikan dengan Supabase PostGIS RPC dan distributed tile services untuk rendering peta tanpa lag.',
     architecture: [
-      'Frontend: React 18, Vite, and Leaflet with custom layer switching controls and raster opacity sliders.',
-      'Spatial Backend: Supabase PostgreSQL with PostGIS RPC functions for dynamic bounding-box coordinate queries.',
-      'Tile Lake: Distributed raster XYZ tile hosting sharded across regional GitHub storage repositories.',
-      'Styling: Tailwind CSS design system with high-contrast plantation inspection mode.'
+      'Frontend: React 18, Vite, dan Leaflet dengan layer switcher dan slider opasitas.',
+      'Spatial Backend: Supabase PostgreSQL dengan PostGIS RPC untuk query bounding-box dinamis.',
+      'Tile Hosting: Penyimpanan distributed XYZ tile layers untuk peta citra dan DTM.',
+      'Styling: Tailwind CSS dengan mode kontras tinggi inspeksi perkebunan.'
     ],
     keyFeatures: [
-      'Interactive map viewport with multi-region estate navigation (Asahan, Labuhan Batu, Serdang Bedagai)',
-      'High-precision tree census point rendering with condition color-coding',
-      'LiDAR DTM and terrain contour layer overlays with opacity controls',
-      'Dynamic layer switcher and block centroid search navigation',
-      'Responsive design supporting field tablets and desktop control centers'
+      'Viewport peta interaktif navigasi estate regional (Asahan, Labuhan Batu, Serdang Bedagai)',
+      'Visualisasi titik sensus pohon presisi dengan pewarnaan kondisi kesehatan',
+      'Overlay layer LiDAR DTM dan kontur elevasi dengan kontrol opasitas',
+      'Layer switcher dinamis dan navigasi pencarian centroid blok',
+      'Desain responsif untuk tablet lapangan maupun monitor control center'
     ],
     techStack: ['React', 'TypeScript', 'Vite', 'Leaflet GIS', 'Supabase PostGIS', 'Tailwind CSS', 'GeoJSON'],
     githubUrl: 'https://github.com/firhmgh/webgis-tbm-palmco-regional-1',
-    previewType: 'image',
-    imagePath: '/projects/webgis-tbm/plantation-overview.webp',
+    imagePath: 'projects/webgis-tbm/plantation-overview.webp',
     accentColor: 'from-emerald-600 to-green-800'
   },
   {
     id: 'google-drive-duplicate-cleaner',
     title: 'Google Drive Photo & Video Duplicate Cleaner',
     category: 'Cloud Storage Automation & Security',
-    badge: 'Cloud Automation / GUI & CLI',
+    badge: 'Cloud Automation',
     featured: true,
-    shortDescription: 'Multi-account desktop utility & CLI for Google Drive to detect and safely clean 100% bit-level duplicate media files using OAuth 2.0 and checksum verification.',
-    fullDescription: 'A secure cloud automation desktop and command-line utility designed to scan, identify, and safely clean redundant photo and video duplicates across multiple Google Drive accounts using OAuth 2.0 Client credentials and MD5/SHA checksum matching.',
-    challenge: 'Cloud storage quotas fill quickly with identical smartphone backups, and standard Google Drive web interfaces lack bulk duplicate detection mechanisms.',
-    solution: 'Developed an automated Python tool using Google Drive API v3 that performs recursive file indexing, checksum-based grouping, dry-run reporting, and non-destructive trash routing.',
+    shortDescription: 'Utilitas Desktop GUI & CLI multi-akun Google Drive untuk mendeteksi dan membersihkan file duplikat media secara aman via OAuth 2.0 dan pencocokan checksum.',
+    fullDescription: 'Aplikasi desktop dan CLI otomatisasi penyimpanan cloud untuk memindai, mengidentifikasi, dan membersihkan duplikat media foto/video secara aman di Google Drive menggunakan OAuth 2.0 dan checksum MD5/SHA.',
+    challenge: 'Kapasitas cloud storage cepat penuh akibat pencadangan otomatis berulang dari smartphone, sementara antarmuka web Drive tidak memiliki fitur pembersihan duplikat massal.',
+    solution: 'Membangun aplikasi Python dengan Google Drive API v3 yang mengindeks file secara rekursif, mengelompokkan berdasarkan checksum, melakukan simulasi dry-run, dan memindahkan duplikat ke Trash.',
     architecture: [
-      'Auth Layer: Google OAuth 2.0 token manager with auto-refresh and multi-account credential isolation.',
-      'Scanning Engine: Pagination-aware Google Drive API v3 queries with local caching for rapid re-audits.',
-      'Safety Protocol: All deletion operations invoke API trash routing rather than permanent object deletion.',
-      'Reporting: Structured Markdown summary tables with byte savings breakdown.'
+      'Auth Layer: Google OAuth 2.0 token manager dengan auto-refresh dan isolasi akun.',
+      'Scanning Engine: Pagination-aware Google Drive API v3 queries dengan caching lokal.',
+      'Safety Protocol: Seluruh operasi pembersihan diarahkan ke folder Trash (bukan hard-delete).',
+      'Reporting: Ringkasan audit terstruktur dengan perhitungan penghematan kuota.'
     ],
     keyFeatures: [
-      'Desktop GUI & CLI: Multi-account Google Drive OAuth 2.0 authentication support',
-      'Deterministic MD5 and SHA checksum matching for 100% duplicate verification',
-      'Detailed dry-run audit reporting with space reclamation calculations',
-      'Safe trash routing with zero permanent data loss risk',
-      'Lightweight and dependency-minimal Python architecture'
+      'Dukungan Desktop GUI & CLI untuk otentikasi multi-akun Google Drive OAuth 2.0',
+      'Pencocokan checksum MD5 dan SHA deterministik untuk verifikasi duplikat 100%',
+      'Laporan audit dry-run lengkap dengan estimasi penghematan ruang penyimpanan',
+      'Pembersihan aman ke Trash tanpa resiko kehilangan data permanen',
+      'Desain ringan dan efisien tanpa dependensi berlebih'
     ],
-    techStack: ['Python', 'Tkinter GUI', 'Google Drive API v3', 'Google OAuth 2.0', 'Hash Validation', 'Dry-Run Engine'],
+    techStack: ['Python', 'Tkinter GUI', 'Google Drive API v3', 'Google OAuth 2.0', 'Hash Validation'],
     githubUrl: 'https://github.com/firhmgh/google-drive-duplicate-cleaner',
-    previewType: 'image',
-    imagePath: '/projects/google-drive-duplicate-cleaner/gui.webp',
+    imagePath: 'projects/google-drive-duplicate-cleaner/gui.webp',
     accentColor: 'from-amber-500 to-orange-700'
   },
   {
     id: 'digital-library-blog',
     title: 'Digital Library & Modern Blog Platform',
     category: 'Full-Stack Web Application',
-    badge: 'Modern Web / Next.js',
+    badge: 'Modern Web',
     featured: false,
-    shortDescription: 'High-performance digital library and article platform built with Next.js App Router, TypeScript, and Tailwind CSS featuring catalog browsing and responsive reader views.',
-    fullDescription: 'A full-stack digital content management and reading platform architected with modern React patterns, Next.js App Router, and TypeScript for seamless digital publication.',
-    challenge: 'Building a clean, fast-loading digital reading experience with structured article categorization and responsive typography.',
-    solution: 'Constructed an editorial reader platform with Next.js and Tailwind CSS featuring clean card layouts, search filtering, and optimized asset loading.',
+    shortDescription: 'Platform perpustakaan digital dan pembaca artikel berbasis Next.js App Router, TypeScript, dan Tailwind CSS dengan katalog pencarian dan tampilan pembaca responsif.',
+    fullDescription: 'Platform publikasi digital dan manajemen konten artikel yang dirancang dengan Next.js App Router dan TypeScript untuk pengalaman membaca artikel yang bersih dan cepat.',
+    challenge: 'Membangun antarmuka pembaca artikel digital yang fokus, cepat dimuat, dengan tipografi yang nyaman diakses di desktop maupun ponsel.',
+    solution: 'Mengembangkan web portal dengan Next.js dan Tailwind CSS yang menyajikan tata letak kartu modern, filter kategori, dan optimasi pemuatan aset.',
     architecture: [
-      'Framework: Next.js App Router with Server Components for fast initial page load.',
-      'UI & Design: Tailwind CSS with custom editorial typography and dark/light support.',
-      'State & Logic: React hooks for client-side search and catalog filtering.'
+      'Framework: Next.js App Router dengan Server Components untuk kecepatan akses awal.',
+      'UI & Design: Tailwind CSS dengan tipografi editorial dan dukungan dark/light mode.',
+      'State: Client-side search and category filtering hooks.'
     ],
     keyFeatures: [
-      'Modern book and article catalog with category filters',
-      'Distraction-free responsive article reader interface',
-      'Clean TypeScript codebase with strict typing',
-      'High-performance rendering with Next.js optimization'
+      'Katalog buku dan artikel digital dengan filter kategori',
+      'Antarmuka pembaca artikel bersih dan responsif',
+      'Codebase TypeScript dengan type-checking ketat',
+      'Performa rendering optimal dengan optimasi Next.js'
     ],
     techStack: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Lucide React'],
     githubUrl: 'https://github.com/firhmgh/Digital-Library-Blog',
-    previewType: 'image',
-    imagePath: '/projects/digital-library/article-banner.png',
+    imagePath: 'projects/digital-library/article-banner.png',
     accentColor: 'from-purple-500 to-indigo-700'
   }
 ];

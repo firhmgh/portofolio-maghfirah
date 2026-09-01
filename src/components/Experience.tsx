@@ -17,8 +17,8 @@ export const Experience: React.FC = () => {
       ]
     },
     {
-      role: 'Staf Magang, Sistem Informatika dan Teknik Informatika Kantor Regional I',
-      company: 'PT Perkebunan Nusantara III (Persero)',
+      role: 'Staf Magang, Sistem Informatika dan Teknik Informatika Kantor Regional 1',
+      company: 'PT Perkebunan Nusantara IV Regional 1',
       location: 'Kota Medan, Sumatera Utara',
       period: 'Januari 2025 – Juli 2025',
       grade: 'Nilai Rata-rata: 95.9/100 (A – Sangat Memuaskan)',
@@ -70,8 +70,8 @@ export const Experience: React.FC = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 bg-slate-50/50 dark:bg-[#0d0f14] border-t border-slate-200/80 dark:border-slate-800/80">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50/60 dark:bg-[#0d0f14] border-t border-slate-200 dark:border-slate-800">
+      <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="space-y-3 max-w-3xl text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
@@ -86,7 +86,7 @@ export const Experience: React.FC = () => {
         </div>
 
         {/* Timeline Grid */}
-        <div className="grid lg:grid-cols-12 gap-10 text-left">
+        <div className="grid lg:grid-cols-12 gap-8 text-left">
           {/* Work Experience (Left 7 Cols) */}
           <div className="lg:col-span-7 space-y-6">
             <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
@@ -100,7 +100,7 @@ export const Experience: React.FC = () => {
               {experiences.map((exp, idx) => (
                 <div
                   key={idx}
-                  className="p-6 rounded-2xl bg-white dark:bg-[#12151c] border border-slate-200/80 dark:border-slate-800/80 space-y-4 shadow-sm"
+                  className="p-6 rounded-2xl bg-white dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm"
                 >
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div>
@@ -135,7 +135,7 @@ export const Experience: React.FC = () => {
             </div>
 
             {/* Organisasi */}
-            <div className="pt-4 space-y-4">
+            <div className="pt-2 space-y-4">
               <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
                 <h4 className="text-base font-bold text-slate-900 dark:text-white">
                   Pengalaman Organisasi
@@ -143,7 +143,7 @@ export const Experience: React.FC = () => {
               </div>
               <div className="grid sm:grid-cols-2 gap-4">
                 {organizations.map((org, i) => (
-                  <div key={i} className="p-4 rounded-xl bg-white dark:bg-[#12151c] border border-slate-200/80 dark:border-slate-800/80 space-y-2">
+                  <div key={i} className="p-4 rounded-xl bg-white dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 space-y-2">
                     <div className="flex justify-between items-start">
                       <span className="text-xs font-bold text-slate-900 dark:text-white">{org.role}</span>
                       <span className="text-[10px] font-mono text-slate-500">{org.period}</span>
@@ -165,7 +165,7 @@ export const Experience: React.FC = () => {
               </h3>
             </div>
 
-            <div className="p-6 rounded-2xl bg-white dark:bg-[#12151c] border border-slate-200/80 dark:border-slate-800/80 space-y-3 shadow-sm">
+            <div className="p-6 rounded-2xl bg-white dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 space-y-3 shadow-sm">
               <div className="flex items-start justify-between gap-2">
                 <h4 className="font-bold text-slate-900 dark:text-white text-sm">
                   Institut Teknologi Sawit Indonesia
@@ -192,7 +192,7 @@ export const Experience: React.FC = () => {
               </div>
 
               <div className="space-y-3">
-                <div className="p-4 rounded-xl bg-white dark:bg-[#12151c] border border-slate-200/80 dark:border-slate-800/80 space-y-1.5 shadow-sm">
+                <div className="p-4 rounded-xl bg-white dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 space-y-1.5 shadow-sm">
                   <div className="flex items-start justify-between">
                     <h5 className="font-bold text-slate-900 dark:text-white text-xs">
                       Sertifikat Kompetensi BNSP — Pemrogram Web Muda (Junior Web Programmer)
@@ -204,7 +204,7 @@ export const Experience: React.FC = () => {
                   </p>
                 </div>
 
-                <div className="p-4 rounded-xl bg-white dark:bg-[#12151c] border border-slate-200/80 dark:border-slate-800/80 space-y-1.5 shadow-sm">
+                <div className="p-4 rounded-xl bg-white dark:bg-[#12151c] border border-slate-200 dark:border-slate-800 space-y-1.5 shadow-sm">
                   <div className="flex items-start justify-between">
                     <h5 className="font-bold text-slate-900 dark:text-white text-xs">
                       ArcGIS Pro Profesional
