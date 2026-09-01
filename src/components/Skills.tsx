@@ -1,184 +1,86 @@
 import React from 'react';
-import { Smartphone, Globe, Map, Wrench } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Server, Layout, Map, Cpu, Database, Wrench } from 'lucide-react';
 
-export function Skills() {
+export const Skills: React.FC = () => {
   const skillCategories = [
     {
-      icon: <Smartphone className="w-6 h-6" />,
-      title: 'Mobile Development',
-      color: 'from-blue-500 to-blue-600',
-      skills: [
-        { name: 'Flutter', level: 90 },
-        { name: 'Android Development', level: 85 },
-        { name: 'iOS Development', level: 85 },
-        { name: 'Dart', level: 90 },
-        { name: 'Location Services & GPS', level: 85 },
-        { name: 'Mobile Database (SQLite, Firebase)', level: 85 },
-        { name: 'REST API Integration', level: 90 },
-        { name: 'State Management', level: 85 },
-      ],
+      category: 'Backend & Enterprise Development',
+      icon: <Server className="w-5 h-5 text-emerald-500" />,
+      skills: ['PHP 8.2', 'Laravel 10 / 11', 'Python 3.11', 'Node.js', 'RESTful APIs', 'Role-Based Access Control (RBAC)', 'Validation Pipelines']
     },
     {
-      icon: <Globe className="w-6 h-6" />,
-      title: 'Web Development',
-      color: 'from-emerald-500 to-emerald-600',
-      skills: [
-        { name: 'Laravel', level: 90 },
-        { name: 'PHP', level: 85 },
-        { name: 'HTML5 & CSS3', level: 90 },
-        { name: 'JavaScript', level: 85 },
-        { name: 'React', level: 80 },
-        { name: 'MySQL & PostgreSQL', level: 85 },
-        { name: 'RESTful API Development', level: 90 },
-        { name: 'MVC Architecture', level: 85 },
-      ],
+      category: 'Frontend & Modern Web',
+      icon: <Layout className="w-5 h-5 text-teal-500" />,
+      skills: ['TypeScript', 'JavaScript (ES6+)', 'React 18', 'Next.js (App Router)', 'Tailwind CSS', 'Bootstrap 5', 'Responsive Design', 'HTML5 / Semantic Web']
     },
     {
-      icon: <Map className="w-6 h-6" />,
-      title: 'GIS & Geospatial',
-      color: 'from-teal-500 to-teal-600',
-      skills: [
-        { name: 'ArcGIS Pro', level: 85 },
-        { name: 'QGIS', level: 90 },
-        { name: 'WebGIS Development', level: 85 },
-        { name: 'GPS Geodetik (RTK & Statik)', level: 80 },
-        { name: 'Analisis Data Spasial', level: 85 },
-        { name: 'Leica Spider & GeoSolution', level: 75 },
-        { name: 'Geospatial Data Processing', level: 85 },
-        { name: 'Pemetaan Digital', level: 85 },
-      ],
+      category: 'Geospatial & Spatial Intelligence',
+      icon: <Map className="w-5 h-5 text-cyan-500" />,
+      skills: ['Leaflet GIS', 'PostGIS', 'GeoJSON Data Structures', 'Raster Tile Slicing (XYZ)', 'LiDAR DTM Processing', 'QGIS Desktop', 'Spatial Coordinate Systems']
     },
     {
-      icon: <Wrench className="w-6 h-6" />,
-      title: 'Tools & Technologies',
-      color: 'from-purple-500 to-purple-600',
-      skills: [
-        { name: 'Git & GitHub', level: 90 },
-        { name: 'GitLab', level: 85 },
-        { name: 'Python & Streamlit', level: 80 },
-        { name: 'OOP Principles', level: 90 },
-        { name: 'Data Visualization', level: 85 },
-        { name: 'Database Design', level: 85 },
-        { name: 'API Design & Integration', level: 90 },
-        { name: 'Agile Development', level: 80 },
-      ],
+      category: 'Artificial Intelligence & Machine Learning',
+      icon: <Cpu className="w-5 h-5 text-blue-500" />,
+      skills: ['Gymnasium Environments', 'Stable-Baselines3 (PPO & Recurrent PPO)', 'PyTorch', 'Scikit-Learn', 'Large Language Models (Google Gemini & Groq APIs)', 'NumPy / Pandas']
     },
+    {
+      category: 'Databases & Cloud Storage',
+      icon: <Database className="w-5 h-5 text-indigo-500" />,
+      skills: ['MySQL', 'PostgreSQL', 'Supabase Cloud', 'Google Drive API v3 (OAuth 2.0)', 'Database Indexing & Query Optimization']
+    },
+    {
+      category: 'System Tooling & Engineering Best Practices',
+      icon: <Wrench className="w-5 h-5 text-amber-500" />,
+      skills: ['Tkinter Desktop GUI', 'Windows FileSystem API (send2trash)', 'SHA-256 Hashing Algorithms', 'Git & GitHub Workflows', 'Vite', 'Automated Unittest Suite']
+    }
   ];
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Keahlian Teknis
-            </h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-emerald-600 mx-auto rounded-full mb-6"></div>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Menguasai berbagai teknologi modern untuk membangun solusi digital yang comprehensive dan scalable
-            </p>
+    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 bg-white dark:bg-[#0a0b0e] border-t border-slate-200/80 dark:border-slate-800/80">
+      <div className="max-w-7xl mx-auto space-y-12">
+        {/* Section Header */}
+        <div className="space-y-3 max-w-2xl text-left">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-200 dark:border-emerald-800/60 text-emerald-700 dark:text-emerald-400 text-xs font-semibold">
+            <span>Verified Technical Capabilities</span>
           </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+            Skills & Technology Matrix
+          </h2>
+          <p className="text-base text-slate-600 dark:text-slate-300">
+            A comprehensive overview of frameworks, languages, algorithms, and engineering tools proven across my active software projects.
+          </p>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            {skillCategories.map((category, categoryIndex) => (
-              <motion.div
-                key={categoryIndex}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: categoryIndex * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-shadow"
-              >
-                <div className="flex items-center gap-4 mb-6">
-                  <div
-                    className={`w-12 h-12 bg-gradient-to-br ${category.color} rounded-lg flex items-center justify-center text-white`}
+        {/* Categories Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skillCategories.map((cat, i) => (
+            <div
+              key={i}
+              className="p-6 rounded-2xl bg-slate-50/70 dark:bg-[#12151c] border border-slate-200/80 dark:border-slate-800/80 space-y-4 text-left hover:border-slate-300 dark:hover:border-slate-700 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm">
+                  {cat.icon}
+                </div>
+                <h3 className="font-bold text-slate-900 dark:text-white text-sm">
+                  {cat.category}
+                </h3>
+              </div>
+
+              <div className="flex flex-wrap gap-1.5 pt-2">
+                {cat.skills.map((skill) => (
+                  <span
+                    key={skill}
+                    className="px-2.5 py-1 text-xs font-mono rounded-lg bg-white dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300"
                   >
-                    {category.icon}
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900">
-                    {category.title}
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-slate-700 font-medium">
-                          {skill.name}
-                        </span>
-                        <span className="text-slate-500 text-sm">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      <div className="w-full bg-slate-200 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${skill.level}%` }}
-                          transition={{ duration: 1, delay: skillIndex * 0.1 }}
-                          viewport={{ once: true }}
-                          className={`h-2 rounded-full bg-gradient-to-r ${category.color}`}
-                        ></motion.div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Tech Stack Tags */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg p-8">
-            <h3 className="text-xl font-bold text-slate-900 mb-6 text-center">
-              Technology Stack 2026
-            </h3>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {[
-                'Flutter 3.x',
-                'Laravel 11',
-                'React 19',
-                'PHP 8.3',
-                'MySQL',
-                'PostgreSQL',
-                'Firebase',
-                'REST API',
-                'GraphQL',
-                'ArcGIS Pro',
-                'QGIS',
-                'WebGIS',
-                'Git',
-                'Docker',
-                'Python',
-                'Streamlit',
-                'TypeScript',
-                'Tailwind CSS',
-                'OOP',
-                'MVC',
-                'Clean Architecture',
-                'Geospatial AI',
-                'Progressive Web Apps',
-              ].map((tech, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  viewport={{ once: true }}
-                  className="px-4 py-2 bg-gradient-to-r from-blue-50 to-emerald-50 text-slate-700 rounded-full text-sm font-medium border border-slate-200 hover:border-blue-400 transition-colors"
-                >
-                  {tech}
-                </motion.span>
-              ))}
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
-}
+};

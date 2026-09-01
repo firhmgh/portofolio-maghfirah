@@ -1,37 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { ThemeProvider } from './context/ThemeContext';
+import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
-import { About } from './components/About';
+import { SelectedWork } from './components/SelectedWork';
 import { Skills } from './components/Skills';
 import { Experience } from './components/Experience';
-import { Projects } from './components/Projects';
+import { About } from './components/About';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
-import { Navigation } from './components/Navigation';
 
-export default function App() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
+export function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-50">
-      <Navigation scrolled={scrolled} />
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Experience />
-        <Projects />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen bg-white dark:bg-[#0a0b0e] text-slate-900 dark:text-slate-100 font-sans selection:bg-emerald-500 selection:text-white transition-colors duration-200">
+        <Navigation />
+        <main id="main-content">
+          <Hero />
+          <SelectedWork />
+          <Skills />
+          <Experience />
+          <About />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
+
+export default App;
