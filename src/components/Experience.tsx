@@ -8,42 +8,43 @@ export const Experience: React.FC = () => {
       company: 'Sekretariat Jenderal DPR RI',
       location: 'Jakarta Pusat, DKI Jakarta',
       period: 'September 2024 – Desember 2024',
-      grade: 'Nilai Capaian: 84.25 (Memuaskan)',
+      grade: 'Nilai Capaian Pembelajaran: 84.25 (Memuaskan)',
       points: [
-        'Merancang dan mengembangkan aplikasi seluler berbasis Flutter (Android SDK) untuk sistem pembelajaran dan absensi Tenaga Ahli/Staff Administrasi DPR RI menggunakan timestamp, mendukung platform Android/iOS.',
-        'Merancang arsitektur basis data dan data persistence mobile, mengimplementasikan Location-Based Service (GPS) dan navigasi, dengan version control Git (GitHub/GitLab).',
-        'Merancang ritme absensi mingguan yang lebih terstruktur untuk mempermudah alur kerja pengguna dan mendukung efisiensi proses pencatatan kehadiran.'
+        'Merancang dan mengembangkan aplikasi seluler berbasis Flutter (Android SDK) untuk sistem pembelajaran dan absensi Tenaga Ahli/Staf Administrasi DPR RI menggunakan timestamp, mendukung platform Android/iOS.',
+        'Merancang basis data dan data persistence untuk aplikasi mobile, mengimplementasikan location-based service (GPS) dan navigasi, dengan version control GitHub/GitLab.',
+        'Merancang ritme absensi mingguan yang lebih terstruktur untuk mempermudah pengguna dan mendukung efisiensi proses pencatatan kehadiran.',
+        'Menyelesaikan program dengan total nilai capaian pembelajaran 84,25 (Memuaskan).'
       ]
     },
     {
-      role: 'Staf Magang Sistem Informasi & Teknik Informatika Kantor Regional I',
-      company: 'PT Perkebunan Nusantara III (Persero) – Program Magenta BUMN',
+      role: 'Staf Magang, Sistem Informatika dan Teknik Informatika Kantor Regional I',
+      company: 'PT Perkebunan Nusantara III (Persero)',
       location: 'Kota Medan, Sumatera Utara',
       period: 'Januari 2025 – Juli 2025',
       grade: 'Nilai Rata-rata: 95.9/100 (A – Sangat Memuaskan)',
       points: [
-        'Mengelola dan menganalisis data spasial menggunakan ArcGIS Pro dan QGIS untuk pemetaan sebaran penyakit Ganoderma pada perkebunan kelapa sawit.',
-        'Mengembangkan WebGIS berbasis QGIS untuk visualisasi dan publikasi data spasial interaktif blok kebun.',
-        'Mengoperasikan GPS Geodetik E300 Pro (metode RTK dan Statik) serta mengolah data koordinat menggunakan Leica Spider dan GeoSolution.',
-        'Membangun fullstack website Sistem Informasi Tanaman (SIMTAN) berbasis Laravel, mencakup desain antarmuka, relasi basis data MySQL, backend API, dan modul visualisasi Excel ke chart/tabel dinamis.'
+        'Program Magang Generasi Bertalenta (Magenta) – Kementerian BUMN.',
+        'Mengelola dan menganalisis data spasial menggunakan ArcGIS Pro dan QGIS untuk pemetaan sebaran Ganoderma pada kelapa sawit.',
+        'Mengembangkan WebGIS berbasis QGIS untuk publikasi data spasial.',
+        'Mengoperasikan GPS Geodetik E300 Pro (RTK dan Statik), serta mengolah data menggunakan Leica Spider dan GeoSolution.',
+        'Membangun fullstack website Sistem Informasi Tanaman (SIMTAN) menggunakan Laravel, mencakup desain UI, desain basis data, dan implementasi backend, termasuk fitur unggah dan visualisasi data Excel ke dashboard interaktif (chart dan tabel dinamis).',
+        'Menyelesaikan program magang dengan nilai rata-rata 95,9/100 (A – Sangat Memuaskan).'
       ]
     }
   ];
 
   const organizations = [
     {
-      org: 'Himpunan Mahasiswa Jurusan STI (HMJ STI)',
-      institution: 'Institut Teknologi Sawit Indonesia',
+      org: 'HMJ STI, Institut Teknologi Sawit Indonesia',
       role: 'Divisi Akademik',
       period: 'Juli 2023 – November 2024',
-      desc: 'Terlibat aktif dalam perumusan kebijakan akademik jurusan serta mengoordinasikan perencanaan seminar teknologi dan workshop.'
+      desc: 'Terlibat dalam perumusan kebijakan akademik jurusan serta perencanaan seminar dan workshop.'
     },
     {
-      org: 'UKM Riset & Keilmuan SIGMA ITSI Medan',
-      institution: 'Institut Teknologi Sawit Indonesia',
+      org: 'UKM SIGMA ITSI Medan',
       role: 'Divisi Penelitian dan Pengembangan',
       period: 'Maret 2023 – Sekarang',
-      desc: 'Berkolaborasi dalam perencanaan dan persiapan proyek penelitian keilmuan serta koordinasi operasional divisi.'
+      desc: 'Berkolaborasi dalam perencanaan dan persiapan proyek penelitian serta koordinasi logistik divisi.'
     }
   ];
 
@@ -52,19 +53,19 @@ export const Experience: React.FC = () => {
       title: 'Pelatihan Innovillage "How to Validate Your Social Project"',
       issuer: 'Telkom University & Danantara Indonesia',
       period: 'Desember 2025',
-      role: 'Peserta Terpilih'
+      role: 'Peserta'
     },
     {
       title: 'Konsep Pemrograman & Dampak Teknologi Digital bagi UMKM',
-      issuer: 'Digital Talent Scholarship (DTS) Komdigi',
+      issuer: 'Digital Talent Scholarship, Komdigi',
       period: '2026',
-      role: 'Peserta Pelatihan'
+      role: 'Pelatihan Tambahan'
     },
     {
       title: 'Webinar Blunder Pengolahan Data GNSS',
-      issuer: 'Geodemy Indonesia',
+      issuer: 'Geodemy',
       period: '2025',
-      role: 'Peserta Pelatihan'
+      role: 'Pelatihan Tambahan'
     }
   ];
 
@@ -167,7 +168,7 @@ export const Experience: React.FC = () => {
             <div className="p-6 rounded-2xl bg-white dark:bg-[#12151c] border border-slate-200/80 dark:border-slate-800/80 space-y-3 shadow-sm">
               <div className="flex items-start justify-between gap-2">
                 <h4 className="font-bold text-slate-900 dark:text-white text-sm">
-                  Institut Teknologi Sawit Indonesia (ITSI)
+                  Institut Teknologi Sawit Indonesia
                 </h4>
                 <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/40 border border-cyan-200 dark:border-cyan-800 text-cyan-700 dark:text-cyan-300">
                   2022 – 2026
@@ -177,11 +178,11 @@ export const Experience: React.FC = () => {
                 S1 Sistem dan Teknologi Informasi
               </p>
               <div className="p-2.5 rounded-lg bg-emerald-50/50 dark:bg-emerald-950/30 border border-emerald-200/60 dark:border-emerald-800/60 text-xs font-mono font-bold text-emerald-700 dark:text-emerald-300">
-                Indeks Prestasi Kumulatif (IPK): 3.86 / 4.00
+                IPK: 3.86 / 4.00
               </div>
             </div>
 
-            {/* Sertifikasi Kompetensi */}
+            {/* Sertifikasi Resmi */}
             <div className="space-y-4 pt-2">
               <div className="flex items-center gap-2 pb-2 border-b border-slate-200 dark:border-slate-800">
                 <Award className="w-5 h-5 text-amber-500" />
@@ -199,7 +200,7 @@ export const Experience: React.FC = () => {
                     <span className="text-[10px] font-mono text-emerald-600 dark:text-emerald-400 font-bold">BNSP</span>
                   </div>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    Lembaga Sertifikasi Profesi LPK TIKOM • Berlaku 3 Tahun (Juli 2026)
+                    Lembaga Sertifikasi Profesi LPK TIKOM (2026)
                   </p>
                 </div>
 
@@ -211,7 +212,7 @@ export const Experience: React.FC = () => {
                     <span className="text-[10px] font-mono text-cyan-600 dark:text-cyan-400 font-bold">ESRI</span>
                   </div>
                   <p className="text-[11px] text-slate-500 dark:text-slate-400">
-                    Esri Indonesia • 24 Jam Pelatihan Resmi (Januari 2025)
+                    Esri Indonesia • 24 jam pelatihan (Januari 2025)
                   </p>
                 </div>
               </div>
