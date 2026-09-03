@@ -1,6 +1,5 @@
 import React from 'react';
 import { Briefcase, GraduationCap, Award, Calendar, MapPin, CheckCircle2, Building2, Code2, Globe, Sparkles, Cpu, Layers } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export const Journey: React.FC = () => {
   const experiences = [
@@ -10,9 +9,9 @@ export const Journey: React.FC = () => {
       institution: 'PT Perkebunan Nusantara IV Regional 1',
       score: 'Nilai: 95.9 / 100 (A - Sangat Memuaskan)',
       location: 'Medan, Sumatera Utara',
-      icon: <Building2 className="w-5 h-5 text-violet-500" />,
+      icon: <Building2 className="w-5 h-5 text-blue-500" />,
       tag: 'BUMN Internship',
-      tagColor: 'bg-violet-50 dark:bg-violet-950/40 text-violet-700 dark:text-violet-300 border-violet-200 dark:border-violet-800',
+      tagColor: 'bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-sky-300 border-blue-200 dark:border-blue-800',
       highlights: [
         'Pengolahan data spasial kelapa sawit dan verifikasi lapangan presisi tinggi menggunakan GPS Geodetik E300 Pro (RTK & Statik).',
         'Analisis data spasial perkebunan menggunakan ArcGIS Pro dan QGIS untuk pemetaan blok tanaman.',
@@ -25,9 +24,9 @@ export const Journey: React.FC = () => {
       institution: 'Sekretariat Jenderal DPR RI',
       score: 'Nilai: 84.25 (Sangat Baik)',
       location: 'Jakarta Pusat, DKI Jakarta',
-      icon: <Code2 className="w-5 h-5 text-fuchsia-500" />,
+      icon: <Code2 className="w-5 h-5 text-pink-500" />,
       tag: 'Government Tech',
-      tagColor: 'bg-fuchsia-50 dark:bg-fuchsia-950/40 text-fuchsia-700 dark:text-fuchsia-300 border-fuchsia-200 dark:border-fuchsia-800',
+      tagColor: 'bg-pink-50 dark:bg-pink-950/40 text-pink-700 dark:text-pink-300 border-pink-200 dark:border-pink-800',
       highlights: [
         'Pengembangan dan pemeliharaan aplikasi mobile internal DPR RI berbasis Flutter dan Dart.',
         'Integrasi RESTful API dengan backend sistem informasi kedewanan.',
@@ -58,19 +57,19 @@ export const Journey: React.FC = () => {
       issuer: 'Esri Indonesia',
       year: '2025',
       desc: 'Analisis geospasial mendalam, visualisasi layer spasial multi-dimensi, dan geoprocessing perkebunan.',
-      icon: <Globe className="w-5 h-5 text-cyan-500" />
+      icon: <Globe className="w-5 h-5 text-sky-500" />
     }
   ];
 
   const skillDomains = [
     {
       domain: 'Web & Backend',
-      icon: <Layers className="w-4 h-4 text-violet-500" />,
+      icon: <Layers className="w-4 h-4 text-blue-500" />,
       skills: ['Laravel 10/11', 'PHP 8.2', 'React 18', 'TypeScript', 'Next.js', 'Bootstrap 5', 'Tailwind CSS', 'RESTful API']
     },
     {
       domain: 'Mobile & Cloud',
-      icon: <Code2 className="w-4 h-4 text-fuchsia-500" />,
+      icon: <Code2 className="w-4 h-4 text-pink-500" />,
       skills: ['Flutter SDK', 'Dart', 'Android Native', 'MySQL', 'PostgreSQL', 'Supabase Cloud', 'Google Drive API']
     },
     {
@@ -86,14 +85,14 @@ export const Journey: React.FC = () => {
   ];
 
   return (
-    <section id="journey" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <section id="journey" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto space-y-14">
         {/* Section Header */}
         <div className="space-y-3 max-w-2xl text-left">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-50 dark:bg-violet-950/40 border border-violet-200/60 dark:border-violet-800/60 shadow-sm">
-            <Sparkles className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
-            <span className="text-xs font-semibold text-violet-700 dark:text-violet-300">
-              Interactive Storytelling Timeline
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50/90 dark:bg-blue-950/40 border border-blue-200/60 dark:border-blue-800/60 shadow-xs">
+            <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
+            <span className="text-xs font-semibold text-blue-800 dark:text-sky-300">
+              Storytelling Timeline & Skills
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">
@@ -105,26 +104,26 @@ export const Journey: React.FC = () => {
         </div>
 
         {/* 2-Column Story Layout: Timeline Left, Skills Right */}
-        <div className="grid lg:grid-cols-12 gap-10">
+        <div className="grid lg:grid-cols-12 gap-8 lg:gap-10">
           {/* Left Column - Journey Timeline */}
-          <div className="lg:col-span-7 space-y-8 text-left">
-            <div className="space-y-6">
+          <div className="lg:col-span-7 space-y-6 text-left">
+            <div className="space-y-5">
               {/* Experiences Cards */}
               {experiences.map((exp, idx) => (
                 <div
                   key={idx}
-                  className="relative p-6 rounded-3xl glass-panel shadow-sm hover:shadow-md transition-all space-y-3 border-l-4 border-l-violet-500"
+                  className="relative p-5 sm:p-6 rounded-3xl glass-panel shadow-xs hover:shadow-md transition-all space-y-3 border-l-4 border-l-blue-500"
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
-                      <div className="p-2 rounded-xl bg-violet-100/60 dark:bg-violet-950/50">
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-2 rounded-xl bg-blue-100/60 dark:bg-blue-950/50">
                         {exp.icon}
                       </div>
                       <div>
-                        <h3 className="font-bold text-base text-slate-900 dark:text-white">
+                        <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
                           {exp.role}
                         </h3>
-                        <p className="text-xs font-semibold text-violet-700 dark:text-violet-300">
+                        <p className="text-xs font-semibold text-blue-700 dark:text-sky-300">
                           {exp.institution}
                         </p>
                       </div>
@@ -136,7 +135,7 @@ export const Journey: React.FC = () => {
 
                   <div className="flex flex-wrap items-center gap-3 text-xs text-slate-500 dark:text-slate-400 pt-1">
                     <span className="flex items-center gap-1 font-mono">
-                      <Calendar className="w-3.5 h-3.5 text-violet-500" />
+                      <Calendar className="w-3.5 h-3.5 text-blue-500" />
                       {exp.period}
                     </span>
                     <span className="flex items-center gap-1">
@@ -145,14 +144,14 @@ export const Journey: React.FC = () => {
                     </span>
                   </div>
 
-                  <div className="p-2.5 rounded-xl bg-violet-50/50 dark:bg-violet-950/30 border border-violet-100 dark:border-violet-900/30 text-xs font-semibold text-violet-800 dark:text-violet-200">
+                  <div className="p-2.5 rounded-xl bg-blue-50/50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/30 text-xs font-semibold text-blue-800 dark:text-sky-200">
                     🏆 {exp.score}
                   </div>
 
                   <ul className="space-y-1.5 pt-1">
                     {exp.highlights.map((h, hIdx) => (
                       <li key={hIdx} className="flex items-start gap-2 text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-violet-500 mt-0.5 flex-shrink-0" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-blue-500 mt-0.5 flex-shrink-0" />
                         <span>{h}</span>
                       </li>
                     ))}
@@ -161,13 +160,13 @@ export const Journey: React.FC = () => {
               ))}
 
               {/* Education Card */}
-              <div className="p-6 rounded-3xl glass-panel shadow-sm space-y-3 border-l-4 border-l-sky-500">
+              <div className="p-5 sm:p-6 rounded-3xl glass-panel shadow-xs space-y-3 border-l-4 border-l-sky-500">
                 <div className="flex items-center gap-3">
                   <div className="p-2 rounded-xl bg-sky-100/60 dark:bg-sky-950/50">
                     {education.icon}
                   </div>
                   <div>
-                    <h3 className="font-bold text-base text-slate-900 dark:text-white">
+                    <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white">
                       {education.degree}
                     </h3>
                     <p className="text-xs font-semibold text-sky-700 dark:text-sky-300">
@@ -184,9 +183,9 @@ export const Journey: React.FC = () => {
               </div>
 
               {/* Certifications Cards */}
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-3.5">
                 {certifications.map((cert, cIdx) => (
-                  <div key={cIdx} className="p-5 rounded-2xl glass-panel shadow-sm space-y-2">
+                  <div key={cIdx} className="p-4 sm:p-5 rounded-2xl glass-panel shadow-xs space-y-2">
                     <div className="flex items-center gap-2">
                       <div className="p-1.5 rounded-lg bg-emerald-100/60 dark:bg-emerald-950/50">
                         {cert.icon}
@@ -211,10 +210,10 @@ export const Journey: React.FC = () => {
           </div>
 
           {/* Right Column - Interactive Skill Constellation */}
-          <div className="lg:col-span-5 space-y-6 text-left">
-            <div className="p-6 rounded-3xl glass-panel shadow-sm space-y-6">
+          <div className="lg:col-span-5 space-y-5 text-left">
+            <div className="p-5 sm:p-6 rounded-3xl glass-panel shadow-xs space-y-5">
               <div className="space-y-1">
-                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white">
                   Skill Constellation
                 </h3>
                 <p className="text-xs text-slate-500 dark:text-slate-400">
@@ -222,9 +221,9 @@ export const Journey: React.FC = () => {
                 </p>
               </div>
 
-              <div className="space-y-5">
+              <div className="space-y-4">
                 {skillDomains.map((dom, dIdx) => (
-                  <div key={dIdx} className="space-y-2.5">
+                  <div key={dIdx} className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold text-slate-800 dark:text-slate-200">
                       {dom.icon}
                       <span>{dom.domain}</span>
@@ -233,7 +232,7 @@ export const Journey: React.FC = () => {
                       {dom.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="px-2.5 py-1 text-[11px] font-mono rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800/80 text-slate-700 dark:text-slate-300 shadow-xs hover:border-violet-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                          className="px-2.5 py-1 text-[11px] font-mono rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/70 dark:border-slate-800/80 text-slate-700 dark:text-slate-300 shadow-2xs hover:border-blue-400 hover:text-blue-600 dark:hover:text-sky-300 transition-colors"
                         >
                           {skill}
                         </span>
@@ -244,13 +243,13 @@ export const Journey: React.FC = () => {
               </div>
             </div>
 
-            {/* Research & Publications Pill Card */}
-            <div className="p-6 rounded-3xl bg-gradient-to-tr from-cyan-500/10 via-sky-500/10 to-violet-500/10 border border-cyan-200/60 dark:border-cyan-800/60 space-y-3">
-              <div className="flex items-center gap-2 text-cyan-800 dark:text-cyan-300 font-bold text-xs">
+            {/* Research & Publications Card */}
+            <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-tr from-sky-500/10 via-blue-500/10 to-pink-500/10 border border-sky-200/60 dark:border-sky-800/60 space-y-2.5">
+              <div className="flex items-center gap-2 text-sky-800 dark:text-sky-300 font-bold text-xs">
                 <Sparkles className="w-4 h-4" />
                 <span>Research & Scientific Publication</span>
               </div>
-              <h4 className="font-bold text-sm text-slate-900 dark:text-white">
+              <h4 className="font-bold text-xs sm:text-sm text-slate-900 dark:text-white">
                 Journal of Deep Learning, Computer Vision and Digital Image Processing (DECODING)
               </h4>
               <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
@@ -260,7 +259,7 @@ export const Journey: React.FC = () => {
                 href="https://journal.diginus.id/DECODING/article/view/1449"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-cyan-700 dark:text-cyan-300 underline pt-1"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-700 dark:text-sky-300 underline pt-0.5"
               >
                 <span>Buka Jurnal Resmi (DOI: 10.61255/decoding.v4i2.1449)</span>
               </a>

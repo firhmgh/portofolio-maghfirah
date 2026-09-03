@@ -3,7 +3,7 @@ export interface ProjectItem {
   title: string;
   category: 'Web Apps' | 'Mobile' | 'WebGIS' | 'AI / ML' | 'Desktop & Utilities' | 'Research' | 'Other';
   badge: string;
-  featured: boolean; // true = Featured Project (Large Visual Bento), false = More Projects (Compact Pastel Card)
+  featured: boolean;
   isUndergraduateThesis?: boolean;
   shortDescription: string;
   fullDescription: string;
@@ -16,7 +16,7 @@ export interface ProjectItem {
   journalUrl?: string;
   journalTitle?: string;
   liveUrl?: string;
-  imagePath?: string; // Only if real visual exists
+  imagePath?: string;
   gallery?: {
     path: string;
     caption: string;
@@ -63,7 +63,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
         classification: 'REAL PROJECT OUTPUT/CHART'
       }
     ],
-    accentGlow: 'from-emerald-400/20 via-teal-400/20 to-cyan-400/20'
+    accentGlow: 'from-blue-500/20 via-sky-400/20 to-pink-400/20'
   },
   {
     id: 'esg-palm-oil',
@@ -98,7 +98,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
         classification: 'REAL APPLICATION SCREENSHOT'
       }
     ],
-    accentGlow: 'from-green-400/20 via-emerald-400/20 to-teal-400/20'
+    accentGlow: 'from-sky-500/20 via-blue-400/20 to-pink-400/20'
   },
   {
     id: 'webgis-tbm-palmco-regional-1',
@@ -138,7 +138,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
         classification: 'REAL APPLICATION SCREENSHOT'
       }
     ],
-    accentGlow: 'from-cyan-400/20 via-blue-400/20 to-indigo-400/20'
+    accentGlow: 'from-blue-600/20 via-sky-500/20 to-pink-300/20'
   },
   {
     id: 'palm-oil-reinforcement-learning-simulation',
@@ -173,7 +173,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
         classification: 'REAL PROJECT OUTPUT/CHART'
       }
     ],
-    accentGlow: 'from-purple-400/20 via-pink-400/20 to-rose-400/20'
+    accentGlow: 'from-pink-500/20 via-rose-400/20 to-blue-400/20'
   },
   {
     id: 'local-file-organizer-auditor',
@@ -209,7 +209,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
         classification: 'REAL DESKTOP GUI'
       }
     ],
-    accentGlow: 'from-blue-400/20 via-indigo-400/20 to-violet-400/20'
+    accentGlow: 'from-blue-500/20 via-sky-400/20 to-pink-300/20'
   },
   {
     id: 'google-drive-duplicate-cleaner',
@@ -244,7 +244,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
         classification: 'REAL DESKTOP GUI'
       }
     ],
-    accentGlow: 'from-amber-400/20 via-orange-400/20 to-yellow-400/20'
+    accentGlow: 'from-sky-500/20 via-blue-400/20 to-pink-300/20'
   },
   {
     id: 'Digital-Library-Blog',
@@ -277,18 +277,18 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
         classification: 'EXISTING PROJECT ASSET'
       }
     ],
-    accentGlow: 'from-purple-400/20 via-indigo-400/20 to-blue-400/20'
+    accentGlow: 'from-blue-600/20 via-pink-400/20 to-sky-300/20'
   },
 
   // ================= MORE PROJECTS (COMPACT PASTEL CARDS) =================
   {
     id: 'Dirayah-Quran-Mobile-App',
-    title: 'Dirayah — Al-Qur\'an Digital & Prayer Time',
+    title: 'Dirayah — Al-Quran Digital & Prayer Time',
     category: 'Mobile',
     badge: 'Flutter Mobile',
     featured: false,
-    shortDescription: 'Aplikasi mobile Al-Qur\'an digital komprehensif berbasis Flutter dengan audio murottal per ayat, terjemahan Kemenag, tajwid berwarna, dan jadwal sholat otomatis berbasis GPS geolokasi.',
-    fullDescription: 'Dirayah adalah aplikasi mobile Android berarsitektur BLoC yang dirancang untuk memberikan pengalaman membaca dan mendengarkan ayat suci Al-Qur\'an secara offline-first dengan akurasi jadwal sholat lokal.',
+    shortDescription: 'Aplikasi mobile Al-Quran digital komprehensif berbasis Flutter dengan audio murottal per ayat, terjemahan Kemenag, tajwid berwarna, dan jadwal sholat otomatis berbasis GPS geolokasi.',
+    fullDescription: 'Dirayah adalah aplikasi mobile Android berarsitektur BLoC yang dirancang untuk memberikan pengalaman membaca dan mendengarkan ayat suci Al-Quran secara offline-first dengan akurasi jadwal sholat lokal.',
     challenge: 'Aplikasi keagamaan sering kali dipenuhi iklan banner yang mengganggu kekhusyukan dan konsumsi memori tinggi saat memutar audio streaming terus menerus.',
     solution: 'Mengembangkan aplikasi native cross-platform dengan Flutter yang mengintegrasikan audio player caching lokal, parsing database SQLite ayat lengkap, dan kalkulasi astronomis waktu sholat.',
     architecture: [
@@ -297,7 +297,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
       'Spatial Geolocation: GPS Location Service untuk kalkulasi sudut deklinasi matahari dan arah kiblat.'
     ],
     keyFeatures: [
-      'Teks Al-Qur\'an 30 Juz lengkap dengan tajwid berwarna dan terjemahan Bahasa Indonesia',
+      'Teks Al-Quran 30 Juz lengkap dengan tajwid berwarna dan terjemahan Bahasa Indonesia',
       'Audio streaming & offline caching multi-qari per ayat',
       'Jadwal waktu sholat otomatis dan notifikasi adzan berbasis GPS',
       'Kompas penunjuk arah kiblat presisi tinggi',
@@ -309,11 +309,11 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     gallery: [
       {
         path: 'projects/dirayah-quran/app-icon.png',
-        caption: 'Identitas & Logo Aplikasi Mobile Dirayah Al-Qur\'an Digital',
+        caption: 'Identitas & Logo Aplikasi Mobile Dirayah Al-Quran Digital',
         classification: 'REAL PROJECT ASSET'
       }
     ],
-    accentGlow: 'from-emerald-400/20 via-teal-400/20 to-cyan-400/20'
+    accentGlow: 'from-blue-500/20 via-sky-400/20 to-pink-300/20'
   },
   {
     id: 'ramadhan-care',
@@ -336,7 +336,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     ],
     techStack: ['TypeScript', 'React', 'Tailwind CSS', 'Vite'],
     githubUrl: 'https://github.com/firhmgh/ramadhan-care',
-    accentGlow: 'from-pink-400/20 via-rose-400/20 to-amber-400/20'
+    accentGlow: 'from-pink-500/20 via-rose-400/20 to-blue-400/20'
   },
   {
     id: 'palm-oil-scheduling',
@@ -359,7 +359,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     ],
     techStack: ['Python', 'Optimization', 'Pandas', 'NumPy'],
     githubUrl: 'https://github.com/firhmgh/palm-oil-scheduling',
-    accentGlow: 'from-amber-400/20 via-lime-400/20 to-emerald-400/20'
+    accentGlow: 'from-sky-500/20 via-blue-400/20 to-pink-300/20'
   },
   {
     id: 'streamlit-canteen-pos',
@@ -382,7 +382,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     ],
     techStack: ['Python', 'Streamlit', 'SQLite', 'Pandas', 'Altair'],
     githubUrl: 'https://github.com/firhmgh/streamlit-canteen-pos',
-    accentGlow: 'from-indigo-400/20 via-sky-400/20 to-teal-400/20'
+    accentGlow: 'from-blue-500/20 via-sky-400/20 to-pink-300/20'
   },
   {
     id: 'portofolio-maghfirah',
@@ -393,14 +393,14 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     shortDescription: 'Website portofolio developer modern berbasis React 18, TypeScript, Tailwind CSS, dan Framer Motion dengan dark/light theme, interactive gallery, dan motion effects.',
     fullDescription: 'Karya portfolio personal interaktif yang memamerkan seluruh rekayasa perangkat lunak, sistem geospasial WebGIS, model kecerdasan buatan, dan riwayat karir profesional Maghfirah.',
     challenge: 'Membangun portfolio yang interaktif, distinctive, dan artistik tanpa mengorbankan performa akses, kebersihan kode, dan standar aksesibilitas WCAG AA.',
-    solution: 'Mengimplementasikan desain Modern Interactive Pastel Showcase dengan Framer Motion micro-interactions, responsive floating dock navigation, dan dynamic project filtering.',
+    solution: 'Mengimplementasikan desain Modern Interactive Blue & Soft Pink Showcase dengan Framer Motion micro-interactions, responsive floating dock navigation, dan dynamic project filtering.',
     architecture: [
       'Framework: React 18 & TypeScript via Vite 6.',
       'Animation: Framer Motion dengan hardware-accelerated transitions.',
-      'Styling: Tailwind CSS v4 dengan custom dark variant dan pastel aurora gradient mesh.'
+      'Styling: Tailwind CSS v4 dengan custom dark variant dan ambient fluid gradient blobs.'
     ],
     keyFeatures: [
-      'Dynamic Dark/Light Mode dengan tema pastel kontras tinggi',
+      'Dynamic Dark/Light Mode dengan tema Blue & Blush Pink kontras tinggi',
       'Filter kategori proyek real-time dengan animasi layout mulus',
       'Interactive Case Study modal drawer dengan galeri bukti visual asli',
       '100% responsif dari 320px hingga 1920px tanpa horizontal scroll'
@@ -408,6 +408,6 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion'],
     githubUrl: 'https://github.com/firhmgh/portofolio-maghfirah',
     liveUrl: 'https://firhmgh.github.io/portofolio-maghfirah/',
-    accentGlow: 'from-fuchsia-400/20 via-purple-400/20 to-indigo-400/20'
+    accentGlow: 'from-pink-500/20 via-blue-500/20 to-sky-400/20'
   }
 ];
