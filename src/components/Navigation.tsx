@@ -1,161 +1,202 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
-import { Sun, Moon, Menu, X, Code2, ArrowUpRight, FileText } from 'lucide-react';
+import { Home, Layers, Compass, Mail, Sun, Moon, FileText, Github, Linkedin, Menu, X, Sparkles } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const Navigation: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
-  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const sections = ['home', 'projects', 'journey', 'contact'];
+      const scrollPosition = window.scrollY + 250;
+
+      for (const sectionId of sections) {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          const top = el.offsetTop;
+          const height = el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { label: 'Work', href: '#work' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'About', href: '#about' },
-    { label: 'Contact', href: '#contact' },
+  const navItems = [
+    { id: 'home', label: 'Home', icon: <Home className="w-4 h-4" />, href: '#home' },
+    { id: 'projects', label: 'Projects', icon: <Layers className="w-4 h-4" />, href: '#projects' },
+    { id: 'journey', label: 'Journey', icon: <Compass className="w-4 h-4" />, href: '#journey' },
+    { id: 'contact', label: 'Contact', icon: <Mail className="w-4 h-4" />, href: '#contact' },
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'py-3 bg-white/85 dark:bg-[#0a0b0e]/85 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm'
-          : 'py-5 bg-transparent'
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-        {/* Monogram Brand */}
-        <a
-          href="#"
-          className="flex items-center gap-2.5 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-lg p-1"
-        >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white font-bold text-sm shadow-sm group-hover:scale-105 transition-transform duration-200">
-            FM
-          </div>
-          <div className="flex flex-col text-left">
-            <span className="font-bold text-slate-900 dark:text-white tracking-tight text-sm sm:text-base leading-none group-hover:text-emerald-500 transition-colors">
-              Maghfirah
-            </span>
-            <span className="text-[11px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
-              Portfolio
-            </span>
-          </div>
-        </a>
-
-        {/* Desktop Navigation Links (Clean Spacing) */}
-        <nav className="hidden md:flex items-center gap-2 bg-slate-100/80 dark:bg-slate-900/80 border border-slate-200/80 dark:border-slate-800/80 rounded-full px-4 py-1.5 backdrop-blur-md">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="px-3.5 py-1 text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-full transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-
-        {/* Desktop Actions */}
-        <div className="hidden md:flex items-center gap-3">
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle dark/light theme"
-            className="w-9 h-9 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-700" />}
-          </button>
-
+    <>
+      {/* Floating Modern Dock Navigation */}
+      <header
+        className={`fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none transition-all duration-300 ${
+          scrolled ? 'top-3' : 'top-5'
+        }`}
+      >
+        <div className="w-full max-w-5xl flex items-center justify-between pointer-events-auto">
+          {/* Brand Monogram Pill */}
           <a
-            href="Maghfirah_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-300 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/60 transition-colors"
+            href="#home"
+            className="flex items-center gap-2.5 px-3.5 py-2 rounded-2xl glass-panel shadow-sm hover:shadow-md transition-all group"
           >
-            <FileText className="w-3.5 h-3.5" />
-            Resume (PDF)
+            <div className="w-8 h-8 rounded-xl bg-gradient-to-tr from-violet-500 via-fuchsia-500 to-sky-400 p-[1.5px] shadow-sm">
+              <div className="w-full h-full bg-white dark:bg-[#131524] rounded-[10px] flex items-center justify-center">
+                <span className="text-xs font-extrabold bg-gradient-to-r from-violet-600 to-fuchsia-500 bg-clip-text text-transparent font-mono">
+                  FM
+                </span>
+              </div>
+            </div>
+            <div className="hidden sm:flex flex-col text-left">
+              <span className="text-xs font-bold text-slate-800 dark:text-slate-100 tracking-tight leading-none group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                Maghfirah
+              </span>
+              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+                Software & GIS
+              </span>
+            </div>
           </a>
 
-          <a
-            href="https://github.com/firhmgh"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-semibold rounded-full border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 hover:border-emerald-500 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
-          >
-            <Code2 className="w-3.5 h-3.5" />
-            GitHub
-            <ArrowUpRight className="w-3 h-3 opacity-60" />
-          </a>
-        </div>
+          {/* Center Floating Dock (Desktop) */}
+          <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-2xl glass-panel shadow-sm">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className={`relative flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                    isActive
+                      ? 'text-violet-900 dark:text-violet-100'
+                      : 'text-slate-600 dark:text-slate-400 hover:text-violet-600 dark:hover:text-violet-300'
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeDockIndicator"
+                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-200/80 via-fuchsia-100/80 to-sky-100/80 dark:from-violet-900/50 dark:via-fuchsia-950/40 dark:to-sky-950/40 -z-10 shadow-inner"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  {item.icon}
+                  <span>{item.label}</span>
+                </a>
+              );
+            })}
+          </nav>
 
-        {/* Mobile Hamburger & Controls */}
-        <div className="flex md:hidden items-center gap-2">
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="w-8 h-8 rounded-full flex items-center justify-center border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300"
-          >
-            {theme === 'dark' ? <Sun className="w-3.5 h-3.5 text-amber-400" /> : <Moon className="w-3.5 h-3.5" />}
-          </button>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-            className="p-1.5 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg"
-          >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden px-4 pt-3 pb-6 bg-white dark:bg-[#0e1117] border-b border-slate-200 dark:border-slate-800 shadow-xl space-y-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors text-left"
+          {/* Right Utility Buttons */}
+          <div className="flex items-center gap-2">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle dark/light theme"
+              className="w-10 h-10 rounded-2xl glass-panel flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105 transition-transform shadow-sm"
             >
-              {link.label}
-            </a>
-          ))}
-          <div className="pt-2 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-amber-300 animate-spin-slow" />
+              ) : (
+                <Moon className="w-4 h-4 text-violet-600" />
+              )}
+            </button>
+
+            {/* Resume Button */}
             <a
               href="Maghfirah_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-center py-2 text-xs font-semibold rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 text-emerald-700 dark:text-emerald-300"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-2xl bg-gradient-to-r from-violet-500/15 via-fuchsia-500/15 to-sky-500/15 border border-violet-300/40 dark:border-violet-700/50 text-violet-800 dark:text-violet-200 text-xs font-bold hover:shadow-md transition-all"
             >
-              Download Resume (PDF)
+              <FileText className="w-3.5 h-3.5 text-violet-600 dark:text-violet-400" />
+              <span>Resume</span>
             </a>
-            <div className="flex gap-2">
+
+            {/* GitHub Link */}
+            <a
+              href="https://github.com/firhmgh"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Profile"
+              className="hidden lg:inline-flex w-10 h-10 rounded-2xl glass-panel items-center justify-center text-slate-700 dark:text-slate-200 hover:text-violet-600 dark:hover:text-violet-400 transition-colors shadow-sm"
+            >
+              <Github className="w-4 h-4" />
+            </a>
+
+            {/* Mobile Hamburger Toggle */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle mobile menu"
+              className="md:hidden w-10 h-10 rounded-2xl glass-panel flex items-center justify-center text-slate-700 dark:text-slate-200 shadow-sm"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* Mobile Animated Bottom Sheet / Drawer */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-x-4 top-20 z-40 p-5 rounded-3xl glass-panel shadow-2xl border border-violet-200/50 dark:border-violet-800/50 md:hidden space-y-4"
+          >
+            <div className="grid grid-cols-2 gap-2">
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`flex items-center gap-2.5 p-3 rounded-2xl text-xs font-bold transition-colors text-left ${
+                    activeSection === item.id
+                      ? 'bg-gradient-to-r from-violet-500/20 to-fuchsia-500/20 text-violet-700 dark:text-violet-300'
+                      : 'bg-slate-100/50 dark:bg-slate-800/40 text-slate-700 dark:text-slate-300'
+                  }`}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                </a>
+              ))}
+            </div>
+
+            <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800/50 flex gap-2">
+              <a
+                href="Maghfirah_CV.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 py-2.5 rounded-xl bg-violet-600 text-white text-xs font-bold text-center shadow-sm"
+              >
+                Download Resume (PDF)
+              </a>
               <a
                 href="https://github.com/firhmgh"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 text-center py-2 text-xs font-semibold rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200"
+                className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 flex items-center justify-center"
               >
-                GitHub
-              </a>
-              <a
-                href="#contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex-1 text-center py-2 text-xs font-semibold rounded-lg bg-emerald-600 text-white"
-              >
-                Contact
+                <Github className="w-4 h-4" />
               </a>
             </div>
-          </div>
-        </div>
-      )}
-    </header>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };

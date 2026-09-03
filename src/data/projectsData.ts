@@ -1,9 +1,9 @@
 export interface ProjectItem {
   id: string;
   title: string;
-  category: string;
+  category: 'Web Apps' | 'Mobile' | 'WebGIS' | 'AI / ML' | 'Desktop & Utilities' | 'Research' | 'Other';
   badge: string;
-  featured: boolean;
+  featured: boolean; // true = Featured Project (Large Visual Bento), false = More Projects (Compact Pastel Card)
   isUndergraduateThesis?: boolean;
   shortDescription: string;
   fullDescription: string;
@@ -16,22 +16,28 @@ export interface ProjectItem {
   journalUrl?: string;
   journalTitle?: string;
   liveUrl?: string;
-  imagePath: string;
-  accentColor: string;
+  imagePath?: string; // Only if real visual exists
+  gallery?: {
+    path: string;
+    caption: string;
+    classification: string;
+  }[];
+  accentGlow: string;
 }
 
-export const PROJECTS_DATA: ProjectItem[] = [
+export const ALL_PROJECTS_DATA: ProjectItem[] = [
+  // ================= FEATURED PROJECTS (TOP 7 ENGINEERING KARYA) =================
   {
     id: 'simtan-monitoring-palm-oil',
-    title: 'SIMTAN — Immature Oil Palm (TBM) Monitoring Platform',
-    category: 'Enterprise Agro-GIS & Expert Validation (Tugas Akhir / Skripsi S1)',
+    title: 'SIMTAN — Immature Oil Palm Monitoring Platform',
+    category: 'WebGIS',
     badge: 'Final Project / Skripsi',
     featured: true,
     isUndergraduateThesis: true,
     shortDescription: 'Platform enterprise monitoring spasial TBM kelapa sawit dengan validasi agronomi otomatis, visualisasi static raster XYZ tiles, dan model LLM. Proyek Tugas Akhir S1 dengan publikasi jurnal ilmiah terindeks.',
     fullDescription: 'SIMTAN merupakan sistem informasi dan dashboard monitoring berbasis web (Laravel) terintegrasi untuk pemantauan tanaman belum menghasilkan (TBM) kelapa sawit di PT Perkebunan Nusantara IV Regional 1. Proyek ini dikembangkan sebagai Tugas Akhir / Skripsi S1 Sistem dan Teknologi Informasi di ITSI dan telah dipublikasikan pada jurnal ilmiah.',
     challenge: 'Pencatatan manual kebun seluas ribuan hektar memicu keterlambatan pelaporan, resiko inkonsistensi data lapangan, dan rendering orthophoto beresolusi tinggi yang lambat (>12.000 ms).',
-    solution: 'Membangun platform Laravel dengan integrasi Static Raster Tiling (XYZ Tiles) yang mempercepat rendering peta menjadi rata-rata 180 ms, validasi kesesuaian agronomi otomatis (Fleiss Kappa 0.8105), dan integrasi LLM (Gemini 1.5 Flash & Llama 3) untuk rekomendasi pemeliharaan.',
+    solution: 'Membangun platform Laravel dengan integrasi Static Raster Tiling (XYZ Tiles) yang memotong latensi rendering peta menjadi rata-rata 180 ms, validasi kesesuaian agronomi otomatis (Fleiss Kappa 0.8105), dan integrasi LLM (Gemini 1.5 Flash & Llama 3) untuk rekomendasi pemeliharaan.',
     architecture: [
       'Backend & Architecture: Laravel MVC RESTful architecture dengan custom agronomic validation pipeline.',
       'Spatial Rendering: Static Raster Tiling (XYZ Tiles) memotong latensi rendering dari >12s menjadi ~180ms.',
@@ -50,12 +56,19 @@ export const PROJECTS_DATA: ProjectItem[] = [
     journalUrl: 'https://journal.diginus.id/DECODING/article/view/1449',
     journalTitle: 'Laravel Dashboard for Immature Oil Palm (TBM III) Monitoring Using XYZ Tiles and Large Language Models',
     imagePath: 'projects/simtan/validation-accuracy.png',
-    accentColor: 'from-emerald-500 to-teal-700'
+    gallery: [
+      {
+        path: 'projects/simtan/validation-accuracy.png',
+        caption: 'Hasil Evaluasi Akurasi & Fleiss Kappa Mesin Validasi Agronomi SIMTAN',
+        classification: 'REAL PROJECT OUTPUT/CHART'
+      }
+    ],
+    accentGlow: 'from-emerald-400/20 via-teal-400/20 to-cyan-400/20'
   },
   {
     id: 'esg-palm-oil',
     title: 'ESG Palm Oil — AI Sustainability Analytics Dashboard',
-    category: 'AI Decision Support & Sustainability Analytics',
+    category: 'AI / ML',
     badge: 'Dual AI Engine',
     featured: true,
     shortDescription: 'Dashboard analitik kepatuhan ESG rantai pasok kelapa sawit dengan evaluasi Dual AI (Gemini & Groq Llama 3) serta pemodelan penalti biologis Ganoderma.',
@@ -78,69 +91,19 @@ export const PROJECTS_DATA: ProjectItem[] = [
     techStack: ['Laravel 11', 'PHP 8.2', 'Google Gemini AI', 'Groq Llama 3', 'Tailwind CSS', 'Chart.js', 'MySQL'],
     githubUrl: 'https://github.com/firhmgh/esg-palm-oil',
     imagePath: 'projects/esg-palm-oil/dashboard.webp',
-    accentColor: 'from-green-500 to-emerald-700'
-  },
-  {
-    id: 'palm-oil-reinforcement-learning-simulation',
-    title: 'Palm Oil Reinforcement Learning Simulation',
-    category: 'Applied AI / Reinforcement Learning Research',
-    badge: 'Machine Learning',
-    featured: true,
-    shortDescription: 'Simulasi komputasional optimasi kebijakan panen dan pemupukan kelapa sawit berbasis Gymnasium, PPO, dan Recurrent PPO dengan memori temporal LSTM.',
-    fullDescription: 'Platform riset komputasional yang memodelkan dinamika perkebunan kelapa sawit sebagai Markov Decision Process (MDP) dan melatih agen deep reinforcement learning untuk memaksimalkan yield panen jangka panjang.',
-    challenge: 'Menentukan siklus rotasi panen dan dosis nutrisi optimal di tengah fluktuasi cuaca multi-tahun sangat berbiaya tinggi bila diuji secara langsung di lapangan.',
-    solution: 'Membangun custom Gymnasium environment yang memodelkan pertumbuhan vegetatif, kematangan TBS, dan cuaca, lalu melatih agen PPO dan Recurrent PPO yang mengungguli metode baseline FIFO.',
-    architecture: [
-      'Environment: Custom Gymnasium class dengan state space status vegetatif dan kelembapan tanah.',
-      'Action Space: Vektor aksi penentuan rotasi panen dan dosis pemupukan presisi.',
-      'Algorithms: Stable-Baselines3 PPO & SB3-Contrib Recurrent PPO (LSTM).',
-      'Benchmark: Evaluator komparatif reward dan stabilitas produksi multi-episode.'
+    gallery: [
+      {
+        path: 'projects/esg-palm-oil/dashboard.webp',
+        caption: 'Tampilan Utama Dashboard Analitik ESG & Radar Scoring Dimensi Lingkungan/Sosial/Tata Kelola',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      }
     ],
-    keyFeatures: [
-      'Custom Gymnasium simulation environment untuk agronomi sawit',
-      'Dua arsitektur agen RL (PPO Standard & Recurrent PPO LSTM)',
-      'Benchmark komparatif terhadap kebijakan operasional konvensional',
-      'Visualizer langkah simulasi interaktif (simulator.py)',
-      'Model checkpoints terlatih siap evaluasi multi-episode'
-    ],
-    techStack: ['Python 3.11', 'Gymnasium', 'Stable-Baselines3', 'PyTorch', 'SB3-Contrib', 'NumPy', 'Pandas'],
-    githubUrl: 'https://github.com/firhmgh/palm-oil-reinforcement-learning-simulation',
-    imagePath: 'projects/palm-oil-rl/rl-performance-benchmark.png',
-    accentColor: 'from-cyan-500 to-blue-700'
-  },
-  {
-    id: 'local-file-organizer-auditor',
-    title: 'Local File Organizer & Auditor (Desktop GUI + CLI)',
-    category: 'Windows System Utility & High-Safety Tooling',
-    badge: 'Desktop App & CLI',
-    featured: true,
-    shortDescription: 'Utilitas Windows Desktop GUI & CLI untuk audit sistem file, deteksi duplikat identik tingkat bit via Tiered SHA-256, proteksi bundel GIS, dan cleanup ke Recycle Bin.',
-    fullDescription: 'Perangkat lunak utilitas Windows berstandar keamanan tinggi dengan filosofi Safe-by-Default. Dilengkapi algoritma multi-tiered chunk hashing (SHA-256) untuk deteksi duplikat 100% akurat, seleksi keeper pintar, dan proteksi berkas proyek.',
-    challenge: 'Tool pembersih umum sering kali menghapus file dependensi penting, merusak bundel sidecar GIS (.shp, .dbf), atau menghapus file secara permanen tanpa opsi recovery.',
-    solution: 'Membangun aplikasi dual-interface (Tkinter Desktop GUI multi-threaded dan CLI) dengan Tiered Hashing (ukuran -> partial hash -> full SHA-256), proteksi bundel GIS, dan routing khusus ke Windows Recycle Bin.',
-    architecture: [
-      'Hashing Engine: Pipeline bertingkat menyeleksi file via ukuran byte, header hash, dan SHA-256.',
-      'Immunity Engine: Deteksi otomatis sidecar GIS (.shp, .prj, .dbf) dan aset proyek.',
-      'Keeper Scoring: Algoritma memilih file asli pada folder terstruktur dibanding folder Downloads.',
-      'Threading UI: Background workers Tkinter dengan progress bar real-time dan ekspor laporan Markdown/JSON.'
-    ],
-    keyFeatures: [
-      'Dual Interface: Windows Desktop GUI multi-threaded dan CLI automated runner',
-      'Tiered SHA-256 Hashing: Deteksi duplikat bit-level instan tanpa false positive',
-      'Proteksi Berkas GIS & Project: Bebas resiko terhapusnya companion files',
-      'Seleksi Keeper Pintar mempertahankan lokasi file yang rapi',
-      'Laporan audit dry-run lengkap dalam format Markdown dan JSON',
-      'Integrasi aman Send2Trash (tidak pernah hard-delete)'
-    ],
-    techStack: ['Python 3.11', 'Tkinter GUI', 'Multi-Threading', 'Send2Trash', 'SHA-256 Engine', 'Typer CLI', 'Unittest'],
-    githubUrl: 'https://github.com/firhmgh/local-file-organizer-auditor',
-    imagePath: 'projects/local-file-organizer-auditor/gui.webp',
-    accentColor: 'from-blue-500 to-indigo-700'
+    accentGlow: 'from-green-400/20 via-emerald-400/20 to-teal-400/20'
   },
   {
     id: 'webgis-tbm-palmco-regional-1',
     title: 'WebGIS TBM Regional 1 PalmCo',
-    category: 'Enterprise Geospatial Intelligence Frontend',
+    category: 'WebGIS',
     badge: 'Enterprise GIS',
     featured: true,
     shortDescription: 'Dashboard visualisasi spasial interaktif blok kebun TBM, sebaran titik pohon, dan layer kontur DTM LiDAR perkebunan kelapa sawit se-Regional 1 PTPN IV.',
@@ -163,13 +126,96 @@ export const PROJECTS_DATA: ProjectItem[] = [
     techStack: ['React', 'TypeScript', 'Vite', 'Leaflet GIS', 'Supabase PostGIS', 'Tailwind CSS', 'GeoJSON'],
     githubUrl: 'https://github.com/firhmgh/webgis-tbm-palmco-regional-1',
     imagePath: 'projects/webgis-tbm/plantation-overview.webp',
-    accentColor: 'from-emerald-600 to-green-800'
+    gallery: [
+      {
+        path: 'projects/webgis-tbm/plantation-overview.webp',
+        caption: 'Tampilan Peta Overview Spasial Perkebunan & Layer Sensus Titik Pohon',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      },
+      {
+        path: 'projects/webgis-tbm/spatial-center.webp',
+        caption: 'Peta Navigasi Spasial Sentral Blok Kebun Kelapa Sawit Regional 1',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      }
+    ],
+    accentGlow: 'from-cyan-400/20 via-blue-400/20 to-indigo-400/20'
+  },
+  {
+    id: 'palm-oil-reinforcement-learning-simulation',
+    title: 'Palm Oil Reinforcement Learning Simulation',
+    category: 'Research',
+    badge: 'RL Research',
+    featured: true,
+    shortDescription: 'Simulasi komputasional optimasi kebijakan panen dan pemupukan kelapa sawit berbasis Gymnasium, PPO, dan Recurrent PPO dengan memori temporal LSTM.',
+    fullDescription: 'Platform riset komputasional yang memodelkan dinamika perkebunan kelapa sawit sebagai Markov Decision Process (MDP) dan melatih agen deep reinforcement learning untuk memaksimalkan yield panen jangka panjang.',
+    challenge: 'Menentukan siklus rotasi panen dan dosis nutrisi optimal di tengah fluktuasi cuaca multi-tahun sangat berbiaya tinggi bila diuji secara langsung di lapangan.',
+    solution: 'Membangun custom Gymnasium environment yang memodelkan pertumbuhan vegetatif, kematangan TBS, dan cuaca, lalu melatih agen PPO dan Recurrent PPO yang mengungguli metode baseline FIFO.',
+    architecture: [
+      'Environment: Custom Gymnasium class dengan state space status vegetatif dan kelembapan tanah.',
+      'Action Space: Vektor aksi penentuan rotasi panen dan dosis pemupukan presisi.',
+      'Algorithms: Stable-Baselines3 PPO & SB3-Contrib Recurrent PPO (LSTM).',
+      'Benchmark: Evaluator komparatif reward dan stabilitas produksi multi-episode.'
+    ],
+    keyFeatures: [
+      'Custom Gymnasium simulation environment untuk agronomi sawit',
+      'Dua arsitektur agen RL (PPO Standard & Recurrent PPO LSTM)',
+      'Benchmark komparatif terhadap kebijakan operasional konvensional',
+      'Visualizer langkah simulasi interaktif (simulator.py)',
+      'Model checkpoints terlatih siap evaluasi multi-episode'
+    ],
+    techStack: ['Python 3.11', 'Gymnasium', 'Stable-Baselines3', 'PyTorch', 'SB3-Contrib', 'NumPy', 'Pandas'],
+    githubUrl: 'https://github.com/firhmgh/palm-oil-reinforcement-learning-simulation',
+    imagePath: 'projects/palm-oil-rl/rl-performance-benchmark.png',
+    gallery: [
+      {
+        path: 'projects/palm-oil-rl/rl-performance-benchmark.png',
+        caption: 'Kurva Pembelajaran & Benchmark Performa Agen RL (PPO / LSTM vs Baseline FIFO)',
+        classification: 'REAL PROJECT OUTPUT/CHART'
+      }
+    ],
+    accentGlow: 'from-purple-400/20 via-pink-400/20 to-rose-400/20'
+  },
+  {
+    id: 'local-file-organizer-auditor',
+    title: 'Local File Organizer & Auditor (Desktop GUI + CLI)',
+    category: 'Desktop & Utilities',
+    badge: 'Desktop & CLI',
+    featured: true,
+    shortDescription: 'Utilitas Windows Desktop GUI & CLI untuk audit sistem file, deteksi duplikat identik tingkat bit via Tiered SHA-256, proteksi bundel GIS, dan cleanup ke Recycle Bin.',
+    fullDescription: 'Perangkat lunak utilitas Windows berstandar keamanan tinggi dengan filosofi Safe-by-Default. Dilengkapi algoritma multi-tiered chunk hashing (SHA-256) untuk deteksi duplikat 100% akurat, seleksi keeper pintar, dan proteksi berkas proyek.',
+    challenge: 'Tool pembersih umum sering kali menghapus file dependensi penting, merusak bundel sidecar GIS (.shp, .dbf), atau menghapus file secara permanen tanpa opsi recovery.',
+    solution: 'Membangun aplikasi dual-interface (Tkinter Desktop GUI multi-threaded dan CLI) dengan Tiered Hashing (ukuran -> partial hash -> full SHA-256), proteksi bundel GIS, dan routing khusus ke Windows Recycle Bin.',
+    architecture: [
+      'Hashing Engine: Pipeline bertingkat menyeleksi file via ukuran byte, header hash, dan SHA-256.',
+      'Immunity Engine: Deteksi otomatis sidecar GIS (.shp, .prj, .dbf) dan aset proyek.',
+      'Keeper Scoring: Algoritma memilih file asli pada folder terstruktur dibanding folder Downloads.',
+      'Threading UI: Background workers Tkinter dengan progress bar real-time dan ekspor laporan Markdown/JSON.'
+    ],
+    keyFeatures: [
+      'Dual Interface: Windows Desktop GUI multi-threaded dan CLI automated runner',
+      'Tiered SHA-256 Hashing: Deteksi duplikat bit-level instan tanpa false positive',
+      'Proteksi Berkas GIS & Project: Bebas resiko terhapusnya companion files',
+      'Seleksi Keeper Pintar mempertahankan lokasi file yang rapi',
+      'Laporan audit dry-run lengkap dalam format Markdown dan JSON',
+      'Integrasi aman Send2Trash (tidak pernah hard-delete)'
+    ],
+    techStack: ['Python 3.11', 'Tkinter GUI', 'Multi-Threading', 'Send2Trash', 'SHA-256 Engine', 'Typer CLI', 'Unittest'],
+    githubUrl: 'https://github.com/firhmgh/local-file-organizer-auditor',
+    imagePath: 'projects/local-file-organizer-auditor/gui.webp',
+    gallery: [
+      {
+        path: 'projects/local-file-organizer-auditor/gui.webp',
+        caption: 'Antarmuka Desktop GUI Tkinter V3: Folder Selector, Filter Kategori, Progress Bar & Tabel Duplikat',
+        classification: 'REAL DESKTOP GUI'
+      }
+    ],
+    accentGlow: 'from-blue-400/20 via-indigo-400/20 to-violet-400/20'
   },
   {
     id: 'google-drive-duplicate-cleaner',
     title: 'Google Drive Photo & Video Duplicate Cleaner',
-    category: 'Cloud Storage Automation & Security',
-    badge: 'Cloud Automation',
+    category: 'Desktop & Utilities',
+    badge: 'Cloud Tooling',
     featured: true,
     shortDescription: 'Utilitas Desktop GUI & CLI multi-akun Google Drive untuk mendeteksi dan membersihkan file duplikat media secara aman via OAuth 2.0 dan pencocokan checksum.',
     fullDescription: 'Aplikasi desktop dan CLI otomatisasi penyimpanan cloud untuk memindai, mengidentifikasi, dan membersihkan duplikat media foto/video secara aman di Google Drive menggunakan OAuth 2.0 dan checksum MD5/SHA.',
@@ -191,14 +237,21 @@ export const PROJECTS_DATA: ProjectItem[] = [
     techStack: ['Python', 'Tkinter GUI', 'Google Drive API v3', 'Google OAuth 2.0', 'Hash Validation'],
     githubUrl: 'https://github.com/firhmgh/google-drive-duplicate-cleaner',
     imagePath: 'projects/google-drive-duplicate-cleaner/gui.webp',
-    accentColor: 'from-amber-500 to-orange-700'
+    gallery: [
+      {
+        path: 'projects/google-drive-duplicate-cleaner/gui.webp',
+        caption: 'Window GUI Desktop Tkinter: Account Selector, Scan Progress, Perhitungan Kuota & Tabel KEEP/TRASH',
+        classification: 'REAL DESKTOP GUI'
+      }
+    ],
+    accentGlow: 'from-amber-400/20 via-orange-400/20 to-yellow-400/20'
   },
   {
-    id: 'digital-library-blog',
+    id: 'Digital-Library-Blog',
     title: 'Digital Library & Modern Blog Platform',
-    category: 'Full-Stack Web Application',
-    badge: 'Modern Web',
-    featured: false,
+    category: 'Web Apps',
+    badge: 'Next.js Platform',
+    featured: true,
     shortDescription: 'Platform perpustakaan digital dan pembaca artikel berbasis Next.js App Router, TypeScript, dan Tailwind CSS dengan katalog pencarian dan tampilan pembaca responsif.',
     fullDescription: 'Platform publikasi digital dan manajemen konten artikel yang dirancang dengan Next.js App Router dan TypeScript untuk pengalaman membaca artikel yang bersih dan cepat.',
     challenge: 'Membangun antarmuka pembaca artikel digital yang fokus, cepat dimuat, dengan tipografi yang nyaman diakses di desktop maupun ponsel.',
@@ -217,6 +270,144 @@ export const PROJECTS_DATA: ProjectItem[] = [
     techStack: ['Next.js', 'TypeScript', 'React', 'Tailwind CSS', 'Lucide React'],
     githubUrl: 'https://github.com/firhmgh/Digital-Library-Blog',
     imagePath: 'projects/digital-library/article-banner.png',
-    accentColor: 'from-purple-500 to-indigo-700'
+    gallery: [
+      {
+        path: 'projects/digital-library/article-banner.png',
+        caption: 'Tampilan Header & Artikel Digital Banner Reader View',
+        classification: 'EXISTING PROJECT ASSET'
+      }
+    ],
+    accentGlow: 'from-purple-400/20 via-indigo-400/20 to-blue-400/20'
+  },
+
+  // ================= MORE PROJECTS (COMPACT PASTEL CARDS) =================
+  {
+    id: 'Dirayah-Quran-Mobile-App',
+    title: 'Dirayah — Al-Qur\'an Digital & Prayer Time',
+    category: 'Mobile',
+    badge: 'Flutter Mobile',
+    featured: false,
+    shortDescription: 'Aplikasi mobile Al-Qur\'an digital komprehensif berbasis Flutter dengan audio murottal per ayat, terjemahan Kemenag, tajwid berwarna, dan jadwal sholat otomatis berbasis GPS geolokasi.',
+    fullDescription: 'Dirayah adalah aplikasi mobile Android berarsitektur BLoC yang dirancang untuk memberikan pengalaman membaca dan mendengarkan ayat suci Al-Qur\'an secara offline-first dengan akurasi jadwal sholat lokal.',
+    challenge: 'Aplikasi keagamaan sering kali dipenuhi iklan banner yang mengganggu kekhusyukan dan konsumsi memori tinggi saat memutar audio streaming terus menerus.',
+    solution: 'Mengembangkan aplikasi native cross-platform dengan Flutter yang mengintegrasikan audio player caching lokal, parsing database SQLite ayat lengkap, dan kalkulasi astronomis waktu sholat.',
+    architecture: [
+      'Framework: Flutter 3 & Dart dengan state management modern BLoC / Provider.',
+      'Local Storage: SQLite Database & Hive untuk bookmarking dan audio caching.',
+      'Spatial Geolocation: GPS Location Service untuk kalkulasi sudut deklinasi matahari dan arah kiblat.'
+    ],
+    keyFeatures: [
+      'Teks Al-Qur\'an 30 Juz lengkap dengan tajwid berwarna dan terjemahan Bahasa Indonesia',
+      'Audio streaming & offline caching multi-qari per ayat',
+      'Jadwal waktu sholat otomatis dan notifikasi adzan berbasis GPS',
+      'Kompas penunjuk arah kiblat presisi tinggi',
+      'Mode malam (dark mode) nyaman untuk tilawah malam hari'
+    ],
+    techStack: ['Flutter', 'Dart', 'Android SDK', 'SQLite', 'BLoC Pattern'],
+    githubUrl: 'https://github.com/firhmgh/Dirayah-Quran-Mobile-App',
+    imagePath: 'projects/dirayah-quran/app-icon.png',
+    gallery: [
+      {
+        path: 'projects/dirayah-quran/app-icon.png',
+        caption: 'Identitas & Logo Aplikasi Mobile Dirayah Al-Qur\'an Digital',
+        classification: 'REAL PROJECT ASSET'
+      }
+    ],
+    accentGlow: 'from-emerald-400/20 via-teal-400/20 to-cyan-400/20'
+  },
+  {
+    id: 'ramadhan-care',
+    title: 'Ramadhan Care — Social Activity & Donation Tracker',
+    category: 'Web Apps',
+    badge: 'Web App',
+    featured: false,
+    shortDescription: 'Aplikasi web manajemen donasi dan agenda santunan sosial selama bulan Ramadhan berbasis TypeScript dan modern frontend framework.',
+    fullDescription: 'Platform web responsif yang mencatat alur penyaluran donasi sembako, data penerima manfaat panti asuhan, dan transparansi laporan kas kegiatan Ramadhan.',
+    challenge: 'Pelaporan dana donasi sosial sering kali terfragmentasi di spreadsheet manual dan sukar diakses secara real-time oleh donatur.',
+    solution: 'Membangun single-page application yang terstruktur dengan kartu ringkasan keuangan dan feed dokumentasi kegiatan.',
+    architecture: [
+      'Frontend: React, TypeScript, dan Tailwind CSS.',
+      'Data Model: Structured donation records dan receipt logging.'
+    ],
+    keyFeatures: [
+      'Dashboard ringkasan pemasukan dan pengeluaran donasi',
+      'Galeri dokumentasi penyaluran bantuan sosial',
+      'Desain mobile-first responsif'
+    ],
+    techStack: ['TypeScript', 'React', 'Tailwind CSS', 'Vite'],
+    githubUrl: 'https://github.com/firhmgh/ramadhan-care',
+    accentGlow: 'from-pink-400/20 via-rose-400/20 to-amber-400/20'
+  },
+  {
+    id: 'palm-oil-scheduling',
+    title: 'Palm Oil Harvest Scheduling Optimizer',
+    category: 'Other',
+    badge: 'Optimization Tool',
+    featured: false,
+    shortDescription: 'Perangkat lunak Python pemodelan optimasi rotasi panen dan penjadwalan armada truk pengangkut TBS kelapa sawit ke pabrik kelapa sawit (PKS).',
+    fullDescription: 'Utilitas komputasi berbasis Python yang mengimplementasikan algoritma optimasi jadwal dan rute untuk meminimalkan waktu tunggu antrian restan TBS.',
+    challenge: 'Keterlambatan armada truk memicu restan TBS lebih dari 24 jam yang menaikkan kadar asam lemak bebas (ALB).',
+    solution: 'Merancang script kalkulasi kapasitas muatan armada terhadap kapasitas olah pabrik.',
+    architecture: [
+      'Core: Python 3 dengan Pandas & NumPy.',
+      'Logic: Constraint satisfaction model untuk kapasitas olah lori PKS.'
+    ],
+    keyFeatures: [
+      'Simulasi alokasi truk per afdeling kebun',
+      'Prediksi waktu tempuh dan waktu antri stasiun penerimaan',
+      'Ekspor jadwal harian terstruktur'
+    ],
+    techStack: ['Python', 'Optimization', 'Pandas', 'NumPy'],
+    githubUrl: 'https://github.com/firhmgh/palm-oil-scheduling',
+    accentGlow: 'from-amber-400/20 via-lime-400/20 to-emerald-400/20'
+  },
+  {
+    id: 'streamlit-canteen-pos',
+    title: 'Streamlit Canteen POS & Sales Analytics',
+    category: 'Desktop & Utilities',
+    badge: 'Python Streamlit',
+    featured: false,
+    shortDescription: 'Aplikasi kasir Point of Sale (POS) dan visualisasi tren penjualan harian kantin sekolah berbasis Python dan Streamlit.',
+    fullDescription: 'Sistem POS interaktif cepat saji yang memungkinkan pencatatan transaksi kasir, manajemen stok menu makanan, dan analisis omzet harian secara instan.',
+    challenge: 'Pencatatan kasir kantin manual rentan selisih hitung dan tidak memberikan visualisasi grafik menu terlaris.',
+    solution: 'Membangun aplikasi web interaktif instan berbasis Streamlit dengan database lokal SQLite dan visualisasi chart performa omzet.',
+    architecture: [
+      'Frontend & UI: Streamlit Interactive Components.',
+      'Backend: Python data processor dengan SQLite database storage.'
+    ],
+    keyFeatures: [
+      'Antarmuka kasir cepat untuk input menu dan struk pesanan',
+      'Visualisasi bar chart omzet harian dan menu terpopuler',
+      'Manajemen stok dan rekapitulasi data penjualan'
+    ],
+    techStack: ['Python', 'Streamlit', 'SQLite', 'Pandas', 'Altair'],
+    githubUrl: 'https://github.com/firhmgh/streamlit-canteen-pos',
+    accentGlow: 'from-indigo-400/20 via-sky-400/20 to-teal-400/20'
+  },
+  {
+    id: 'portofolio-maghfirah',
+    title: 'Personal Interactive Developer Portfolio',
+    category: 'Web Apps',
+    badge: 'Portfolio Showcase',
+    featured: false,
+    shortDescription: 'Website portofolio developer modern berbasis React 18, TypeScript, Tailwind CSS, dan Framer Motion dengan dark/light theme, interactive gallery, dan motion effects.',
+    fullDescription: 'Karya portfolio personal interaktif yang memamerkan seluruh rekayasa perangkat lunak, sistem geospasial WebGIS, model kecerdasan buatan, dan riwayat karir profesional Maghfirah.',
+    challenge: 'Membangun portfolio yang interaktif, distinctive, dan artistik tanpa mengorbankan performa akses, kebersihan kode, dan standar aksesibilitas WCAG AA.',
+    solution: 'Mengimplementasikan desain Modern Interactive Pastel Showcase dengan Framer Motion micro-interactions, responsive floating dock navigation, dan dynamic project filtering.',
+    architecture: [
+      'Framework: React 18 & TypeScript via Vite 6.',
+      'Animation: Framer Motion dengan hardware-accelerated transitions.',
+      'Styling: Tailwind CSS v4 dengan custom dark variant dan pastel aurora gradient mesh.'
+    ],
+    keyFeatures: [
+      'Dynamic Dark/Light Mode dengan tema pastel kontras tinggi',
+      'Filter kategori proyek real-time dengan animasi layout mulus',
+      'Interactive Case Study modal drawer dengan galeri bukti visual asli',
+      '100% responsif dari 320px hingga 1920px tanpa horizontal scroll'
+    ],
+    techStack: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion'],
+    githubUrl: 'https://github.com/firhmgh/portofolio-maghfirah',
+    liveUrl: 'https://firhmgh.github.io/portofolio-maghfirah/',
+    accentGlow: 'from-fuchsia-400/20 via-purple-400/20 to-indigo-400/20'
   }
 ];

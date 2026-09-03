@@ -1,24 +1,34 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @layer base {
   :root {
-    --color-bg-primary: #ffffff;
-    --color-bg-surface: #f8fafc;
-    --color-border: #e2e8f0;
-    --color-text-primary: #0f172a;
-    --color-text-secondary: #475569;
-    --color-accent-emerald: #059669;
-    --color-accent-cyan: #0284c7;
+    --color-bg-primary: #faf8fc;
+    --color-bg-surface: #ffffff;
+    --color-border: #e9e4f0;
+    --color-text-primary: #1e1b2e;
+    --color-text-secondary: #5e5973;
+    --color-accent-lavender: #8b5cf6;
+    --color-accent-lilac: #a855f7;
+    --color-accent-blue: #38bdf8;
+    --color-accent-mint: #34d399;
+    --color-accent-peach: #fb923c;
+    --color-accent-pink: #f472b6;
   }
 
   .dark {
-    --color-bg-primary: #0a0b0e;
-    --color-bg-surface: #12151c;
-    --color-border: #1f2430;
-    --color-text-primary: #f8fafc;
-    --color-text-secondary: #94a3b8;
-    --color-accent-emerald: #10b981;
-    --color-accent-cyan: #06b6d4;
+    --color-bg-primary: #0b0c16;
+    --color-bg-surface: #131524;
+    --color-border: #22253b;
+    --color-text-primary: #f5f3fa;
+    --color-text-secondary: #9ea3bd;
+    --color-accent-lavender: #a78bfa;
+    --color-accent-lilac: #c084fc;
+    --color-accent-blue: #7dd3fc;
+    --color-accent-mint: #6ee7b7;
+    --color-accent-peach: #fdba74;
+    --color-accent-pink: #f9a8d4;
   }
 
   html {
@@ -33,17 +43,61 @@
   }
 }
 
+/* Aurora & Soft Glow Background Animation */
+@keyframes aurora-mesh {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-aurora-light {
+  background: radial-gradient(at 0% 0%, rgba(216, 180, 254, 0.35) 0px, transparent 50%),
+              radial-gradient(at 100% 0%, rgba(186, 230, 253, 0.35) 0px, transparent 50%),
+              radial-gradient(at 50% 50%, rgba(254, 215, 226, 0.25) 0px, transparent 50%),
+              radial-gradient(at 0% 100%, rgba(167, 243, 208, 0.3) 0px, transparent 50%),
+              radial-gradient(at 100% 100%, rgba(221, 214, 254, 0.35) 0px, transparent 50%);
+}
+
+.bg-aurora-dark {
+  background: radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+              radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+              radial-gradient(at 50% 50%, rgba(244, 114, 182, 0.1) 0px, transparent 50%),
+              radial-gradient(at 0% 100%, rgba(52, 211, 153, 0.12) 0px, transparent 50%),
+              radial-gradient(at 100% 100%, rgba(168, 85, 247, 0.15) 0px, transparent 50%);
+}
+
+/* Glassmorphism Classes */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(233, 228, 240, 0.8);
+}
+
+.dark .glass-panel {
+  background: rgba(19, 21, 36, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(34, 37, 59, 0.8);
+}
+
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: #c4b5fd;
+  border-radius: 9999px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+.dark ::-webkit-scrollbar-thumb {
+  background: #3730a3;
 }
