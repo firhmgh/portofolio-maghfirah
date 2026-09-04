@@ -12,7 +12,7 @@ export interface ProjectItem {
   architecture: string[];
   keyFeatures: string[];
   techStack: string[];
-  githubUrl: string;
+  githubUrl?: string;
   journalUrl?: string;
   journalTitle?: string;
   liveUrl?: string;
@@ -141,6 +141,106 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     accentGlow: 'from-blue-600/20 via-sky-500/20 to-pink-300/20'
   },
   {
+    id: 'stasiun-kereta-api-sumatera-barat',
+    title: 'Stasiun Kereta Api Sumatera Barat — WebGIS Pemetaan Stasiun',
+    category: 'WebGIS',
+    badge: 'Published Paper (J-IbM 2024)',
+    featured: true,
+    shortDescription: 'WebGIS pemetaan stasiun kereta api di Sumatera Barat berbasis QGIS, Qgis2Web, dan GitHub Pages serta dipublikasikan pada Jurnal IPTEK Bagi Masyarakat (J-IbM), Vol. 4 No. 1, 2024.',
+    fullDescription: 'Proyek WebGIS pemetaan spasial stasiun kereta api di Sumatera Barat. Sistem ini memproses data spasial sekunder RBI (Rupa Bumi Indonesia) melalui digitalisasi vektor, georeferensi, dan geoprocessing di QGIS, kemudian diekspor menggunakan Qgis2Web untuk disajikan secara interaktif melalui GitHub Pages. Penelitian dan pengembangan sistem ini dipublikasikan pada Jurnal IPTEK Bagi Masyarakat (J-IbM) Volume 4 Nomor 1 Tahun 2024 (DOI: 10.55537/jibm.v4i1.909).',
+    challenge: 'Informasi mengenai lokasi dan kondisi stasiun kereta api di Sumatera Barat masih tersebar di berbagai sumber sekunder, sehingga diperlukan integrasi data spasial berbasis web yang mudah diakses.',
+    solution: 'Melakukan digitalisasi vektor, georeferensi koordinat titik stasiun dan poligon area, layering jaringan rel (RBI 50K), serta mempublikasikan peta interaktif WebGIS dengan fitur zoom, search, legend, dan popup informasi lokasi stasiun.',
+    architecture: [
+      'QGIS Desktop untuk digitalisasi vektor titik stasiun, poligon area, dan georeferensi spasial',
+      'Geoprocessing Layer Jaringan Kereta Api (RBI50K_JALAN_LN_50K) dan atribut stasiun',
+      'Qgis2Web Plugin Engine untuk konversi peta GIS menjadi antarmuka web interaktif',
+      'Static Web Hosting via GitHub Pages dengan antarmuka web (HTML, CSS, JavaScript)',
+      'Publikasi Ilmiah pada Jurnal IPTEK Bagi Masyarakat (J-IbM, Vol. 4 No. 1, Agustus 2024, DOI: 10.55537/jibm.v4i1.909)'
+    ],
+    keyFeatures: [
+      'Peta Interaktif WebGIS Sebaran Stasiun Kereta Api di Sumatera Barat',
+      'Fitur Navigasi Spasial (Zoom In/Out, Layer Switcher, Search Bar, Location, Legend)',
+      'Popup Atribut Informasi Lokasi Stasiun Kereta Api',
+      'Integrasi Data Spasial Vektor RBI (Jalur Rel dan Poligon Stasiun)',
+      'Aksesibilitas Informasi Publik via GitHub Pages'
+    ],
+    techStack: ['QGIS', 'WebGIS', 'Qgis2Web', 'Leaflet.js', 'GeoJSON', 'GitHub Pages', 'JavaScript'],
+    githubUrl: 'https://github.com/stasiunKAsumbar/stasiunKAsumbar.github.io',
+    liveUrl: 'https://stasiunkasumbar.github.io/',
+    journalUrl: 'https://journal.aira.or.id/index.php/j-ibm/article/download/909/337',
+    journalTitle: 'Pemetaan dan Pengembangan Website Stasiun Kereta Api di Provinsi Sumatera Barat Menggunakan QGIS dan GitHub (J-IbM, 2024)',
+    imagePath: '/projects/stasiun-sumbar/landing.webp',
+    gallery: [
+      {
+        path: '/projects/stasiun-sumbar/landing.webp',
+        caption: 'Portal Beranda & Informasi Stasiun KA Sumatera Barat',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      },
+      {
+        path: '/projects/stasiun-sumbar/map.webp',
+        caption: 'Peta Interaktif WebGIS Titik Stasiun & Jaringan Rel KA',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      },
+      {
+        path: '/projects/stasiun-sumbar/details.webp',
+        caption: 'Galeri Visual & Dokumentasi Stasiun Bersejarah Sumbar',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      }
+    ],
+    accentGlow: 'from-blue-600/30 via-sky-500/20 to-pink-500/30'
+  },
+  {
+    id: 'siapseleksi',
+    title: 'SiapSeleksi.id — Tryout CPNS, PPPK & BUMN Platform',
+    category: 'Web Apps',
+    badge: 'Pre-Launch / In Development',
+    featured: true,
+    shortDescription: 'Platform simulasi ujian (Tryout) CAT modern berbasis web untuk persiapan seleksi CPNS, PPPK, dan BUMN dengan dynamic scoring, realtime exam engine, dan navigasi soal interaktif.',
+    fullDescription: 'SiapSeleksi.id adalah platform Computer Assisted Test (CAT) berbasis web fullstack Next.js App Router yang dirancang untuk persiapan ujian seleksi nasional (CPNS, PPPK, Kedinasan, BUMN). Dilengkapi modul soal TWK/TIU/TKP berbobot dinamis, auto-save state, formula matematika KaTeX, visual rich-text explanation, dan arsitektur database relasional PostgreSQL via Prisma.',
+    challenge: 'Membangun exam engine yang stabil, anti-lag saat countdown timer realtime, auto-save state jawaban di sisi client tanpa kehilangan data saat refresh, serta scoring dinamis TKP (skala 1-5) dan TWK/TIU (skala 0/5) dengan formula akurat sesuai standar BKN.',
+    solution: 'Mengembangkan arsitektur Next.js Server Actions + Zustand client state engine, KaTeX rendering untuk formula matematika/sains, dynamic scoring pipeline, pencegahan reload tak sengaja, serta database PostgreSQL/Prisma terstruktur untuk katalog soal dan sesi ujian.',
+    architecture: [
+      'Next.js App Router (React 19) dengan Server Components & Server Actions',
+      'PostgreSQL Database dengan Prisma ORM untuk relasi User, Tryout, Question, dan Session',
+      'Zustand Client State Engine untuk realtime CAT exam session, timer countdown, dan answer caching',
+      'KaTeX & Rich-Text Renderer untuk persamaan matematika, layout soal, dan pembahasan interaktif',
+      'Modular Tryout Categorization (SKD CPNS, PPPK, Kedinasan, BUMN) dengan bobot skor fleksibel'
+    ],
+    keyFeatures: [
+      'Simulasi CAT Realtime (Timer, Navigasi Nomor Soal, Ragu-ragu, Auto-Submit)',
+      'Scoring Dinamis SKD (TWK, TIU, TKP) dengan ambang batas Passing Grade otomatis',
+      'Pembahasan Lengkap & Kunci Jawaban dengan render KaTeX dan tips pembahasan',
+      'Katalog Paket Tryout terstruktur dengan deskripsi durasi dan jumlah butir soal',
+      'Responsive Modern UI dengan dark/light support, tipografi jelas, dan layout ringkas'
+    ],
+    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Zustand', 'KaTeX'],
+    liveUrl: 'https://siapseleksi.id/',
+    imagePath: '/projects/siapseleksi/landing.webp',
+    gallery: [
+      {
+        path: '/projects/siapseleksi/landing.webp',
+        caption: 'Landing Page & Platform Overview SiapSeleksi.id',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      },
+      {
+        path: '/projects/siapseleksi/features.webp',
+        caption: 'Fitur Utama & Modul Simulasi CAT (TWK, TIU, TKP)',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      },
+      {
+        path: '/projects/siapseleksi/catalog.webp',
+        caption: 'Katalog Paket Tryout & Struktur Program Ujian',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      },
+      {
+        path: '/projects/siapseleksi/portal.webp',
+        caption: 'Portal Autentikasi & Antarmuka Akses Peserta',
+        classification: 'REAL APPLICATION SCREENSHOT'
+      }
+    ],
+    accentGlow: 'from-blue-600/30 via-sky-500/20 to-pink-500/30'
+  },
+  {
     id: 'palm-oil-reinforcement-learning-simulation',
     title: 'Palm Oil Reinforcement Learning Simulation',
     category: 'Research',
@@ -216,7 +316,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     title: 'Google Drive Photo & Video Duplicate Cleaner',
     category: 'Desktop & Utilities',
     badge: 'Cloud Tooling',
-    featured: true,
+    featured: false,
     shortDescription: 'Utilitas Desktop GUI & CLI multi-akun Google Drive untuk mendeteksi dan membersihkan file duplikat media secara aman via OAuth 2.0 dan pencocokan checksum.',
     fullDescription: 'Aplikasi desktop dan CLI otomatisasi penyimpanan cloud untuk memindai, mengidentifikasi, dan membersihkan duplikat media foto/video secara aman di Google Drive menggunakan OAuth 2.0 dan checksum MD5/SHA.',
     challenge: 'Kapasitas cloud storage cepat penuh akibat pencadangan otomatis berulang dari smartphone, sementara antarmuka web Drive tidak memiliki fitur pembersihan duplikat massal.',
@@ -251,7 +351,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     title: 'Digital Library & Modern Blog Platform',
     category: 'Web Apps',
     badge: 'Next.js Platform',
-    featured: true,
+    featured: false,
     shortDescription: 'Platform perpustakaan digital dan pembaca artikel berbasis Next.js App Router, TypeScript, dan Tailwind CSS dengan katalog pencarian dan tampilan pembaca responsif.',
     fullDescription: 'Platform publikasi digital dan manajemen konten artikel yang dirancang dengan Next.js App Router dan TypeScript untuk pengalaman membaca artikel yang bersih dan cepat.',
     challenge: 'Membangun antarmuka pembaca artikel digital yang fokus, cepat dimuat, dengan tipografi yang nyaman diakses di desktop maupun ponsel.',

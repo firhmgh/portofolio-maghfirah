@@ -159,6 +159,19 @@ export const SelectedWork: React.FC = () => {
                         </button>
 
                         <div className="flex items-center gap-2">
+                          {project.liveUrl && (
+                            <a
+                              href={project.liveUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 hover:underline"
+                              title="Live Preview / Demo Site"
+                            >
+                              <ArrowUpRight className="w-3.5 h-3.5" />
+                              <span>Preview</span>
+                            </a>
+                          )}
+
                           {project.journalUrl && (
                             <a
                               href={project.journalUrl}
@@ -172,17 +185,19 @@ export const SelectedWork: React.FC = () => {
                             </a>
                           )}
 
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
-                            title="GitHub Source"
-                          >
-                            <Code2 className="w-3.5 h-3.5" />
-                            <span>Code</span>
-                            <ArrowUpRight className="w-3 h-3 opacity-60" />
-                          </a>
+                          {project.githubUrl && (
+                            <a
+                              href={project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-[11px] font-semibold text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                              title="GitHub Source"
+                            >
+                              <Code2 className="w-3.5 h-3.5" />
+                              <span>Code</span>
+                              <ArrowUpRight className="w-3 h-3 opacity-60" />
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>
@@ -244,15 +259,29 @@ export const SelectedWork: React.FC = () => {
                       >
                         Detail
                       </button>
-                      <a
-                        href={proj.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-slate-500 hover:text-slate-900 dark:hover:text-white"
-                        title="View on GitHub"
-                      >
-                        <ArrowUpRight className="w-3.5 h-3.5" />
-                      </a>
+                      {proj.liveUrl && (
+                        <a
+                          href={proj.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-emerald-600 dark:text-emerald-400 hover:underline inline-flex items-center gap-0.5 text-[11px] font-semibold"
+                          title="Preview Site"
+                        >
+                          <span>Live</span>
+                          <ArrowUpRight className="w-3 h-3" />
+                        </a>
+                      )}
+                      {proj.githubUrl && (
+                        <a
+                          href={proj.githubUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-slate-500 hover:text-slate-900 dark:hover:text-white"
+                          title="View on GitHub"
+                        >
+                          <ArrowUpRight className="w-3.5 h-3.5" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -283,7 +312,7 @@ export const SelectedWork: React.FC = () => {
                 </div>
                 <button
                   onClick={() => setSelectedProject(null)}
-                  className="p-2 rounded-xl glass-panel text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors flex-shrink-0"
+                  className="p-2 rounded-xl glass-panel text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors flex-shrink-0"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -395,6 +424,17 @@ export const SelectedWork: React.FC = () => {
               </div>
 
               <div className="pt-4 border-t border-slate-200/60 dark:border-slate-800/60 flex flex-wrap justify-end gap-3">
+                {selectedProject.liveUrl && (
+                  <a
+                    href={selectedProject.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 text-white text-xs font-bold transition-all shadow-xs"
+                  >
+                    <ArrowUpRight className="w-4 h-4" />
+                    <span>Buka Preview Site</span>
+                  </a>
+                )}
                 {selectedProject.journalUrl && (
                   <a
                     href={selectedProject.journalUrl}
@@ -406,15 +446,17 @@ export const SelectedWork: React.FC = () => {
                     <span>Lihat Jurnal Resmi</span>
                   </a>
                 )}
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-blue-600 to-pink-600 text-white text-xs font-bold shadow-md hover:scale-[1.02] transition-transform"
-                >
-                  <Code2 className="w-4 h-4" />
-                  <span>View Source on GitHub</span>
-                </a>
+                {selectedProject.githubUrl && (
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-blue-600 to-pink-600 text-white text-xs font-bold shadow-md hover:scale-[1.02] transition-transform"
+                  >
+                    <Code2 className="w-4 h-4" />
+                    <span>View Source on GitHub</span>
+                  </a>
+                )}
               </div>
             </motion.div>
           </div>
