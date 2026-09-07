@@ -81,11 +81,11 @@ export const Hero: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 href="#projects"
-                className="relative group inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-sky-600 dark:from-blue-600 dark:via-sky-600 dark:to-blue-700 text-white text-xs sm:text-sm font-bold shadow-lg shadow-blue-700/25 hover:shadow-blue-700/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all overflow-hidden border border-blue-400/30 dark:border-blue-400/20"
+                className="relative group inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-2xl bg-[#1d4ed8] hover:bg-[#1e40af] dark:bg-blue-600 dark:hover:bg-blue-500 text-white text-xs sm:text-sm font-bold shadow-lg shadow-blue-700/30 hover:shadow-blue-700/50 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all overflow-hidden border border-blue-400/30 dark:border-blue-400/20"
               >
-                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                <span className="relative z-10 text-white font-bold drop-shadow-xs">Explore My Projects</span>
-                <ArrowRight className="relative z-10 w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform drop-shadow-xs" />
+                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-400/15 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <span className="relative z-10 text-white font-bold tracking-wide">Explore My Projects</span>
+                <ArrowRight className="relative z-10 w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform" />
               </motion.a>
 
               <motion.a

@@ -15,6 +15,8 @@ export interface ProjectItem {
   githubUrl?: string;
   journalUrl?: string;
   journalTitle?: string;
+  journalName?: string;
+  journalDoi?: string;
   liveUrl?: string;
   imagePath?: string;
   gallery?: {
@@ -55,6 +57,8 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     githubUrl: 'https://github.com/firhmgh/simtan-monitoring-palm-oil',
     journalUrl: 'https://journal.diginus.id/DECODING/article/view/1449',
     journalTitle: 'Laravel Dashboard for Immature Oil Palm (TBM III) Monitoring Using XYZ Tiles and Large Language Models',
+    journalName: 'Scientific Journal Publication (DECODING, 2026)',
+    journalDoi: '10.61255/decoding.v4i2.1449',
     imagePath: 'projects/simtan/validation-accuracy.png',
     gallery: [
       {
@@ -169,20 +173,22 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     liveUrl: 'https://stasiunkasumbar.github.io/',
     journalUrl: 'https://journal.aira.or.id/index.php/j-ibm/article/download/909/337',
     journalTitle: 'Pemetaan dan Pengembangan Website Stasiun Kereta Api di Provinsi Sumatera Barat Menggunakan QGIS dan GitHub (J-IbM, 2024)',
-    imagePath: '/projects/stasiun-sumbar/landing.webp',
+    journalName: 'Scientific Journal Publication (J-IbM, 2024)',
+    journalDoi: '10.55537/jibm.v4i1.909',
+    imagePath: '/projects/stasiun-sumbar/landing-v2.webp',
     gallery: [
       {
-        path: '/projects/stasiun-sumbar/landing.webp',
+        path: '/projects/stasiun-sumbar/landing-v2.webp',
         caption: 'Portal Beranda & Informasi Stasiun KA Sumatera Barat',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/stasiun-sumbar/map.webp',
+        path: '/projects/stasiun-sumbar/map-v2.webp',
         caption: 'Peta Interaktif WebGIS Titik Stasiun & Jaringan Rel KA',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/stasiun-sumbar/details.webp',
+        path: '/projects/stasiun-sumbar/details-v2.webp',
         caption: 'Galeri Visual & Dokumentasi Stasiun Bersejarah Sumbar',
         classification: 'REAL APPLICATION SCREENSHOT'
       }
@@ -215,20 +221,20 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     ],
     techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Zustand', 'KaTeX'],
     liveUrl: 'https://siapseleksi.id/',
-    imagePath: '/projects/siapseleksi/landing.webp',
+    imagePath: '/projects/siapseleksi/landing-v2.webp',
     gallery: [
       {
-        path: '/projects/siapseleksi/landing.webp',
+        path: '/projects/siapseleksi/landing-v2.webp',
         caption: 'Landing Page & Platform Overview SiapSeleksi.id',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/siapseleksi/features.webp',
+        path: '/projects/siapseleksi/features-v2.webp',
         caption: 'Fitur Utama & Modul Simulasi CAT (TWK, TIU, TKP)',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/siapseleksi/catalog.webp',
+        path: '/projects/siapseleksi/catalog-v2.webp',
         caption: 'Katalog Paket Tryout & Struktur Program Ujian',
         classification: 'REAL APPLICATION SCREENSHOT'
       },

@@ -49,23 +49,23 @@ export const Navigation: React.FC = () => {
         }`}
       >
         <div className="w-full max-w-5xl flex items-center justify-between pointer-events-auto gap-2">
-          {/* Brand Monogram Pill */}
+          {/* Brand Monogram Pill - fully visible on all mobile screens */}
           <a
             href="#home"
-            className="flex items-center gap-2.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl glass-panel shadow-xs hover:shadow-md transition-all group flex-shrink-0"
+            className="flex items-center gap-2 px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-md transition-all group flex-shrink-0 min-w-0 max-w-[210px] sm:max-w-none"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-blue-600 via-sky-500 to-pink-400 p-[1.5px] shadow-xs">
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-blue-600 via-sky-500 to-pink-400 p-[1.5px] shadow-xs flex-shrink-0">
               <div className="w-full h-full bg-white dark:bg-[#0f172a] rounded-[10px] flex items-center justify-center">
-                <span className="text-xs font-extrabold bg-gradient-to-r from-blue-600 to-pink-500 bg-clip-text text-transparent font-mono">
+                <span className="text-xs font-extrabold text-blue-600 dark:text-sky-400 font-mono">
                   FM
                 </span>
               </div>
             </div>
-            <div className="hidden sm:flex flex-col text-left">
-              <span className="text-xs font-bold text-slate-800 dark:text-slate-100 tracking-tight leading-none group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
+            <div className="flex flex-col text-left min-w-0">
+              <span className="text-[11px] sm:text-xs font-bold text-slate-900 dark:text-slate-100 tracking-tight leading-none truncate group-hover:text-blue-600 dark:group-hover:text-sky-400 transition-colors">
                 Maghfirah
               </span>
-              <span className="text-[10px] text-slate-500 dark:text-slate-400 font-mono mt-0.5">
+              <span className="text-[9px] sm:text-[10px] text-slate-600 dark:text-slate-400 font-mono mt-0.5 leading-none truncate">
                 Software & GIS
               </span>
             </div>

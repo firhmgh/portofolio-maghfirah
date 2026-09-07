@@ -322,7 +322,7 @@ export const SelectedWork: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-gradient-to-r from-blue-500/15 via-sky-500/15 to-pink-500/15 border border-sky-300/40 dark:border-sky-700/50 space-y-2">
                   <div className="flex items-center gap-2 text-sky-800 dark:text-sky-300 font-bold text-xs">
                     <BookOpen className="w-4 h-4" />
-                    <span>Scientific Journal Publication (DECODING, 2026)</span>
+                    <span>{selectedProject.journalName || 'Scientific Journal Publication'}</span>
                   </div>
                   <p className="text-xs text-sky-950 dark:text-sky-100 font-mono">
                     "{selectedProject.journalTitle}"
@@ -333,7 +333,7 @@ export const SelectedWork: React.FC = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-xs font-bold text-sky-700 dark:text-sky-300 underline"
                   >
-                    <span>Buka Artikel Jurnal Resmi (DOI: 10.61255/decoding.v4i2.1449)</span>
+                    <span>Buka Artikel Jurnal Resmi{selectedProject.journalDoi ? ` (DOI: ${selectedProject.journalDoi})` : ''}</span>
                     <ArrowUpRight className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -353,12 +353,12 @@ export const SelectedWork: React.FC = () => {
                         key={gIdx}
                         className="rounded-2xl overflow-hidden border border-slate-200/60 dark:border-slate-800/80 bg-slate-900 flex flex-col justify-between"
                       >
-                        <div className="relative aspect-[16/10] bg-slate-950">
+                        <div className="relative aspect-[16/10] bg-slate-100 dark:bg-slate-950 flex items-center justify-center overflow-hidden">
                           <img
                             src={img.path}
                             alt={img.caption}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
+                            className="w-full h-full object-contain bg-slate-100 dark:bg-slate-950"
+                            loading="eager"
                           />
                         </div>
                         <div className="p-3 bg-slate-50 dark:bg-slate-900 border-t border-slate-200/60 dark:border-slate-800/80 text-[11px] space-y-1">
