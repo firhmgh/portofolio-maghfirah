@@ -175,20 +175,20 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     journalTitle: 'Pemetaan dan Pengembangan Website Stasiun Kereta Api di Provinsi Sumatera Barat Menggunakan QGIS dan GitHub (J-IbM, 2024)',
     journalName: 'Scientific Journal Publication (J-IbM, 2024)',
     journalDoi: '10.55537/jibm.v4i1.909',
-    imagePath: '/projects/stasiun-sumbar/landing-v2.webp',
+    imagePath: 'projects/stasiun-sumbar/landing-v2.webp',
     gallery: [
       {
-        path: '/projects/stasiun-sumbar/landing-v2.webp',
+        path: 'projects/stasiun-sumbar/landing-v2.webp',
         caption: 'Portal Beranda & Informasi Stasiun KA Sumatera Barat',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/stasiun-sumbar/map-v2.webp',
+        path: 'projects/stasiun-sumbar/map-v2.webp',
         caption: 'Peta Interaktif WebGIS Titik Stasiun & Jaringan Rel KA',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/stasiun-sumbar/details-v2.webp',
+        path: 'projects/stasiun-sumbar/details-v2.webp',
         caption: 'Galeri Visual & Dokumentasi Stasiun Bersejarah Sumbar',
         classification: 'REAL APPLICATION SCREENSHOT'
       }
@@ -221,25 +221,25 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     ],
     techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Prisma', 'PostgreSQL', 'Zustand', 'KaTeX'],
     liveUrl: 'https://siapseleksi.id/',
-    imagePath: '/projects/siapseleksi/landing-v2.webp',
+    imagePath: 'projects/siapseleksi/landing-v2.webp',
     gallery: [
       {
-        path: '/projects/siapseleksi/landing-v2.webp',
+        path: 'projects/siapseleksi/landing-v2.webp',
         caption: 'Landing Page & Platform Overview SiapSeleksi.id',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/siapseleksi/features-v2.webp',
+        path: 'projects/siapseleksi/features-v2.webp',
         caption: 'Fitur Utama & Modul Simulasi CAT (TWK, TIU, TKP)',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/siapseleksi/catalog-v2.webp',
+        path: 'projects/siapseleksi/catalog-v2.webp',
         caption: 'Katalog Paket Tryout & Struktur Program Ujian',
         classification: 'REAL APPLICATION SCREENSHOT'
       },
       {
-        path: '/projects/siapseleksi/portal.webp',
+        path: 'projects/siapseleksi/portal.webp',
         caption: 'Portal Autentikasi & Antarmuka Akses Peserta',
         classification: 'REAL APPLICATION SCREENSHOT'
       }
