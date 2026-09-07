@@ -18,15 +18,15 @@ export const Hero: React.FC = () => {
             transition={{ duration: 0.6, ease: 'easeOut' }}
             className="lg:col-span-7 space-y-4 sm:space-y-5 text-left"
           >
-            {/* Status Pill */}
+            {/* Status Pill / Credential Badge - Fully responsive, wrapping naturally on mobile (320px-430px) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1, duration: 0.4 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50/90 dark:bg-blue-950/40 border border-blue-200/60 dark:border-blue-800/60 shadow-xs"
+              className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-1 rounded-2xl sm:rounded-full bg-blue-50/90 dark:bg-blue-950/40 border border-blue-200/60 dark:border-blue-800/60 shadow-xs max-w-full"
             >
-              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              <span className="text-xs font-semibold text-blue-800 dark:text-sky-300">
+              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse flex-shrink-0" />
+              <span className="text-[11px] sm:text-xs font-semibold text-blue-800 dark:text-sky-300 leading-snug break-words">
                 S1 Sistem & Teknologi Informasi • Pemrogram Web Muda BNSP
               </span>
             </motion.div>
@@ -35,14 +35,16 @@ export const Hero: React.FC = () => {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.15]">
               Hi, I'm <span className="bg-gradient-to-r from-blue-600 via-sky-500 to-pink-500 bg-clip-text text-transparent">Maghfirah</span>.
               <br />
-              <span className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-700 dark:text-slate-300">
-                Crafting Web, Mobile, Spatial WebGIS & Applied AI Systems.
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-700 dark:text-slate-300">
+                Software & GIS Developer
               </span>
             </h1>
 
-            {/* Bio Narrative */}
-            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">
-              Mahasiswi S1 STI Institut Teknologi Sawit Indonesia (IPK 3.86) dengan rekam jejak magang di <strong className="font-semibold text-slate-900 dark:text-white">Sekretariat Jenderal DPR RI</strong> dan <strong className="font-semibold text-slate-900 dark:text-white">PT Perkebunan Nusantara IV Regional 1</strong>. Berfokus pada rekayasa perangkat lunak terapan, pemrosesan data spasial presisi, dan kecerdasan komputasional.
+            {/* Concise Value Proposition */}
+            <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 leading-relaxed max-w-xl">
+              Lulusan / Mahasiswi S1 Sistem dan Teknologi Informasi ITSI (IPK 3.86/4.00) dengan pengalaman magang di{' '}
+              <strong className="text-slate-900 dark:text-white font-semibold">Setjen DPR RI</strong> dan{' '}
+              <strong className="text-slate-900 dark:text-white font-semibold">PT Perkebunan Nusantara IV Regional 1</strong>. Fokus membangun platform web enterprise, sistem geospasial WebGIS terintegrasi, dan pemodelan kecerdasan terapan.
             </p>
 
             {/* Floating Tech Chips with subtle staggered float motion */}
@@ -79,10 +81,11 @@ export const Hero: React.FC = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 href="#projects"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-gradient-to-r from-blue-600 via-sky-600 to-pink-600 text-white text-xs sm:text-sm font-bold shadow-md shadow-blue-500/20 hover:shadow-blue-500/35 transition-all"
+                className="relative group inline-flex items-center justify-center gap-2 px-6 py-3 min-h-[44px] rounded-2xl bg-gradient-to-r from-blue-700 via-blue-600 to-sky-600 dark:from-blue-600 dark:via-sky-600 dark:to-blue-700 text-white text-xs sm:text-sm font-bold shadow-lg shadow-blue-700/25 hover:shadow-blue-700/40 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 transition-all overflow-hidden border border-blue-400/30 dark:border-blue-400/20"
               >
-                <span>Explore My Projects</span>
-                <ArrowRight className="w-4 h-4" />
+                <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-transparent via-pink-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                <span className="relative z-10 text-white font-bold drop-shadow-xs">Explore My Projects</span>
+                <ArrowRight className="relative z-10 w-4 h-4 text-white group-hover:translate-x-0.5 transition-transform drop-shadow-xs" />
               </motion.a>
 
               <motion.a
@@ -112,7 +115,7 @@ export const Hero: React.FC = () => {
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                href="https://linkedin.com/in/firhmgh"
+                href="https://linkedin.com/in/maghfirah"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
