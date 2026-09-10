@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
+import { useRouter } from '../router';
 import { Home, Layers, Compass, Mail, Sun, Moon, FileText, Github, Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Navigation: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
+  const { path, navigate } = useRouter();
   const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const isProjectDetailPage = path.startsWith('/projects/');
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      if (isProjectDetailPage) return;
 
       const sections = ['home', 'projects', 'journey', 'contact'];
       const scrollPosition = window.scrollY + 250;
@@ -31,14 +37,29 @@ export const Navigation: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isProjectDetailPage]);
 
   const navItems = [
-    { id: 'home', label: 'Home', icon: <Home className="w-4 h-4" />, href: '#home' },
-    { id: 'projects', label: 'Projects', icon: <Layers className="w-4 h-4" />, href: '#projects' },
-    { id: 'journey', label: 'Journey', icon: <Compass className="w-4 h-4" />, href: '#journey' },
-    { id: 'contact', label: 'Contact', icon: <Mail className="w-4 h-4" />, href: '#contact' },
+    { id: 'home', label: 'Home', icon: <Home className="w-4 h-4" />, href: '/#home' },
+    { id: 'projects', label: 'Projects', icon: <Layers className="w-4 h-4" />, href: '/#projects' },
+    { id: 'journey', label: 'Journey', icon: <Compass className="w-4 h-4" />, href: '/#journey' },
+    { id: 'contact', label: 'Contact', icon: <Mail className="w-4 h-4" />, href: '/#contact' },
   ];
+
+  const handleNavClick = (href: string, sectionId: string) => {
+    setMobileMenuOpen(false);
+    if (isProjectDetailPage) {
+      navigate(href.replace('/#', '#'));
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById(sectionId);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+    }
+  };
 
   return (
     <>
@@ -48,11 +69,11 @@ export const Navigation: React.FC = () => {
           scrolled ? 'top-2 sm:top-3' : 'top-3 sm:top-5'
         }`}
       >
-        <div className="w-full max-w-5xl flex items-center justify-between pointer-events-auto gap-2">
-          {/* Brand Monogram Pill - fully visible on all mobile screens */}
-          <a
-            href="#home"
-            className="flex items-center gap-2 px-2.5 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200/80 dark:border-slate-800/80 shadow-xs hover:shadow-md transition-all group flex-shrink-0 min-w-0 max-w-[210px] sm:max-w-none"
+        <div className="w-full max-w-5xl flex items-center justify-between gap-2 pointer-events-auto">
+          {/* Identity Monogram Pill */}
+          <button
+            onClick={() => navigate('/')}
+            className="group flex items-center gap-2.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl glass-panel hover:border-blue-400/50 dark:hover:border-sky-500/50 transition-all duration-200 shadow-xs cursor-pointer text-left"
           >
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-blue-600 via-sky-500 to-pink-400 p-[1.5px] shadow-xs flex-shrink-0">
               <div className="w-full h-full bg-white dark:bg-[#0f172a] rounded-[10px] flex items-center justify-center">
@@ -69,19 +90,19 @@ export const Navigation: React.FC = () => {
                 Software & GIS
               </span>
             </div>
-          </a>
+          </button>
 
           {/* Center Floating Dock (Desktop / Tablet) */}
           <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-2xl glass-panel shadow-xs">
             {navItems.map((item) => {
-              const isActive = activeSection === item.id;
+              const isActive = !isProjectDetailPage && activeSection === item.id;
               return (
-                <a
+                <button
                   key={item.id}
-                  href={item.href}
-                  className={`relative flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 ${
+                  onClick={() => handleNavClick(item.href, item.id)}
+                  className={`relative flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
                     isActive
-                      ? 'text-blue-900 dark:text-sky-100'
+                      ? 'text-blue-900 dark:text-sky-100 font-bold'
                       : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-300'
                   }`}
                 >
@@ -94,7 +115,7 @@ export const Navigation: React.FC = () => {
                   )}
                   {item.icon}
                   <span>{item.label}</span>
-                </a>
+                </button>
               );
             })}
           </nav>
@@ -104,94 +125,85 @@ export const Navigation: React.FC = () => {
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
-              aria-label="Toggle dark/light theme"
-              className="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl glass-panel flex items-center justify-center text-slate-700 dark:text-slate-200 hover:scale-105 active:scale-95 transition-transform shadow-xs"
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              className="p-2 sm:p-2.5 rounded-2xl glass-panel text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400 hover:border-blue-400/50 shadow-xs transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               {theme === 'dark' ? (
-                <Sun className="w-4 h-4 text-amber-300 animate-spin-slow" />
+                <Sun className="w-4 h-4 text-amber-400 transition-transform rotate-0 hover:rotate-45" />
               ) : (
-                <Moon className="w-4 h-4 text-blue-600" />
+                <Moon className="w-4 h-4 text-blue-600 transition-transform rotate-0 hover:-rotate-12" />
               )}
             </button>
 
             {/* Resume Button */}
             <a
-              href="Maghfirah_CV.pdf"
+              href="/Maghfirah_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl bg-gradient-to-r from-blue-500/15 via-sky-500/15 to-pink-500/15 border border-blue-300/40 dark:border-blue-700/50 text-blue-800 dark:text-blue-200 text-xs font-bold hover:shadow-sm hover:scale-[1.02] active:scale-98 transition-all"
+              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl bg-gradient-to-r from-blue-500/15 via-sky-500/15 to-pink-500/15 border border-blue-300/40 dark:border-blue-700/50 text-blue-800 dark:text-blue-200 text-xs font-bold hover:shadow-sm hover:scale-[1.02] active:scale-98 transition-all min-h-[44px]"
             >
               <FileText className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />
               <span>Resume</span>
             </a>
 
-            {/* GitHub Link */}
+            {/* GitHub Profile Icon */}
             <a
               href="https://github.com/firhmgh"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub Profile"
-              className="hidden lg:inline-flex w-10 h-10 rounded-2xl glass-panel items-center justify-center text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-sky-400 transition-colors shadow-xs hover:scale-105 active:scale-95"
+              className="p-2 sm:p-2.5 rounded-2xl glass-panel text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-sky-400 hover:border-blue-400/50 shadow-xs transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               <Github className="w-4 h-4" />
             </a>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Hamburger Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label="Toggle mobile menu"
-              className="md:hidden w-9 h-9 sm:w-10 sm:h-10 rounded-2xl glass-panel flex items-center justify-center text-slate-700 dark:text-slate-200 shadow-xs"
+              aria-label="Toggle navigation menu"
+              className="p-2 sm:p-2.5 rounded-2xl glass-panel text-slate-700 dark:text-slate-300 md:hidden hover:text-blue-600 shadow-xs transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
-              {mobileMenuOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Animated Bottom Sheet / Drawer */}
+      {/* Mobile Menu Dropdown Modal */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.98 }}
+            initial={{ opacity: 0, y: -16, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.98 }}
+            exit={{ opacity: 0, y: -16, scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-x-3 top-16 z-40 p-4 sm:p-5 rounded-3xl glass-panel shadow-2xl border border-blue-200/50 dark:border-blue-800/50 md:hidden space-y-3"
+            className="fixed inset-x-3 top-16 z-40 p-4 sm:p-5 rounded-3xl glass-panel shadow-2xl border border-blue-200/50 dark:border-blue-800/50 md:hidden space-y-3 pointer-events-auto"
           >
             <div className="grid grid-cols-2 gap-2">
               {navItems.map((item) => (
-                <a
+                <button
                   key={item.id}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`flex items-center gap-2.5 p-3 rounded-2xl text-xs font-bold transition-colors text-left ${
-                    activeSection === item.id
+                  onClick={() => handleNavClick(item.href, item.id)}
+                  className={`flex items-center gap-2.5 p-3 rounded-2xl text-xs font-bold transition-colors text-left min-h-[44px] cursor-pointer ${
+                    !isProjectDetailPage && activeSection === item.id
                       ? 'bg-gradient-to-r from-blue-500/20 to-pink-500/20 text-blue-700 dark:text-sky-300'
                       : 'bg-slate-100/60 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   {item.icon}
                   <span>{item.label}</span>
-                </a>
+                </button>
               ))}
             </div>
 
             <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800/50 flex gap-2">
               <a
-                href="Maghfirah_CV.pdf"
+                href="/Maghfirah_CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-pink-600 text-white text-xs font-bold text-center shadow-xs"
+                className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-pink-600 text-white text-xs font-bold text-center shadow-xs min-h-[44px] flex items-center justify-center"
               >
                 Download Resume (PDF)
-              </a>
-              <a
-                href="https://github.com/firhmgh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 flex items-center justify-center"
-              >
-                <Github className="w-4 h-4" />
               </a>
             </div>
           </motion.div>
