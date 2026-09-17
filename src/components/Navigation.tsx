@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useRouter } from '../router';
 import { Home, Layers, Compass, Mail, Sun, Moon, FileText, Github, Menu, X } from 'lucide-react';
@@ -137,7 +137,7 @@ export const Navigation: React.FC = () => {
 
             {/* Resume Button */}
             <a
-              href="/Maghfirah_CV.pdf"
+              href={`${import.meta.env.BASE_URL}Maghfirah_CV.pdf`}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl bg-gradient-to-r from-blue-500/15 via-sky-500/15 to-pink-500/15 border border-blue-300/40 dark:border-blue-700/50 text-blue-800 dark:text-blue-200 text-xs font-bold hover:shadow-sm hover:scale-[1.02] active:scale-98 transition-all min-h-[44px]"
@@ -198,7 +198,7 @@ export const Navigation: React.FC = () => {
 
             <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800/50 flex gap-2">
               <a
-                href="/Maghfirah_CV.pdf"
+                href={`${import.meta.env.BASE_URL}Maghfirah_CV.pdf`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-pink-600 text-white text-xs font-bold text-center shadow-xs min-h-[44px] flex items-center justify-center"
