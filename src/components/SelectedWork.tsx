@@ -1,3 +1,11 @@
+const getAssetUrl = (url?: string) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  const clean = url.startsWith('/') ? url : '/' + url;
+  return `${base}${clean}`;
+};
+
 import React, { useState } from 'react';
 import { ProjectItem, ALL_PROJECTS_DATA } from '../data/projectsData';
 import { useRouter } from '../router';
@@ -110,7 +118,7 @@ export const SelectedWork: React.FC = () => {
                     className="aspect-[16/10] w-full overflow-hidden bg-slate-950 relative cursor-pointer"
                   >
                     <img
-                      src={project.imagePath}
+                      src={getAssetUrl(project.imagePath)}
                       alt={project.title}
                       className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                       loading={idx < 2 ? 'eager' : 'lazy'}

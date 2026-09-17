@@ -160,7 +160,7 @@ export const Hero: React.FC = () => {
                 {/* Portrait Photo Frame with object-fit position */}
                 <div className="aspect-[3/4] w-full rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 relative shadow-inner">
                   <img
-                    src="images/profile.jpg"
+                    src={`${import.meta.env.BASE_URL}profile.jpg`}
                     alt="Maghfirah — Software & GIS Developer"
                     className="w-full h-full object-cover object-[center_15%]"
                     loading="eager"

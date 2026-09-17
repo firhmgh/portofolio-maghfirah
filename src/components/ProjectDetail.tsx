@@ -1,3 +1,11 @@
+const getAssetUrl = (url?: string) => {
+  if (!url) return '';
+  if (url.startsWith('http://') || url.startsWith('https://')) return url;
+  const base = (import.meta.env.BASE_URL || '/').replace(/\/$/, '');
+  const clean = url.startsWith('/') ? url : '/' + url;
+  return `${base}${clean}`;
+};
+
 import React, { useState } from 'react';
 import { ProjectItem, ALL_PROJECTS_DATA } from '../data/projectsData';
 import { useRouter } from '../router';
@@ -169,7 +177,7 @@ export const ProjectDetail: React.FC<{ project: ProjectItem }> = ({ project }) =
         <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 dark:border-slate-800 bg-slate-950 shadow-2xl group">
           <div className="aspect-[16/10] sm:aspect-[21/9] lg:aspect-[2/1] w-full overflow-hidden flex items-center justify-center bg-slate-950">
             <img
-              src={project.imagePath}
+              src={getAssetUrl(project.imagePath)}
               alt={project.title}
               className="w-full h-full object-cover sm:object-contain group-hover:scale-[1.01] transition-transform duration-500"
               loading="eager"
@@ -392,7 +400,7 @@ export const ProjectDetail: React.FC<{ project: ProjectItem }> = ({ project }) =
               >
                 <div className="aspect-[16/10] w-full overflow-hidden bg-slate-950 flex items-center justify-center">
                   <img
-                    src={img.path}
+                    src={getAssetUrl(img.path)}
                     alt={img.caption}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
@@ -531,7 +539,7 @@ export const ProjectDetail: React.FC<{ project: ProjectItem }> = ({ project }) =
               </button>
               <div className="rounded-2xl overflow-hidden border border-white/20 bg-black shadow-2xl max-h-[80vh]">
                 <img
-                  src={lightboxImage.path}
+                  src={getAssetUrl(lightboxImage.path)}
                   alt={lightboxImage.caption}
                   className="max-h-[80vh] w-auto object-contain"
                 />
