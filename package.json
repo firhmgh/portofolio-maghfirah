@@ -65,7 +65,7 @@
             "dev": "vite",
             "build": "vite build",
             "preview": "vite preview",
-            "predeploy": "npm run build",
+            "predeploy": "npm run build && node -e \"require('fs').copyFileSync('build/index.html','build/404.html'); console.log('404.html created');\"",
             "deploy": "gh-pages -d build"
       }
 }
