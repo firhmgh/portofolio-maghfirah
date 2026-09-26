@@ -195,7 +195,7 @@ export const FreelanceServices: React.FC = () => {
       </div>
 
       {/* SECTION 1: Interactive Scope & Quotation Estimator */}
-      <section className="mb-20">
+      <section id="estimator-section" className="mb-20 scroll-mt-28">
         <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-sky-300 text-xs font-bold border border-blue-200 dark:border-blue-800">
             <Calculator className="w-3.5 h-3.5" />
@@ -235,7 +235,14 @@ export const FreelanceServices: React.FC = () => {
                         {renderServiceIcon(srv.iconName, 'w-4 h-4')}
                       </div>
                       <span className={`text-[11px] font-bold line-clamp-2 leading-tight ${isSelected ? 'text-blue-900 dark:text-sky-200' : 'text-slate-800 dark:text-slate-200'}`}>
-                        {srv.title.split(' ')[0]} {srv.title.split(' ')[1] || ''}
+                        {srv.id === 'web-dev' && 'Web App Development'}
+                        {srv.id === 'dashboard' && 'Analytics Dashboard'}
+                        {srv.id === 'webgis' && 'WebGIS & Spatial Data'}
+                        {srv.id === 'mobile-app' && 'Flutter Mobile App'}
+                        {srv.id === 'database' && 'Database Architecture'}
+                        {srv.id === 'api-integration' && 'API & Integrations'}
+                        {srv.id === 'bug-fixing' && 'Bug Fixing & Refactoring'}
+                        {srv.id === 'data-automation' && 'Data & Python Script'}
                       </span>
                     </button>
                   );
@@ -525,7 +532,10 @@ export const FreelanceServices: React.FC = () => {
                 <button
                   onClick={() => {
                     setSelectedServiceId(srv.id);
-                    window.scrollTo({ top: 350, behavior: 'smooth' });
+                    const el = document.getElementById('estimator-section');
+                    if (el) {
+                      el.scrollIntoView({ behavior: 'smooth' });
+                    }
                   }}
                   className="px-2.5 py-1.5 rounded-xl bg-blue-50 dark:bg-blue-950/70 hover:bg-blue-100 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-800 text-[11px] font-bold transition-colors cursor-pointer"
                 >
