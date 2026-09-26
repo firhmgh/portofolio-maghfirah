@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
 import { BrowserRouter, useRouter, Link } from './router';
 import { Navigation } from './components/Navigation';
@@ -8,12 +8,17 @@ import { Journey } from './components/Journey';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ProjectDetail } from './components/ProjectDetail';
+import { DigitalProducts } from './components/DigitalProducts';
+import { FreelanceServices } from './components/FreelanceServices';
 import { getProjectBySlug } from './data/projectsData';
 
 function MainApp() {
   const { path } = useRouter();
 
-  // path is always clean (base stripped), e.g. /projects/simtan
+  // path is always clean (base stripped), e.g. /projects/simtan, /products, /services
+  const isProductsPage = path === '/products' || path.startsWith('/products');
+  const isServicesPage = path === '/services' || path.startsWith('/services');
+
   const projectMatch = path.match(/^\/projects\/([^\/]+)/);
   const projectSlug = projectMatch ? projectMatch[1] : null;
   const project = projectSlug ? getProjectBySlug(projectSlug) : null;
@@ -35,7 +40,11 @@ function MainApp() {
       <Navigation />
 
       <main id="main-content" className="relative z-10">
-        {projectSlug ? (
+        {isProductsPage ? (
+          <DigitalProducts />
+        ) : isServicesPage ? (
+          <FreelanceServices />
+        ) : projectSlug ? (
           project ? (
             <ProjectDetail project={project} />
           ) : (

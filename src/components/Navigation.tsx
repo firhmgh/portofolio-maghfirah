@@ -1,7 +1,22 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { useRouter } from '../router';
-import { Home, Layers, Compass, Mail, Sun, Moon, FileText, Github, Menu, X } from 'lucide-react';
+import { 
+  Home, 
+  Layers, 
+  Compass, 
+  Mail, 
+  Sun, 
+  Moon, 
+  FileText, 
+  Github, 
+  Menu, 
+  X,
+  ShoppingBag,
+  Sparkles,
+  ArrowRight,
+  Briefcase
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export const Navigation: React.FC = () => {
@@ -11,13 +26,16 @@ export const Navigation: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  const isProductsPage = path === '/products' || path.startsWith('/products');
+  const isServicesPage = path === '/services' || path.startsWith('/services');
   const isProjectDetailPage = path.startsWith('/projects/');
+  const isMainPortfolio = !isProductsPage && !isServicesPage && !isProjectDetailPage;
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      if (isProjectDetailPage) return;
+      if (!isMainPortfolio) return;
 
       const sections = ['home', 'projects', 'journey', 'contact'];
       const scrollPosition = window.scrollY + 250;
@@ -37,27 +55,32 @@ export const Navigation: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isProjectDetailPage]);
+  }, [isMainPortfolio]);
 
-  const navItems = [
-    { id: 'home', label: 'Home', icon: <Home className="w-4 h-4" />, href: '/#home' },
-    { id: 'projects', label: 'Projects', icon: <Layers className="w-4 h-4" />, href: '/#projects' },
-    { id: 'journey', label: 'Journey', icon: <Compass className="w-4 h-4" />, href: '/#journey' },
-    { id: 'contact', label: 'Contact', icon: <Mail className="w-4 h-4" />, href: '/#contact' },
-  ];
-
-  const handleNavClick = (href: string, sectionId: string) => {
+  const handleNavClick = (type: 'route' | 'anchor', target: string, sectionId?: string) => {
     setMobileMenuOpen(false);
-    if (isProjectDetailPage) {
-      navigate(href.replace('/#', '#'));
+
+    if (type === 'route') {
+      navigate(target);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    // Anchor click (home, projects, journey, contact)
+    if (isProductsPage || isServicesPage || isProjectDetailPage) {
+      navigate('/' + target);
       setTimeout(() => {
+        if (sectionId) {
+          const el = document.getElementById(sectionId);
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 150);
+    } else {
+      if (sectionId) {
         const el = document.getElementById(sectionId);
         if (el) el.scrollIntoView({ behavior: 'smooth' });
-      }, 100);
-    } else {
-      const el = document.getElementById(sectionId);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(sectionId);
+        setActiveSection(sectionId);
+      }
     }
   };
 
@@ -69,10 +92,10 @@ export const Navigation: React.FC = () => {
           scrolled ? 'top-2 sm:top-3' : 'top-3 sm:top-5'
         }`}
       >
-        <div className="w-full max-w-5xl flex items-center justify-between gap-2 pointer-events-auto">
+        <div className="w-full max-w-6xl flex items-center justify-between gap-2 pointer-events-auto">
           {/* Identity Monogram Pill */}
           <button
-            onClick={() => navigate('/')}
+            onClick={() => handleNavClick('route', '/')}
             className="group flex items-center gap-2.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-2xl glass-panel hover:border-blue-400/50 dark:hover:border-sky-500/50 transition-all duration-200 shadow-xs cursor-pointer text-left"
           >
             <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-blue-600 via-sky-500 to-pink-400 p-[1.5px] shadow-xs flex-shrink-0">
@@ -92,32 +115,88 @@ export const Navigation: React.FC = () => {
             </div>
           </button>
 
-          {/* Center Floating Dock (Desktop / Tablet) */}
-          <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-2xl glass-panel shadow-xs">
-            {navItems.map((item) => {
-              const isActive = !isProjectDetailPage && activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.href, item.id)}
-                  className={`relative flex items-center gap-2 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? 'text-blue-900 dark:text-sky-100 font-bold'
-                      : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-300'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeDockIndicator"
-                      className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-100/90 via-sky-100/80 to-pink-100/80 dark:from-blue-900/60 dark:via-sky-950/50 dark:to-pink-950/40 -z-10 shadow-inner"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  {item.icon}
-                  <span>{item.label}</span>
-                </button>
-              );
-            })}
+          {/* Center 3-Track Floating Dock (Desktop / Tablet) */}
+          <nav className="hidden md:flex items-center gap-1 p-1.5 rounded-2xl glass-panel shadow-xs border border-slate-200/80 dark:border-slate-800/80">
+            {/* Track 1: Portfolio */}
+            <button
+              onClick={() => handleNavClick('route', '/')}
+              className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                isMainPortfolio
+                  ? 'text-blue-900 dark:text-sky-100 font-bold'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-300'
+              }`}
+            >
+              {isMainPortfolio && (
+                <motion.div
+                  layoutId="activeDockIndicator"
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-100/90 via-sky-100/80 to-pink-100/80 dark:from-blue-900/60 dark:via-sky-950/50 dark:to-pink-950/40 -z-10 shadow-inner"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <Home className="w-3.5 h-3.5" />
+              <span>Portfolio</span>
+            </button>
+
+            {/* Sub-anchor: Projects (Scroll to projects or jump to projects) */}
+            <button
+              onClick={() => handleNavClick('anchor', '#projects', 'projects')}
+              className={`relative flex items-center gap-1 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                isMainPortfolio && activeSection === 'projects'
+                  ? 'text-blue-700 dark:text-sky-300 font-bold'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-300'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5" />
+              <span>Projects</span>
+            </button>
+
+            <div className="h-4 w-px bg-slate-200 dark:bg-slate-700 mx-1" />
+
+            {/* Track 2: Digital Products */}
+            <button
+              onClick={() => handleNavClick('route', '/products')}
+              className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                isProductsPage
+                  ? 'text-blue-900 dark:text-sky-100 font-bold'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-300'
+              }`}
+            >
+              {isProductsPage && (
+                <motion.div
+                  layoutId="activeDockIndicator"
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-100/90 via-sky-100/80 to-pink-100/80 dark:from-blue-900/60 dark:via-sky-950/50 dark:to-pink-950/40 -z-10 shadow-inner"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <ShoppingBag className="w-3.5 h-3.5" />
+              <span>Digital Products</span>
+              <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-sky-300 font-mono font-bold">
+                Store
+              </span>
+            </button>
+
+            {/* Track 3: Freelance Services */}
+            <button
+              onClick={() => handleNavClick('route', '/services')}
+              className={`relative flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-semibold transition-all duration-200 cursor-pointer ${
+                isServicesPage
+                  ? 'text-blue-900 dark:text-sky-100 font-bold'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-300'
+              }`}
+            >
+              {isServicesPage && (
+                <motion.div
+                  layoutId="activeDockIndicator"
+                  className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-100/90 via-sky-100/80 to-pink-100/80 dark:from-blue-900/60 dark:via-sky-950/50 dark:to-pink-950/40 -z-10 shadow-inner"
+                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                />
+              )}
+              <Sparkles className="w-3.5 h-3.5 text-pink-500" />
+              <span>Freelance Services</span>
+              <span className="text-[9px] px-1.5 py-0.2 rounded-full bg-pink-100 dark:bg-pink-900 text-pink-700 dark:text-pink-300 font-mono font-bold">
+                Hire
+              </span>
+            </button>
           </nav>
 
           {/* Right Utility Buttons */}
@@ -179,21 +258,81 @@ export const Navigation: React.FC = () => {
             transition={{ duration: 0.2 }}
             className="fixed inset-x-3 top-16 z-40 p-4 sm:p-5 rounded-3xl glass-panel shadow-2xl border border-blue-200/50 dark:border-blue-800/50 md:hidden space-y-3 pointer-events-auto"
           >
-            <div className="grid grid-cols-2 gap-2">
-              {navItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => handleNavClick(item.href, item.id)}
-                  className={`flex items-center gap-2.5 p-3 rounded-2xl text-xs font-bold transition-colors text-left min-h-[44px] cursor-pointer ${
-                    !isProjectDetailPage && activeSection === item.id
-                      ? 'bg-gradient-to-r from-blue-500/20 to-pink-500/20 text-blue-700 dark:text-sky-300'
-                      : 'bg-slate-100/60 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300'
-                  }`}
-                >
-                  {item.icon}
-                  <span>{item.label}</span>
-                </button>
-              ))}
+            {/* 3 Main Tracks in Mobile */}
+            <div className="space-y-1.5 pb-2 border-b border-slate-200/50 dark:border-slate-800/50">
+              <span className="text-[10px] uppercase font-mono tracking-widest text-slate-400 block px-2">
+                Main Pathways
+              </span>
+              <button
+                onClick={() => handleNavClick('route', '/')}
+                className={`w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-left min-h-[44px] cursor-pointer ${
+                  isMainPortfolio
+                    ? 'bg-gradient-to-r from-blue-500/20 to-sky-500/20 text-blue-700 dark:text-sky-300'
+                    : 'bg-slate-100/60 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Home className="w-4 h-4 text-blue-500" />
+                  <span>Portfolio Utama</span>
+                </div>
+                <span className="text-[10px] text-slate-400">Career & Works</span>
+              </button>
+
+              <button
+                onClick={() => handleNavClick('route', '/products')}
+                className={`w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-left min-h-[44px] cursor-pointer ${
+                  isProductsPage
+                    ? 'bg-gradient-to-r from-blue-500/20 to-sky-500/20 text-blue-700 dark:text-sky-300'
+                    : 'bg-slate-100/60 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <ShoppingBag className="w-4 h-4 text-sky-500" />
+                  <span>Digital Products</span>
+                </div>
+                <span className="text-[9px] px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-sky-300 font-mono">
+                  Store
+                </span>
+              </button>
+
+              <button
+                onClick={() => handleNavClick('route', '/services')}
+                className={`w-full flex items-center justify-between p-3 rounded-2xl text-xs font-bold text-left min-h-[44px] cursor-pointer ${
+                  isServicesPage
+                    ? 'bg-gradient-to-r from-pink-500/20 to-rose-500/20 text-pink-700 dark:text-pink-300'
+                    : 'bg-slate-100/60 dark:bg-slate-800/50 text-slate-700 dark:text-slate-300'
+                }`}
+              >
+                <div className="flex items-center gap-2.5">
+                  <Sparkles className="w-4 h-4 text-pink-500" />
+                  <span>Freelance Services</span>
+                </div>
+                <span className="text-[9px] px-2 py-0.5 rounded-full bg-pink-100 dark:bg-pink-900 text-pink-700 dark:text-pink-300 font-mono">
+                  Hire Me
+                </span>
+              </button>
+            </div>
+
+            {/* Quick Jumps for Portfolio Sections */}
+            <div className="grid grid-cols-3 gap-1.5 pt-1">
+              <button
+                onClick={() => handleNavClick('anchor', '#projects', 'projects')}
+                className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 text-[11px] font-semibold text-slate-600 dark:text-slate-400 text-center"
+              >
+                Projects
+              </button>
+              <button
+                onClick={() => handleNavClick('anchor', '#journey', 'journey')}
+                className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 text-[11px] font-semibold text-slate-600 dark:text-slate-400 text-center"
+              >
+                Journey
+              </button>
+              <button
+                onClick={() => handleNavClick('anchor', '#contact', 'contact')}
+                className="p-2.5 rounded-xl bg-slate-50 dark:bg-slate-800/40 text-[11px] font-semibold text-slate-600 dark:text-slate-400 text-center"
+              >
+                Contact
+              </button>
             </div>
 
             <div className="pt-2 border-t border-slate-200/50 dark:border-slate-800/50 flex gap-2">
