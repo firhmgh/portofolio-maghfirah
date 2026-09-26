@@ -18,7 +18,12 @@ import {
   X, 
   CheckCircle2, 
   ChevronRight,
-  FileCheck
+  FileCheck,
+  TrendingUp,
+  AlertCircle,
+  HelpCircle,
+  Wrench,
+  Layers
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -49,9 +54,9 @@ export const DigitalProducts: React.FC = () => {
     return matchesCategory && matchesSearch;
   });
 
-  const openProductModal = (product: DigitalProduct, initialPackage?: ProductPackage) => {
+  const openProductModal = (product: DigitalProduct, initialPackageIndex: number = 1) => {
     setActiveProductModal(product);
-    setSelectedPackage(initialPackage || product.packages[1] || product.packages[0]);
+    setSelectedPackage(product.packages[initialPackageIndex] || product.packages[0]);
     setActiveImageIndex(0);
   };
 
@@ -78,23 +83,23 @@ export const DigitalProducts: React.FC = () => {
   return (
     <div className="pt-24 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       {/* Breadcrumb & Track Switcher Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b border-slate-200/80 dark:border-slate-800">
-        <div className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-8 pb-4 border-b border-slate-200 dark:border-slate-800">
+        <div className="flex items-center gap-2 text-xs text-slate-700 dark:text-slate-300">
           <button 
             onClick={() => navigate('/')} 
-            className="hover:text-blue-600 dark:hover:text-sky-400 font-medium transition-colors"
+            className="hover:text-blue-600 dark:hover:text-sky-400 font-semibold transition-colors"
           >
             Portfolio
           </button>
           <span className="text-slate-400">/</span>
-          <span className="font-bold text-slate-900 dark:text-white">Digital Products Storefront</span>
+          <span className="font-extrabold text-slate-900 dark:text-white">Digital Products</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <span className="text-xs text-slate-600 dark:text-slate-300 hidden sm:inline">Need custom engineering?</span>
+          <span className="text-xs text-slate-600 dark:text-slate-300 hidden sm:inline">Butuh sistem kustom spesifik?</span>
           <button
             onClick={() => navigate('/services')}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-50 dark:bg-blue-950/70 text-blue-700 dark:text-sky-300 border border-blue-200/80 dark:border-blue-700/80 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-blue-50 dark:bg-blue-950/70 text-blue-700 dark:text-sky-300 border border-blue-200 dark:border-blue-700 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors cursor-pointer"
           >
             <span>Explore Freelance Services</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -103,11 +108,11 @@ export const DigitalProducts: React.FC = () => {
       </div>
 
       {/* Hero Storefront Banner */}
-      <div className="relative rounded-3xl p-6 sm:p-10 lg:p-12 mb-12 overflow-hidden glass-panel border border-blue-200/80 dark:border-blue-800/80 shadow-lg">
+      <div className="relative rounded-3xl p-6 sm:p-10 lg:p-12 mb-12 overflow-hidden glass-panel border border-blue-200 dark:border-blue-800 shadow-lg text-left">
         <div className="relative z-10 max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100/90 dark:bg-blue-900/70 text-blue-800 dark:text-sky-200 text-xs font-bold">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 dark:bg-blue-900/80 text-blue-800 dark:text-sky-200 text-xs font-bold">
             <Sparkles className="w-3.5 h-3.5 text-blue-600 dark:text-sky-300" />
-            <span>Turnkey Applications & Accessible Developer Kits</span>
+            <span>Karya Teruji • Harga Masuk Akal • Tanpa Biaya Berlangganan</span>
           </div>
           
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
@@ -118,26 +123,25 @@ export const DigitalProducts: React.FC = () => {
           </h1>
 
           <p className="text-sm sm:text-base text-slate-700 dark:text-slate-200 leading-relaxed max-w-2xl font-normal">
-            Koleksi aplikasi, platform web, dan tool utilitas desktop siap pakai dengan harga terjangkau dan realistis. Bebas royalti tersembunyi, arsitektur kode bersih (clean code), dokumentasi instalasi lengkap, dan dukungan teknis langsung dari pembuatnya.
+            Koleksi aplikasi, platform web, dan tool utilitas desktop siap pakai dengan harga entry-level yang bersahabat untuk pasar Indonesia. Setiap produk dirancang dengan arsitektur kode bersih, dokumentasi instalasi lengkap, dan 3 opsi paket transparan: <strong>Source Code</strong>, <strong>Installation / Setup</strong>, dan <strong>Custom Development</strong>.
           </p>
 
-          {/* Trust Guarantees */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4">
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 flex-shrink-0" />
-              <span>100% Tested Codebase</span>
+          {/* Pricing Model Pills */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-3">
+            <div className="p-3 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+              <span className="text-[10px] uppercase font-mono font-bold text-blue-600 dark:text-sky-400 block mb-0.5">Tier 01</span>
+              <h4 className="text-xs font-bold text-slate-900 dark:text-white">Source Code</h4>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">Akses kode penuh & skema DB untuk developer mandiri.</p>
             </div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
-              <Code2 className="w-4 h-4 text-blue-600 dark:text-sky-400 flex-shrink-0" />
-              <span>Full Source Code</span>
+            <div className="p-3 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-blue-200 dark:border-blue-800">
+              <span className="text-[10px] uppercase font-mono font-bold text-pink-600 dark:text-pink-400 block mb-0.5">Tier 02 • Populer</span>
+              <h4 className="text-xs font-bold text-slate-900 dark:text-white">Installation / Setup</h4>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">Terima beres siap pakai langsung live di domain & cloud Anda.</p>
             </div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
-              <FileCheck className="w-4 h-4 text-sky-600 dark:text-sky-300 flex-shrink-0" />
-              <span>Installation Guides</span>
-            </div>
-            <div className="flex items-center gap-2 text-xs font-semibold text-slate-800 dark:text-slate-200">
-              <Clock className="w-4 h-4 text-pink-600 dark:text-pink-400 flex-shrink-0" />
-              <span>Fast WhatsApp Support</span>
+            <div className="p-3 rounded-2xl bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-slate-800">
+              <span className="text-[10px] uppercase font-mono font-bold text-emerald-600 dark:text-emerald-400 block mb-0.5">Tier 03</span>
+              <h4 className="text-xs font-bold text-slate-900 dark:text-white">Custom Development</h4>
+              <p className="text-[11px] text-slate-600 dark:text-slate-400 mt-0.5">Penambahan fitur khusus, payment gateway, & garansi 30 hari.</p>
             </div>
           </div>
         </div>
@@ -157,7 +161,7 @@ export const DigitalProducts: React.FC = () => {
               className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 selectedCategory === cat
                   ? 'bg-blue-600 text-white shadow-sm shadow-blue-500/30'
-                  : 'glass-panel text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-sky-300 border border-slate-200/90 dark:border-slate-800 hover:border-blue-400'
+                  : 'glass-panel text-slate-700 dark:text-slate-200 hover:text-blue-600 dark:hover:text-sky-300 border border-slate-200 dark:border-slate-800 hover:border-blue-400'
               }`}
             >
               {cat}
@@ -183,7 +187,7 @@ export const DigitalProducts: React.FC = () => {
         {filteredProducts.map((product) => (
           <div
             key={product.id}
-            className="group rounded-3xl glass-panel border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col justify-between hover:shadow-xl hover:border-blue-400 dark:hover:border-sky-500 transition-all duration-300"
+            className="group rounded-3xl glass-panel border border-slate-200 dark:border-slate-800 overflow-hidden flex flex-col justify-between hover:shadow-xl hover:border-blue-400 dark:hover:border-sky-500 transition-all duration-300 text-left"
           >
             <div>
               {/* Product Cover Image with Badge */}
@@ -233,8 +237,17 @@ export const DigitalProducts: React.FC = () => {
                   </p>
                 </div>
 
+                {/* Clear Business Benefit Callout */}
+                <div className="p-2.5 rounded-xl bg-blue-50/70 dark:bg-blue-950/50 border border-blue-100 dark:border-blue-900/60 flex items-start gap-2">
+                  <TrendingUp className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-[11px] text-blue-900 dark:text-sky-200 line-clamp-2 leading-snug">
+                    <strong className="font-semibold">Nilai Manfaat: </strong>
+                    {product.businessBenefit}
+                  </p>
+                </div>
+
                 {/* Key Features Quick Bullets */}
-                <div className="space-y-1.5 pt-2 border-t border-slate-200 dark:border-slate-800">
+                <div className="space-y-1.5 pt-1 border-t border-slate-200 dark:border-slate-800">
                   {product.coreFeatures.slice(0, 3).map((feat, fIdx) => (
                     <div key={fIdx} className="flex items-start gap-2 text-[11px] text-slate-700 dark:text-slate-300 font-medium">
                       <Check className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400 flex-shrink-0 mt-0.5" />
@@ -266,10 +279,10 @@ export const DigitalProducts: React.FC = () => {
             <div className="p-5 sm:p-6 pt-0 space-y-2">
               <div className="grid grid-cols-2 gap-2">
                 <button
-                  onClick={() => openProductModal(product)}
+                  onClick={() => openProductModal(product, 1)}
                   className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 text-white text-xs font-bold transition-all shadow-xs flex items-center justify-center gap-1.5 cursor-pointer"
                 >
-                  <span>Detail & Paket</span>
+                  <span>Lihat 3 Paket</span>
                   <ChevronRight className="w-3.5 h-3.5" />
                 </button>
 
@@ -285,7 +298,7 @@ export const DigitalProducts: React.FC = () => {
                   </a>
                 ) : (
                   <button
-                    onClick={() => openProductModal(product)}
+                    onClick={() => openProductModal(product, 1)}
                     className="w-full py-2 px-3 rounded-xl glass-panel hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <span>Screenshots</span>
@@ -293,9 +306,9 @@ export const DigitalProducts: React.FC = () => {
                 )}
               </div>
 
-              {/* Direct Fast Purchase CTA */}
+              {/* Direct Fast WhatsApp CTA */}
               <a
-                href={createWhatsAppLink(product.title, product.packages[0]?.name, product.packages[0]?.priceIdr)}
+                href={createWhatsAppLink(product.title, product.packages[1]?.tierName, product.packages[1]?.priceIdr)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full py-2 rounded-xl border border-blue-300 dark:border-blue-800 bg-blue-50/50 dark:bg-blue-950/40 hover:bg-blue-100/70 dark:hover:bg-blue-900/60 text-blue-800 dark:text-sky-300 text-[11px] font-bold transition-colors flex items-center justify-center gap-1.5 text-center"
@@ -323,17 +336,17 @@ export const DigitalProducts: React.FC = () => {
       )}
 
       {/* Bottom Cross-Promotion to Freelance Services */}
-      <div className="mt-16 rounded-3xl p-6 sm:p-8 glass-panel border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div className="space-y-2 text-left">
+      <div className="mt-16 rounded-3xl p-6 sm:p-8 glass-panel border border-slate-200 dark:border-slate-800 flex flex-col md:flex-row items-center justify-between gap-6 text-left">
+        <div className="space-y-2">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-blue-600 dark:text-sky-400">
             <Sparkles className="w-4 h-4" />
             <span>Need Custom Development Instead?</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white">
-            Butuh Aplikasi Kustom yang Dibuat Spesifik untuk Kebutuhan Bisnis Anda?
+            Butuh Fitur Khusus atau Modifikasi Skala Besar?
           </h3>
           <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 max-w-xl font-normal">
-            Jika sistem yang Anda perlukan memiliki aturan bisnis unik, Anda dapat menggunakan layanan Freelance Services dengan sprint mingguan, live staging, dan garansi bug 30 hari.
+            Gunakan layanan Freelance Services dengan sprint mingguan, live staging, dan garansi bug 30 hari jika kebutuhan aplikasi Anda memiliki workflow atau integrasi spesifik.
           </p>
         </div>
 
@@ -346,7 +359,7 @@ export const DigitalProducts: React.FC = () => {
         </button>
       </div>
 
-      {/* Product Detail & Package Selection Modal */}
+      {/* Product Detail & Simplified 3-Package Pricing Modal */}
       <AnimatePresence>
         {activeProductModal && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
@@ -365,7 +378,7 @@ export const DigitalProducts: React.FC = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
               transition={{ duration: 0.2 }}
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl bg-white dark:bg-[#0c1220] border border-blue-200 dark:border-blue-900 shadow-2xl p-5 sm:p-8 z-10 space-y-6 text-left"
+              className="relative w-full max-w-4xl max-h-[92vh] overflow-y-auto rounded-3xl bg-white dark:bg-[#0c1220] border border-blue-200 dark:border-blue-900 shadow-2xl p-5 sm:p-8 z-10 space-y-6 text-left"
             >
               {/* Close Button */}
               <button
@@ -392,6 +405,15 @@ export const DigitalProducts: React.FC = () => {
                 <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 font-medium">
                   {activeProductModal.tagline}
                 </p>
+              </div>
+
+              {/* Business Benefit Alert Card */}
+              <div className="p-3.5 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-xs text-blue-950 dark:text-sky-200 flex items-start gap-2.5">
+                <TrendingUp className="w-4 h-4 text-blue-600 dark:text-sky-400 mt-0.5 flex-shrink-0" />
+                <div>
+                  <strong className="font-bold">Manfaat Bisnis / Finansial: </strong>
+                  <span>{activeProductModal.businessBenefit}</span>
+                </div>
               </div>
 
               {/* Gallery Image Display */}
@@ -445,8 +467,8 @@ export const DigitalProducts: React.FC = () => {
                 <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
                   {activeProductModal.overview}
                 </p>
-                <div className="p-3.5 rounded-2xl bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800 text-xs text-blue-950 dark:text-sky-200">
-                  <span className="font-bold">Cocok untuk: </span>
+                <div className="p-3 rounded-xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs text-slate-800 dark:text-slate-200">
+                  <span className="font-bold text-slate-900 dark:text-white">Cocok untuk: </span>
                   {activeProductModal.targetAudience}
                 </div>
               </div>
@@ -497,14 +519,19 @@ export const DigitalProducts: React.FC = () => {
                 </div>
               </div>
 
-              {/* Package Breakdown & Purchase Flow */}
+              {/* SIMPLIFIED 3-TIER PRICING (Source Code / Installation Setup / Custom Development) */}
               <div className="space-y-4 pt-2">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
-                    Pilihan Paket Lisensi & Layanan
-                  </h3>
-                  <span className="text-xs text-slate-600 dark:text-slate-300 font-medium">
-                    Pilih paket yang paling sesuai
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div>
+                    <h3 className="text-base font-extrabold text-slate-900 dark:text-white">
+                      Pilihan Paket Lisensi & Layanan (Maks. 3 Opsi)
+                    </h3>
+                    <p className="text-xs text-slate-600 dark:text-slate-400">
+                      Bebas royalti seumur hidup • Biaya sekali bayar tanpa langganan
+                    </p>
+                  </div>
+                  <span className="text-xs text-blue-600 dark:text-sky-400 font-semibold">
+                    Klik paket untuk memilih
                   </span>
                 </div>
 
@@ -521,17 +548,21 @@ export const DigitalProducts: React.FC = () => {
                             : 'border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 hover:border-blue-400 dark:hover:border-slate-700'
                         }`}
                       >
-                        <div className="space-y-2">
+                        <div className="space-y-3">
                           <div className="flex items-center justify-between">
-                            <h4 className="text-xs font-bold text-slate-900 dark:text-white">
-                              {pkg.name}
-                            </h4>
+                            <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                              {pkg.id === 'source-code' && <Code2 className="w-3.5 h-3.5 text-blue-600 dark:text-sky-400" />}
+                              {pkg.id === 'installation-setup' && <Wrench className="w-3.5 h-3.5 text-pink-600 dark:text-pink-400" />}
+                              {pkg.id === 'custom-dev' && <Layers className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />}
+                              <span>{pkg.tierName}</span>
+                            </span>
                             {pkg.popular && (
                               <span className="px-2 py-0.5 rounded-full text-[9px] font-extrabold bg-pink-600 text-white">
-                                Popular
+                                Rekomendasi
                               </span>
                             )}
                           </div>
+
                           <div>
                             <span className="text-lg font-black text-slate-900 dark:text-white">
                               {pkg.priceIdr}
@@ -540,15 +571,33 @@ export const DigitalProducts: React.FC = () => {
                               / {pkg.priceUsd}
                             </span>
                           </div>
+
                           <p className="text-[11px] text-slate-700 dark:text-slate-300 leading-snug">
-                            {pkg.description}
+                            {pkg.summary}
                           </p>
 
+                          {/* Apa yang Termasuk */}
                           <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-1">
-                            {pkg.includes.map((inc, incIdx) => (
+                            <span className="text-[10px] font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block font-mono">
+                              Termasuk:
+                            </span>
+                            {pkg.whatsIncluded.map((inc, incIdx) => (
                               <div key={incIdx} className="flex items-start gap-1.5 text-[10px] text-slate-700 dark:text-slate-300 font-medium">
                                 <Check className="w-3 h-3 text-emerald-600 dark:text-emerald-400 flex-shrink-0 mt-0.5" />
                                 <span>{inc}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          {/* Apa yang Tidak Termasuk */}
+                          <div className="pt-2 border-t border-slate-200 dark:border-slate-800 space-y-1">
+                            <span className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block font-mono">
+                              Tidak Termasuk:
+                            </span>
+                            {pkg.whatsExcluded.map((exc, excIdx) => (
+                              <div key={excIdx} className="flex items-start gap-1.5 text-[10px] text-slate-500 dark:text-slate-400">
+                                <span className="text-slate-400">✕</span>
+                                <span>{exc}</span>
                               </div>
                             ))}
                           </div>
@@ -563,7 +612,7 @@ export const DigitalProducts: React.FC = () => {
                                 : 'bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-700'
                             }`}
                           >
-                            {isSelected ? 'Paket Terpilih' : 'Pilih Paket'}
+                            {isSelected ? `Paket Terpilih (${pkg.tierName})` : `Pilih ${pkg.tierName}`}
                           </button>
                         </div>
                       </div>
@@ -576,26 +625,26 @@ export const DigitalProducts: React.FC = () => {
               <div className="pt-4 border-t border-slate-200 dark:border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="text-xs text-slate-600 dark:text-slate-300 space-y-0.5 text-center sm:text-left font-medium">
                   <p className="font-bold text-slate-900 dark:text-white">
-                    Paket terpilih: {selectedPackage?.name} ({selectedPackage?.priceIdr})
+                    Paket terpilih: {selectedPackage?.tierName} ({selectedPackage?.priceIdr})
                   </p>
-                  <p>Transaksi aman via Direct Invoicing & Transfer Bank / Escrow Resmi.</p>
+                  <p>Invoicing resmi • Pembayaran transfer bank / QRIS • Transaksi aman bergaransi.</p>
                 </div>
 
                 <div className="flex items-center gap-2 w-full sm:w-auto">
                   <a
-                    href={createEmailLink(activeProductModal.title, selectedPackage?.name)}
+                    href={createEmailLink(activeProductModal.title, selectedPackage?.tierName)}
                     className="flex-1 sm:flex-none px-4 py-2.5 rounded-2xl glass-panel hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-800 dark:text-slate-100 border border-slate-200 dark:border-slate-700 text-xs font-bold text-center"
                   >
                     Kirim Email
                   </a>
                   <a
-                    href={createWhatsAppLink(activeProductModal.title, selectedPackage?.name, selectedPackage?.priceIdr)}
+                    href={createWhatsAppLink(activeProductModal.title, selectedPackage?.tierName, selectedPackage?.priceIdr)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 sm:flex-none px-5 py-2.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white text-xs font-bold shadow-md flex items-center justify-center gap-2 text-center"
                   >
                     <MessageSquare className="w-4 h-4" />
-                    <span>Beli via WhatsApp</span>
+                    <span>{selectedPackage?.ctaLabel || 'Beli via WhatsApp'}</span>
                   </a>
                 </div>
               </div>
