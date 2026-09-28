@@ -221,6 +221,42 @@ export const ProjectDetail: React.FC<{ project: ProjectItem }> = ({ project }) =
         </div>
       )}
 
+      {/* ================= VIDEO DEMO SHOWCASE ================= */}
+      {project.videoDemoUrl && (
+        <div className="relative rounded-3xl overflow-hidden border border-slate-200/90 dark:border-slate-800 bg-slate-950 shadow-2xl space-y-0">
+          <div className="p-4 sm:p-5 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800 flex items-center justify-between flex-wrap gap-3 text-white">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center border border-emerald-500/30">
+                <Film className="w-4 h-4" />
+              </div>
+              <div>
+                <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                  <span>Demo Video Runtime Aplikasi</span>
+                  <span className="text-[10px] uppercase font-mono font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                    1080p HD
+                  </span>
+                </h3>
+                <p className="text-[11px] text-slate-400">
+                  Rekaman interaksi fitur enterprise, alur kerja operasional, dan simulasi data
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
+            <video
+              controls
+              playsInline
+              preload="metadata"
+              poster={project.imagePath ? getAssetUrl(project.imagePath) : undefined}
+              className="w-full h-full object-contain"
+            >
+              <source src={getAssetUrl(project.videoDemoUrl)} type="video/mp4" />
+              Peramban Anda tidak mendukung pemutaran video langsung.
+            </video>
+          </div>
+        </div>
+      )}
+
       {/* ================= 4. OVERVIEW & CONTRIBUTION ================= */}
       <div className="grid lg:grid-cols-12 gap-8 items-start">
         <div className="lg:col-span-7 space-y-4">
