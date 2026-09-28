@@ -11,6 +11,8 @@ import { ProjectItem, ALL_PROJECTS_DATA } from '../data/projectsData';
 import { useRouter } from '../router';
 import {
   ArrowLeft,
+  Play,
+  Film,
   ExternalLink,
   Github,
   BookOpen,

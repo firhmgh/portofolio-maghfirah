@@ -22,6 +22,7 @@ export interface ProjectItem {
   journalName?: string;
   journalDoi?: string;
   liveUrl?: string;
+  videoDemoUrl?: string;
   imagePath?: string;
   gallery?: {
     path: string;
@@ -119,7 +120,96 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     accentGlow: 'from-blue-600/20 via-sky-500/10 to-transparent'
   },
 
-  // ================= 2. WebGIS TBM Regional 1 PalmCo (Featured #2) =================
+    // ================= 2. PTPN4 CONTROL360 (Corporate Controlling & BI) =================
+  {
+    id: 'ptpn4-control360-enterprise',
+    slug: 'ptpn4-control360',
+    title: 'PALM-CONTROL360 — Enterprise Controlling, Data Warehouse & BPC Consolidation Engine',
+    category: 'Web & Product',
+    badge: 'Enterprise Architecture / Financial Controlling',
+    featured: true,
+    year: '2026',
+    status: 'Verified Simulation Prototype',
+    shortDescription: 'Enterprise controlling & BI consolidation engine for PT Perkebunan Nusantara IV (PalmCo) integrating Corporate Controlling (CO), Business Warehouse (BW), and Business Planning & Consolidation (BPC) with strict PRD baseline compliance.',
+    fullDescription: 'PALM-CONTROL360 merupakan aplikasi enterprise dashboard modern berbasis React 19 + Vite 8 yang mengintegrasikan modul Corporate Controlling (CO), Business Warehouse (BW), dan Business Planning & Consolidation (BPC) untuk PT Perkebunan Nusantara IV (PalmCo). Dirancang dengan kepatuhan penuh terhadap PRD (Product Requirement Document) Final Terkunci dan baseline fakta audit holding senilai Rp 608,52 Miliar RKAP replanting, sistem ini menyediakan arsitektur zero-backend mandiri berbasis LocalStorage persistence dengan reaktivitas filter regional (RPC1–RPC7) secara menyeluruh.',
+    myContribution: 'Merancang arsitektur sistem frontend end-to-end, implementasi modul Corporate Controlling (pemetaan master GL ke Cost Center dan ledger transaksi berbobot), modul Business Warehouse (simulator ETL pipeline data transaksi ke Data Cube operasional dengan log animasi bertahap), modul Business Planning & Consolidation (analisis Kurva-S 12 bulan Plan vs Actual, matriks konsolidasi holding resmi dengan tier Emas/Hijau/Merah/Hitam, dan engine PICA analitis), serta compliance 100% acceptance criteria AC-01 hingga AC-07 tanpa dependensi eksternal.',
+    challenge: 'Konsolidasi data operasional dan keuangan perkebunan sawit lintas 7 regional holding pasca-merger PalmCo membutuhkan pengawasan biaya yang transparan dan presisi tanpa risiko pembengkakan anggaran (variance). Diperlukan platform simulasi enterprise yang mampu memodelkan GL accounting, kalkulasi rendemen CPO standar 23,94%, simulasi ETL data cube, serta tracking kurva-S 12 bulan secara interaktif dengan performa instan tanpa latensi server.',
+    solution: 'Membangun enterprise single-page application zero-backend berbasis React 19, Context API, dan LocalStorage yang dilengkapi state preservation instan saat beralih modul. Menyematkan filter regional reaktif global, engine validasi transaksi CO, pipeline simulator ETL interaktif, visualisasi Kurva-S Recharts yang responsif, serta fitur ekspor laporan audit CSV ber-encoding UTF-8 BOM pada seluruh data tabel.',
+    architecture: [
+      'Frontend Framework: React 19 + Vite 8 SPA dengan fast-refresh dan module bundling teroptimasi.',
+      'State Management: React Context (AppContext) terpadu dengan sinkronisasi reaktif ke Global Regional Filter (RPC1–RPC7 & ALL).',
+      'Data Layer & Persistence: Zero-Backend Client-Side LocalStorage Engine dengan seed data terverifikasi dan fitur factory reset instant.',
+      'Data Visualization: Recharts Library untuk Executive Regional Analytics Bar Chart dan 12-Month S-Curve Tracking Line Chart.',
+      'Design System & Styling: Tailwind CSS modern dengan palet warna enterprise Palmvest360 (Corporate Forest Green #00875A & Slate #1E293B).',
+      'Reporting Engine: Client-Side CSV Generator dengan UTF-8 BOM encoding untuk interoperabilitas Microsoft Excel tanpa corrupt karakter.'
+    ],
+    keyFeatures: [
+      'Modul Corporate Controlling (CO): Pemetaan dinamis GL to Cost Center (CRUD), ledger transaksi alokasi biaya, dan matriks variansi (Budget vs Actual).',
+      'Modul Business Warehouse (BW): Simulasi real-time pipeline Extract-Transform-Load (ETL) dengan live execution logs dan update otomatis agregasi Data Cube.',
+      'Modul Planning & Consolidation (BPC): Tracking Kurva-S 12 bulan holding PalmCo, klasifikasi holding resmi (Emas, Hijau, Merah, Hitam), dan analitik PICA (Problem Identification & Corrective Action).',
+      'Global Regional Filtering: Dropdown pemfilteran lintas 7 Regional PalmCo (RPC1 s/d RPC7) yang mengontrol seluruh KPI card, tabel ledger, dan grafik analitik secara instan.',
+      'Audit Compliance & Reset Engine: Dialog konfirmasi reset seed data baseline PRD serta banner transparansi data simulasi.',
+      'Universal CSV Export: Unduhan berkas laporan tabel berstandar enterprise dengan penanganan koma desimal dan pemisah lokal.'
+    ],
+    techStack: [
+      'React 19',
+      'Vite 8',
+      'Tailwind CSS',
+      'Recharts',
+      'Lucide React',
+      'Context API',
+      'LocalStorage Engine',
+      'JavaScript (ESNext)'
+    ],
+    githubUrl: 'https://github.com/firhmgh/ptpn4-control360',
+    liveUrl: 'https://firhmgh.github.io/ptpn4-control360/',
+    imagePath: '/projects/ptpn4-control360/01-dashboard-overview.png',
+    videoDemoUrl: '/projects/ptpn4-control360/PALM_CONTROL360_Demo_1080p.mp4',
+    gallery: [
+      {
+        path: '/projects/ptpn4-control360/01-dashboard-overview.png',
+        caption: 'Executive Dashboard Overview — Header bar Palmvest360, KPI serapan holding PalmCo, dan quick action filter regional.',
+        classification: 'Executive Overview'
+      },
+      {
+        path: '/projects/ptpn4-control360/02-co-controlling.png',
+        caption: 'Corporate Controlling (CO) Module — Master GL Account to Cost Center mapping dan ledger pencatatan transaksi biaya.',
+        classification: 'CO Module'
+      },
+      {
+        path: '/projects/ptpn4-control360/03-bpc-replanting.png',
+        caption: 'BPC Replanting S-Curve — Visualisasi interaktif Kurva-S 12 bulan Plan vs Actual serapan anggaran replanting kelapa sawit.',
+        classification: 'BPC S-Curve'
+      },
+      {
+        path: '/projects/ptpn4-control360/04-bpc-pica.png',
+        caption: 'BPC PICA Engine & Matrix Holding — Matriks klasifikasi holding (Emas, Hijau, Merah, Hitam) dan modul tindak lanjut deviasi.',
+        classification: 'PICA & Consolidation'
+      },
+      {
+        path: '/projects/ptpn4-control360/05-bw-data-cube.png',
+        caption: 'Business Warehouse (BW) Data Cube — Agregasi multidimensi data produksi, cash cost Rp 4.469/kg, dan rendemen CPO 23,94%.',
+        classification: 'BW Data Cube'
+      },
+      {
+        path: '/projects/ptpn4-control360/06-bw-etl-simulation.png',
+        caption: 'BW ETL Simulator — Pipeline Extract-Transform-Load beranimasi dengan streaming step-by-step audit execution logs.',
+        classification: 'ETL Pipeline'
+      },
+      {
+        path: '/projects/ptpn4-control360/07-mobile-responsive.png',
+        caption: 'Mobile Responsive Layout — Navigasi drawer adaptif dan optimasi touch target 44px untuk pemantauan mobile tablet & ponsel.',
+        classification: 'Mobile Responsive'
+      },
+      {
+        path: '/projects/ptpn4-control360/08-hero-portfolio.png',
+        caption: 'Enterprise Architecture Showcase — Presentasi visual komprehensif sistem controlling PTPN IV PalmCo.',
+        classification: 'Architecture Overview'
+      }
+    ],
+    accentGlow: 'from-emerald-500/20 via-teal-500/10 to-slate-500/0'
+  },
+// ================= 2. WebGIS TBM Regional 1 PalmCo (Featured #2) =================
   {
     id: 'webgis-tbm-palmco-regional-1',
     slug: 'webgis-tbm-palmco',
