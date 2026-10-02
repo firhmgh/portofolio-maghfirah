@@ -39,7 +39,7 @@ export interface ProjectItem {
 }
 
 export const ALL_PROJECTS_DATA: ProjectItem[] = [
-  // ================= 1. SIMTAN (Featured #1) =================
+    // ================= 1. SIMTAN (Featured #1) =================
   {
     id: 'simtan-monitoring-palm-oil',
     slug: 'simtan',
@@ -76,37 +76,53 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     journalTitle: 'Implementasi Sistem Monitoring Tanaman Kelapa Sawit Berbasis Web GIS dan Large Language Model',
     journalName: 'DECODING: Jurnal Dedikasi Komunitas dan Perkembangan Teknologi Terkini (Vol. 4 No. 2, 2026)',
     journalDoi: '10.61255/decoding.v4i2.1449',
-    imagePath: '/projects/simtan/cover.png',
+    imagePath: '/projects/simtan/02_dashboard_executive.png',
+    videoDemoUrl: '/projects/simtan/SIMTAN_Demo_1080p.mp4',
     gallery: [
       {
-        path: '/projects/simtan/cover.png',
-        caption: 'Monitoring Panel Presisi TBM III — Overview metrik operasional, filter temporal, narasi AI, dan kepatuhan agronomi',
-        classification: 'Dashboard Runtime'
+        path: '/projects/simtan/02_dashboard_executive.png',
+        caption: 'Dashboard Eksekutif SIMTAN — Overview metrik operasional seluruh kebun, filter temporal triwulanan, ringkasan luas areal 12.429+ Ha, dan status kesehatan tanaman',
+        classification: 'Executive Dashboard Runtime'
       },
       {
-        path: '/projects/simtan/feature-01-data-kebun.png',
-        caption: 'Data Kebun Regional I — Tabel inventaris unit kebun operasional (Dusun Hulu, Gunung Monaco, Sei Silau) dengan status kesehatan',
+        path: '/projects/simtan/04_detail_areal_kebun.png',
+        caption: 'Peta Geospasial Interaktif & Autonomous Prescriptive Engine — Inspeksi spasial poligon blok kebun, klasifikasi performa vegetatif, dan rekomendasi aksi AI',
+        classification: 'WebGIS & AI Engine'
+      },
+      {
+        path: '/projects/simtan/03_data_kebun_monitoring.png',
+        caption: 'Monitoring Inventaris Data Kebun — Tabel komparasi performa afdeling dan kebun (Dusun Hulu, Gunung Monaco, Sei Silau) dengan indikator kepatuhan PPKS',
         classification: 'Estate Inventory Runtime'
       },
       {
-        path: '/projects/simtan/feature-02-upload-data.png',
-        caption: 'Pusat Proses Unggah Data — Form ingest berkas sensus Excel dengan identifikasi parameter dan riwayat transaksi',
-        classification: 'Data Ingest Runtime'
+        path: '/projects/simtan/05_laporan_evaluasi.png',
+        caption: 'Pusat Generasi & Ekspor Laporan Evaluasi — Kompilasi laporan formal berbasis parameter periode sensus dan sintesis analisis vegetatif',
+        classification: 'Reporting Engine'
       },
       {
-        path: '/projects/simtan/feature-03-laporan.png',
-        caption: 'Pusat Generasi Laporan Presisi TBM III — Konfigurasi ekspor dokumen PDF dengan analisis AI dan matriks performa',
-        classification: 'Reporting Engine Runtime'
+        path: '/projects/simtan/06_upload_data_kebun.png',
+        caption: 'Modul Unggah Data Sensus Excel — Ingestion batch data sensus vegetatif dengan validasi integritas struktur file otomatis',
+        classification: 'Batch Data Ingest'
       },
       {
-        path: '/projects/simtan/login-screen.png',
-        caption: 'Halaman Login Terautentikasi SIMTAN PTPN IV Regional I — Akses berbasis peran sistemik',
+        path: '/projects/simtan/07_riwayat_data_audit.png',
+        caption: 'Riwayat & Audit Log Transaksi Unggah — Pencatatan rekam jejak berkas, aktor pengunggah, dan timestamp audit kepatuhan data',
+        classification: 'Audit Log System'
+      },
+      {
+        path: '/projects/simtan/01_login_page.png',
+        caption: 'Antarmuka Otentikasi Terenkripsi — Halaman masuk multi-peran dengan kredensial terproteksi sistem SIMTAN PTPN IV',
         classification: 'Authentication Interface'
       },
       {
-        path: '/projects/simtan/validation-accuracy.png',
-        caption: 'Validasi model deteksi pokok dan akurasi geospasial pada skripsi/publikasi',
-        classification: 'Model Validation Matrix'
+        path: '/projects/simtan/08_kelola_akun_superadmin.png',
+        caption: 'Manajemen Hak Akses Akun & Impersonasi — Kontrol izin berbasis peran (Superadmin, Admin, User) dan direktori pengguna',
+        classification: 'Role-Based Access Control'
+      },
+      {
+        path: '/projects/simtan/09_pengaturan_sistem.png',
+        caption: 'Panel Konfigurasi Sistem — Pengaturan integrasi API kecerdasan buatan, preferensi interface, dan parameter operasional',
+        classification: 'System Configuration'
       }
     ],
     supportingInfrastructure: [
@@ -120,7 +136,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
     accentGlow: 'from-blue-600/20 via-sky-500/10 to-transparent'
   },
 
-    // ================= 2. PTPN4 CONTROL360 (Corporate Controlling & BI) =================
+// ================= 2. PTPN4 CONTROL360 (Corporate Controlling & BI) =================
   {
     id: 'ptpn4-control360-enterprise',
     slug: 'ptpn4-control360',
