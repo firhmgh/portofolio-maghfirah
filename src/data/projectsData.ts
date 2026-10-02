@@ -71,6 +71,7 @@ export const ALL_PROJECTS_DATA: ProjectItem[] = [
       'Executive AI Insights Narrative Engine with one-click report preview and PDF compilation'
     ],
     techStack: ['Laravel', 'PHP', 'MySQL', 'Leaflet', 'Bootstrap', 'JavaScript', 'Gemini AI'],
+    liveUrl: 'https://firhmgh.github.io/simtan-monitoring-palm-oil/demo.html?role=superadmin',
     githubUrl: 'https://github.com/firhmgh/simtan-monitoring-palm-oil',
     journalUrl: 'https://journal.diginus.id/DECODING/article/view/1449',
     journalTitle: 'Implementasi Sistem Monitoring Tanaman Kelapa Sawit Berbasis Web GIS dan Large Language Model',

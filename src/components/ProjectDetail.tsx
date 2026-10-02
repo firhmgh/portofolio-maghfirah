@@ -241,6 +241,17 @@ export const ProjectDetail: React.FC<{ project: ProjectItem }> = ({ project }) =
                 </p>
               </div>
             </div>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md hover:scale-[1.02] active:scale-98 transition-all ml-auto"
+              >
+                <ExternalLink className="w-3.5 h-3.5" />
+                <span>Buka Aplikasi Langsung</span>
+              </a>
+            )}
           </div>
           <div className="relative aspect-video w-full bg-black flex items-center justify-center overflow-hidden">
             <video
