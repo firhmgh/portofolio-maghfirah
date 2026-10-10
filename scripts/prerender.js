@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 async function preRenderAllStaticPages() {
-  console.log('--- STARTING MULTI-ROUTE PRE-RENDERING GENERATOR (PORTABLE) ---');
+  console.log('--- STARTING MULTI-ROUTE PRE-RENDERING GENERATOR (PORTABLE & ROBUST) ---');
   const projectRoot = path.resolve(__dirname, '..');
   const buildDir = path.join(projectRoot, 'build');
   const dataPath = path.join(projectRoot, 'src', 'data', 'projectsData.ts');
@@ -31,10 +31,22 @@ async function preRenderAllStaticPages() {
 
   console.log(`Pre-rendering total ${routesToPreRender.length} routes...`);
 
-  // Read clean built index.html template from build/index.html
-  // Strip any existing content inside #root to maintain a pristine injection template
+  // Build clean shell template directly from build/index.html
+  // By slicing strictly before <div id="root"> and after the closing </body>
   const rawBaseHtml = fs.readFileSync(path.join(buildDir, 'index.html'), 'utf8');
-  const baseHtmlTemplate = rawBaseHtml.replace(/<div id="root">[\s\S]*?<\/div>/, '<div id="root"></div>');
+  const rootIndex = rawBaseHtml.indexOf('<div id="root">');
+  const bodyCloseIndex = rawBaseHtml.indexOf('</body>');
+
+  if (rootIndex === -1 || bodyCloseIndex === -1) {
+    throw new Error('Unable to find root or body tag in build/index.html');
+  }
+
+  const headPart = rawBaseHtml.substring(0, rootIndex);
+  const tailPart = rawBaseHtml.substring(bodyCloseIndex); // contains </body></html>
+
+  // Look for any scripts between root and body (like the bundle script tags)
+  const scriptsMatch = rawBaseHtml.substring(rootIndex, bodyCloseIndex).match(/<script[\s\S]*?<\/script>/g);
+  const scriptsHtml = scriptsMatch ? scriptsMatch.join('\n    ') : '';
 
   for (const item of routesToPreRender) {
     const targetUrl = `${BASE_URL}${item.route === '/' ? '/' : item.route}`;
@@ -46,9 +58,9 @@ async function preRenderAllStaticPages() {
     const renderedRootHtml = await page.$eval('#root', el => el.innerHTML);
     const renderedTitle = await page.title();
 
-    // Inject into clean template
-    let pageHtml = baseHtmlTemplate.replace(/<title>[^<]+<\/title>/, `<title>${renderedTitle}</title>`);
-    pageHtml = pageHtml.replace('<div id="root"></div>', `<div id="root">${renderedRootHtml}</div>`);
+    // Construct clean, un-nested pre-rendered page
+    let finalHead = headPart.replace(/<title>[^<]+<\/title>/, `<title>${renderedTitle}</title>`);
+    let pageHtml = `${finalHead}<div id="root">${renderedRootHtml}</div>\n    ${scriptsHtml}\n  ${tailPart}`;
 
     // Ensure target output directory exists
     if (!fs.existsSync(item.outputDir)) {
@@ -61,7 +73,7 @@ async function preRenderAllStaticPages() {
   }
 
   await browser.close();
-  console.log('--- ALL 19 ROUTES PRE-RENDERED SUCCESSFULLY ---');
+  console.log('--- ALL 19 ROUTES PRE-RENDERED CLEANLY & SUCCESSFULLY ---');
 }
 
 preRenderAllStaticPages().catch(err => {
